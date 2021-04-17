@@ -39,13 +39,15 @@ export const Subtitle = styled.Text`
 
 export const Footer = styled.View`
   ${() => css`
+    margin-bottom: 16px;
+
     align-items: center;
   `}
 `;
 
 export const SignButtons = styled.View`
   ${() => css`
-    margin-bottom: 42px;
+    margin-bottom: 24px;
 
     flex-direction: row;
     align-items: center;
@@ -58,7 +60,15 @@ export const ButtonWrapper = styled.View`
   `}
 `;
 
-export const GoBackButton = styled.TouchableOpacity``;
+export const GoBackButton = styled.TouchableOpacity`
+  ${() => css`
+    height: 48px;
+    width: 80px;
+
+    align-items: center;
+    justify-content: center;
+  `}
+`;
 
 export const GoBackButtonText = styled.Text`
   ${({ theme }) => css`
