@@ -1,18 +1,33 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import AppLoading from 'expo-app-loading';
+import {
+  Archivo_400Regular,
+  Archivo_500Medium,
+  Archivo_600SemiBold,
+  Archivo_700Bold,
+  useFonts,
+} from '@expo-google-fonts/archivo';
+
+import { ThemeProvider } from 'styled-components';
+
+import theme from './src/styles/theme';
+import { Onboarding } from './src/pages/Onboarding';
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Archivo_400Regular,
+    Archivo_500Medium,
+    Archivo_600SemiBold,
+    Archivo_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Hello World</Text>
-    </View>
+    <ThemeProvider theme={theme}>
+      <Onboarding />
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
