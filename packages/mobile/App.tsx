@@ -8,7 +8,8 @@ import { useFonts } from 'expo-font';
 import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from 'styled-components';
 
-import { theme, fonts } from './src/styles';
+import fonts from './src/assets/fonts';
+import { theme } from './src/styles';
 import { Routes } from './src/routes';
 
 export default function App() {
