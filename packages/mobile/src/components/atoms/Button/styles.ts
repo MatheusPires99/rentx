@@ -12,7 +12,6 @@ export const Container = styled(RectButton)<ContainerProps>`
     background-color: ${variant === 'secondary'
       ? theme.colors.gray['800']
       : theme.colors.primary};
-    width: 100%;
     height: 56px;
 
     align-items: center;
@@ -22,7 +21,7 @@ export const Container = styled(RectButton)<ContainerProps>`
 
 export const ButtonText = styled.Text`
   ${({ theme }) => css`
-    font-family: 'Inter_500Medium';
+    font-family: ${theme.fonts.inter.medium};
     font-size: 15px;
     color: ${theme.colors.gray['100']};
   `}
