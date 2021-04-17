@@ -1,0 +1,1 @@
+export { Wellcome } from './Wellcome';
