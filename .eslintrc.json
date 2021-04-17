@@ -33,6 +33,7 @@
     "react/no-danger": "off",
     "react/jsx-props-no-spreading": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/require-default-props": "off",
     "camelcase": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "no-restricted-properties": "off",
