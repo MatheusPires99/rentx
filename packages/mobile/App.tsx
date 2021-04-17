@@ -1,25 +1,18 @@
-import React from 'react';
-import AppLoading from 'expo-app-loading';
-import {
-  Archivo_400Regular,
-  Archivo_500Medium,
-  Archivo_600SemiBold,
-  Archivo_700Bold,
-  useFonts,
-} from '@expo-google-fonts/archivo';
+import 'react-native-gesture-handler';
 
+import React from 'react';
+import { View } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
+
+import { NavigationContainer } from '@react-navigation/native';
 import { ThemeProvider } from 'styled-components';
 
-import theme from './src/styles/theme';
-import { Onboarding } from './src/pages/Onboarding';
+import { theme, fonts } from './src/styles';
+import { Routes } from './src/routes';
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    Archivo_400Regular,
-    Archivo_500Medium,
-    Archivo_600SemiBold,
-    Archivo_700Bold,
-  });
+  const [fontsLoaded] = useFonts({ ...fonts });
 
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -27,7 +20,11 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Onboarding />
+      <NavigationContainer>
+        <View style={{ flex: 1 }}>
+          <Routes />
+        </View>
+      </NavigationContainer>
     </ThemeProvider>
   );
 }
