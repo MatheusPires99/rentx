@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import { Calendar, Car } from '../../assets/icons';
-import { Wellcome } from '../../components/molecules';
+import { Wellcome } from '../../components/organisms';
 import { OnboardingTemplate } from '../../components/templates';
 
 export function Onboarding() {
