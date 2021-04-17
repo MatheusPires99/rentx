@@ -62,7 +62,7 @@
       {
         "newlinesBetween": "always",
         "groups": [
-          ["/^react$/", "/^react-(native|dom)$/", "/^next/"],
+          ["/^react$/", "/^react-(native|dom)$/", "/^next/", "/^expo/", "/^@expo/"],
           "module",
           [
             "/^@(assets|common|components|constants|contexts|hooks|mocks|pages|routes|services|styles|utils|shared|store)/",
