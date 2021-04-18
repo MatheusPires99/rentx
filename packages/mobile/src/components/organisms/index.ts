@@ -1,2 +1,1 @@
-export { Wellcome } from './Wellcome';
-export { OnboardingStep } from './OnboardingStep';
+export { Onboarding } from './Onboarding';

@@ -10,14 +10,13 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { Calendar, Car } from '../../../assets/icons';
-import { Wellcome, OnboardingStep } from '../../organisms';
-import { OnboardingFooter } from '../../molecules';
+import { Wellcome, OnboardingStep, OnboardingFooter } from '../../molecules';
 
 const { width } = Dimensions.get('window');
 
 export type Step = 1 | 2 | 3;
 
-export const OnboardingTemplate = () => {
+export const Onboarding = () => {
   const scrollViewRef = useRef<Animated.ScrollView>(null);
   const [step, setStep] = useState<Step>(1);
 
