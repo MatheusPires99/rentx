@@ -6,8 +6,8 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
-import { ChevronRight } from '../../../assets/icons';
-import { Step } from '../../templates/OnboardingTemplate';
+import { ArrowButton } from '../../atoms';
+import { Step } from '../../organisms/Onboarding';
 import * as S from './styles';
 
 type OnboardingFooterProps = {
@@ -48,9 +48,7 @@ export const OnboardingFooter = ({
         <S.Step active={step === 2} />
       </S.StepCount>
 
-      <S.NextButton onPress={() => onNextStep(goToStep)}>
-        <ChevronRight />
-      </S.NextButton>
+      <ArrowButton direction="right" onPress={() => onNextStep(goToStep)} />
     </S.Footer>
   );
 };

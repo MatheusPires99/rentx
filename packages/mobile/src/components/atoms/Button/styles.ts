@@ -23,6 +23,6 @@ export const ButtonText = styled.Text`
   ${({ theme }) => css`
     font-family: ${theme.fonts.inter.medium};
     font-size: 15px;
-    color: ${theme.colors.gray['100']};
+    color: ${theme.colors.white};
   `}
 `;

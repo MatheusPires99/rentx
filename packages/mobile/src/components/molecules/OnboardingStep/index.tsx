@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { IconType } from '../../../types';
-import { Step } from '../../templates/OnboardingTemplate';
+import { Step } from '../../organisms/Onboarding';
 import * as S from './styles';
 
 type OnboardingStepProps = {
