@@ -12,12 +12,14 @@ type InputProps = TextInputProps & {
   name: string;
   isSecureField?: boolean;
   icon: IconType;
+  marginTop?: number;
 };
 
 export const Input = ({
   name,
   icon: Icon,
   isSecureField = false,
+  marginTop = 0,
   ...rest
 }: InputProps) => {
   const { control } = useForm();
@@ -33,7 +35,7 @@ export const Input = ({
       name={name}
       rules={{ required: true }}
       render={({ field: { onChange, onBlur, value } }) => (
-        <S.Container>
+        <S.Container style={{ marginTop }}>
           <S.IconBox>
             <Icon />
           </S.IconBox>

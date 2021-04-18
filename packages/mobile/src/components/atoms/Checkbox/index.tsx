@@ -18,7 +18,12 @@ type CheckboxProps = {
   label: string;
 };
 
-export const Checkbox = ({ isChecked, onChange, label }: CheckboxProps) => {
+export const Checkbox = ({
+  isChecked,
+  onChange,
+  label,
+  ...rest
+}: CheckboxProps) => {
   const checkedBoxOpacity = useSharedValue(0);
 
   useEffect(() => {
@@ -55,7 +60,7 @@ export const Checkbox = ({ isChecked, onChange, label }: CheckboxProps) => {
   });
 
   return (
-    <TouchableWithoutFeedback onPress={onChange}>
+    <TouchableWithoutFeedback onPress={onChange} {...rest}>
       <S.Container>
         <S.Box>
           <S.Background style={backgroundStyle} />
