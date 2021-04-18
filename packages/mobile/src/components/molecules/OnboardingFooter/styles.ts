@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 
-type StepProps = {
-  active: boolean;
-};
-
 export const Footer = styled(Animated.View)`
   ${() => css`
     width: 100%;
@@ -19,23 +15,6 @@ export const Footer = styled(Animated.View)`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-  `}
-`;
-
-export const StepCount = styled.View`
-  ${() => css`
-    flex-direction: row;
-    align-items: center;
-  `}
-`;
-
-export const Step = styled.View<StepProps>`
-  ${({ theme, active }) => css`
-    width: ${active ? 6 : 4}px;
-    height: ${active ? 6 : 4}px;
-    border-radius: ${active ? 3 : 2}px;
-    background: ${active ? theme.colors.gray['600'] : theme.colors.gray['300']};
-    margin-right: 8px;
   `}
 `;
 

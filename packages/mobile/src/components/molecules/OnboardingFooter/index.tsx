@@ -6,7 +6,7 @@ import Animated, {
   useAnimatedStyle,
 } from 'react-native-reanimated';
 
-import { ArrowButton } from '../../atoms';
+import { ArrowButton, Steps } from '../../atoms';
 import { Step } from '../../organisms/Onboarding';
 import * as S from './styles';
 
@@ -43,10 +43,7 @@ export const OnboardingFooter = ({
 
   return (
     <S.Footer style={footerStyle}>
-      <S.StepCount>
-        <S.Step active={step === 1} />
-        <S.Step active={step === 2} />
-      </S.StepCount>
+      <Steps numberOfSteps={2} currentStep={step} />
 
       <ArrowButton direction="right" onPress={() => onNextStep(goToStep)} />
     </S.Footer>
