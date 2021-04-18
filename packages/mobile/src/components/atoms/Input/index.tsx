@@ -4,13 +4,14 @@ import { TextInputProps } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 
-import * as S from './styles';
 import { Eye, EyeClose } from '../../../assets/icons';
+import { IconType } from '../../../types';
+import * as S from './styles';
 
 type InputProps = TextInputProps & {
   name: string;
   isSecureField?: boolean;
-  icon: any;
+  icon: IconType;
 };
 
 export const Input = ({
@@ -22,9 +23,9 @@ export const Input = ({
   const { control } = useForm();
   const theme = useTheme();
 
-  const [secure, setSecure] = useState(isSecureField);
+  const [showPassword, setShowPassword] = useState(isSecureField);
 
-  const handleToggleSecure = () => setSecure(state => !state);
+  const handleToggleSecure = () => setShowPassword(state => !state);
 
   return (
     <Controller
@@ -39,16 +40,16 @@ export const Input = ({
 
           <S.TextField
             value={value}
-            onChangeText={value => onChange(value)}
+            onChangeText={textValue => onChange(textValue)}
             onBlur={onBlur}
             placeholderTextColor={theme.colors.gray['300']}
-            secureTextEntry={secure}
+            secureTextEntry={showPassword}
             {...rest}
           />
 
           {isSecureField && (
             <S.EyeButton onPress={handleToggleSecure}>
-              {secure ? <EyeClose /> : <Eye />}
+              {showPassword ? <EyeClose /> : <Eye />}
             </S.EyeButton>
           )}
         </S.Container>
