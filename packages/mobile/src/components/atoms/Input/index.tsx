@@ -1,7 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { TextInputProps } from 'react-native';
 
-import { useForm, Controller } from 'react-hook-form';
+import {
+  useForm,
+  Controller,
+  FieldError,
+  FieldValues,
+  Control,
+} from 'react-hook-form';
 import { useTheme } from 'styled-components';
 
 import { Eye, EyeClose } from '../../../assets/icons';
@@ -9,51 +15,76 @@ import { IconType } from '../../../types';
 import * as S from './styles';
 
 type InputProps = TextInputProps & {
+  control: Control<FieldValues>;
   name: string;
   isSecureField?: boolean;
   icon: IconType;
+  error?: FieldError;
   marginTop?: number;
 };
 
 export const Input = ({
+  control,
   name,
   icon: Icon,
   isSecureField = false,
+  error,
   marginTop = 0,
   ...rest
 }: InputProps) => {
-  const { control } = useForm();
+  const { getValues } = useForm();
   const theme = useTheme();
 
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
   const [showPassword, setShowPassword] = useState(isSecureField);
 
   const handleToggleSecure = () => setShowPassword(state => !state);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+    setIsFilled(!!getValues(name));
+  }, [getValues, name]);
 
   return (
     <Controller
       control={control}
       name={name}
-      rules={{ required: true }}
-      render={({ field: { onChange, onBlur, value } }) => (
+      render={({ field: { onChange, value } }) => (
         <S.Container style={{ marginTop }}>
-          <S.IconBox>
-            <Icon />
-          </S.IconBox>
+          <S.Content isFocused={isFocused}>
+            <S.IconBox>
+              <Icon
+                color={
+                  isFocused || isFilled
+                    ? theme.colors.primary
+                    : theme.colors.gray['400']
+                }
+              />
+            </S.IconBox>
 
-          <S.TextField
-            value={value}
-            onChangeText={textValue => onChange(textValue)}
-            onBlur={onBlur}
-            placeholderTextColor={theme.colors.gray['300']}
-            secureTextEntry={showPassword}
-            {...rest}
-          />
+            <S.TextField
+              value={value}
+              onChangeText={textValue => onChange(textValue)}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              placeholderTextColor={theme.colors.gray['300']}
+              secureTextEntry={showPassword}
+              {...rest}
+            />
 
-          {isSecureField && (
-            <S.EyeButton onPress={handleToggleSecure}>
-              {showPassword ? <EyeClose /> : <Eye />}
-            </S.EyeButton>
-          )}
+            {isSecureField && (
+              <S.EyeButton onPress={handleToggleSecure}>
+                {showPassword ? <EyeClose /> : <Eye />}
+              </S.EyeButton>
+            )}
+          </S.Content>
+
+          {!!error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
         </S.Container>
       )}
     />
