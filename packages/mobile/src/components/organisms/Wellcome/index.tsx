@@ -1,6 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 
+import { useNavigation } from '@react-navigation/core';
+
 import { Rentx } from '../../../assets/icons';
 import { Button } from '../../atoms';
 import * as S from './styles';
@@ -10,6 +12,12 @@ type WellcomeProps = {
 };
 
 export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
+  const navigation = useNavigation();
+
+  const handleNavigateToSignIn = () => {
+    navigation.navigate('SignIn');
+  };
+
   return (
     <>
       <StatusBar style="light" />
@@ -25,7 +33,7 @@ export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
         <S.Footer>
           <S.SignButtons>
             <S.ButtonWrapper>
-              <Button>Login</Button>
+              <Button onPress={handleNavigateToSignIn}>Login</Button>
             </S.ButtonWrapper>
             <S.ButtonWrapper style={{ marginLeft: 16 }}>
               <Button variant="secondary">Cadastro</Button>
