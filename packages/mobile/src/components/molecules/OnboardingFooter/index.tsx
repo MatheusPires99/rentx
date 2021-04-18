@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 
 import Animated, {
+  Extrapolate,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
@@ -31,7 +32,12 @@ export const OnboardingFooter = ({
   const footerStyle = useAnimatedStyle(() => {
     return {
       opacity: footerOpacity.value,
-      zIndex: interpolate(footerOpacity.value, [0, 1], [-1, 1]),
+      zIndex: interpolate(
+        footerOpacity.value,
+        [0, 1],
+        [-1, 1],
+        Extrapolate.CLAMP,
+      ),
     };
   });
 
