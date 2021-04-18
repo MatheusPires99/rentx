@@ -1,9 +1,15 @@
-export { default as Rentx } from './rentx.svg';
-export { default as Calendar } from './calendar.svg';
-export { default as Car } from './car.svg';
-export { default as ChevronRight } from './chevron-right.svg';
-export { default as ChevronLeft } from './chevron-left.svg';
-export { default as Email } from './email.svg';
-export { default as Lock } from './lock.svg';
-export { default as Eye } from './eye.svg';
-export { default as EyeClose } from './eye-close.svg';
+import { Theme } from '../../@types/styled';
+
+export type SvgProps = {
+  color?: keyof Theme['colors'];
+};
+
+export { Rentx } from './Rentx';
+export { Calendar } from './Calendar';
+export { Car } from './Car';
+export { ChevronRight } from './ChevronRight';
+export { ChevronLeft } from './ChevronLeft';
+export { Email } from './Email';
+export { Lock } from './Lock';
+export { Eye } from './Eye';
+export { EyeClose } from './EyeClose';
