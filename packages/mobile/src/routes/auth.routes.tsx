@@ -15,7 +15,7 @@ export const AuthRoutes = () => {
     <Auth.Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: { backgroundColor: theme.colors.white },
+        cardStyle: { backgroundColor: theme.colors.gray['50'] },
       }}
     >
       <Auth.Screen name="Onboarding" component={Onboarding} />

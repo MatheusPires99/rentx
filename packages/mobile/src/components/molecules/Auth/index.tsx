@@ -54,7 +54,7 @@ export const Auth = ({
               <S.Form>
                 {children}
 
-                <Button onPress={handleSubmit} style={{ marginTop: 32 }}>
+                <Button onPress={handleSubmit} style={{ marginTop: 24 }}>
                   {submitText}
                 </Button>
               </S.Form>

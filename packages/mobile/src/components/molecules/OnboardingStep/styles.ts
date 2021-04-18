@@ -34,7 +34,7 @@ export const StepNumber = styled.Text`
 
 export const Main = styled.View`
   ${() => css`
-    margin-top: ${IPHONE_8_HEIGHT ? 64 : 80};
+    margin-top: ${IPHONE_8_HEIGHT ? 64 : 80}px;
 
     flex: 1;
     justify-content: flex-start;

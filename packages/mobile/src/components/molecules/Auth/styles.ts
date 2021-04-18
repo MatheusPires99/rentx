@@ -13,7 +13,7 @@ export const Header = styled.View`
     z-index: 5;
     height: ${48 + Constants.statusBarHeight}px;
     width: 100%;
-    background: ${theme.colors.white};
+    background: ${theme.colors.gray['50']};
 
     justify-content: flex-end;
   `}
