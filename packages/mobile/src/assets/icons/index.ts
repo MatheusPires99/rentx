@@ -2,6 +2,7 @@ export { default as Rentx } from './rentx.svg';
 export { default as Calendar } from './calendar.svg';
 export { default as Car } from './car.svg';
 export { default as ChevronRight } from './chevron-right.svg';
+export { default as ChevronLeft } from './chevron-left.svg';
 export { default as Email } from './email.svg';
 export { default as Lock } from './lock.svg';
 export { default as Eye } from './eye.svg';
