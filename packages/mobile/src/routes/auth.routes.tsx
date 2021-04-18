@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme } from 'styled-components';
 
 import { Onboarding } from '../pages/Onboarding';
+import { SignIn } from '../pages/SignIn';
 
 const Auth = createStackNavigator();
 
@@ -18,6 +19,7 @@ export const AuthRoutes = () => {
       }}
     >
       <Auth.Screen name="Onboarding" component={Onboarding} />
+      <Auth.Screen name="SignIn" component={SignIn} />
     </Auth.Navigator>
   );
 };

@@ -14,6 +14,7 @@ export default {
       '600': '#47474D',
       '800': '#29292E',
     },
+    inputBackground: '#f2f2fa',
   },
   fonts: {
     archivo: {
