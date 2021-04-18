@@ -1,5 +1,6 @@
 export type SvgProps = {
   color?: string;
+  size?: number;
 };
 
 export { Rentx } from './Rentx';
@@ -11,3 +12,4 @@ export { Email } from './Email';
 export { Lock } from './Lock';
 export { Eye } from './Eye';
 export { EyeClose } from './EyeClose';
+export { User } from './User';
