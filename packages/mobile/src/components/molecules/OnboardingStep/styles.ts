@@ -3,6 +3,8 @@ import { Dimensions } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { IPHONE_8_HEIGHT } from '../../../constants';
+
 const { width } = Dimensions.get('window');
 
 export const Container = styled(SafeAreaView)`
@@ -32,7 +34,7 @@ export const StepNumber = styled.Text`
 
 export const Main = styled.View`
   ${() => css`
-    margin-top: 80px;
+    margin-top: ${IPHONE_8_HEIGHT ? 64 : 80};
 
     flex: 1;
     justify-content: flex-start;
