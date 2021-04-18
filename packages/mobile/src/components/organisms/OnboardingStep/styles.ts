@@ -1,14 +1,16 @@
+import { Dimensions } from 'react-native';
+
 import styled, { css } from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-type StepProps = {
-  active: boolean;
-};
+const { width } = Dimensions.get('window');
 
 export const Container = styled(SafeAreaView)`
   ${() => css`
-    flex: 1;
+    width: ${width}px;
     padding: 80px 32px 0;
+
+    flex: 1;
   `}
 `;
 
@@ -54,42 +56,5 @@ export const Description = styled.Text`
     line-height: 25px;
     color: ${theme.colors.gray['400']};
     max-width: 200px;
-  `}
-`;
-
-export const Footer = styled.View`
-  ${() => css`
-    margin-bottom: 24px;
-
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  `}
-`;
-
-export const StepCount = styled.View`
-  ${() => css`
-    flex-direction: row;
-    align-items: center;
-  `}
-`;
-
-export const Step = styled.View<StepProps>`
-  ${({ theme, active }) => css`
-    width: ${active ? 6 : 4}px;
-    height: ${active ? 6 : 4}px;
-    border-radius: ${active ? 3 : 2}px;
-    background: ${active ? theme.colors.gray['600'] : theme.colors.gray['300']};
-    margin-right: 8px;
-  `}
-`;
-
-export const NextButton = styled.TouchableOpacity`
-  ${() => css`
-    width: 48px;
-    height: 48px;
-
-    align-items: center;
-    justify-content: center;
   `}
 `;

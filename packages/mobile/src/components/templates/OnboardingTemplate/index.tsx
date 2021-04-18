@@ -1,51 +1,97 @@
-import React from 'react';
+import React, { useCallback, useState, useRef } from 'react';
+import { Dimensions, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
-import { ChevronRight } from '../../../assets/icons';
-import * as S from './styles';
+import Animated, {
+  useSharedValue,
+  withTiming,
+  Easing,
+  withDelay,
+} from 'react-native-reanimated';
 
-type OnboardingTemplateProps = {
-  icon: any;
-  stepNumber: number;
-  title: string;
-  description: string;
-  onNextStep: () => void;
-};
+import { Calendar, Car } from '../../../assets/icons';
+import { Wellcome, OnboardingStep } from '../../organisms';
+import { OnboardingFooter } from '../../molecules';
 
-export const OnboardingTemplate = ({
-  icon: Icon,
-  stepNumber,
-  title,
-  description,
-  onNextStep,
-}: OnboardingTemplateProps) => {
+const { width } = Dimensions.get('window');
+
+export type Step = 1 | 2 | 3;
+
+export const OnboardingTemplate = () => {
+  const scrollViewRef = useRef<Animated.ScrollView>(null);
+  const [step, setStep] = useState<Step>(1);
+
+  const footerOpacity = useSharedValue(1);
+
+  const handleChangeStep = useCallback(
+    (toStep: Step) => {
+      if (toStep === 3) {
+        footerOpacity.value = withTiming(0, {
+          duration: 250,
+          easing: Easing.ease,
+        });
+      }
+
+      if (step === 3 && toStep === 2) {
+        footerOpacity.value = withDelay(
+          200,
+          withTiming(1, {
+            duration: 250,
+            easing: Easing.ease,
+          }),
+        );
+      }
+
+      setStep(toStep);
+
+      if (scrollViewRef.current) {
+        scrollViewRef.current.scrollTo({
+          x: width * (toStep - 1),
+          animated: true,
+        });
+      }
+    },
+    [step, footerOpacity],
+  );
+
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style={step === 3 ? 'light' : 'dark'} />
 
-      <S.Container>
-        <S.Header>
-          <Icon />
+      <View style={{ flex: 1 }}>
+        <Animated.ScrollView
+          ref={scrollViewRef}
+          scrollEnabled={false}
+          scrollEventThrottle={16}
+          horizontal
+          bounces={false}
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={width}
+          decelerationRate="fast"
+        >
+          <OnboardingStep
+            step={step}
+            icon={Calendar}
+            title="Primeiro, escolha a data"
+            description="Você é quem define um período, e nós mostraremos os carros disponíveis."
+          />
 
-          <S.StepNumber>0{stepNumber}</S.StepNumber>
-        </S.Header>
+          <OnboardingStep
+            step={step}
+            icon={Car}
+            title="Depois, escolha o carro"
+            description="Vários modelos para você dirigir seguro, com conforto e segurança."
+          />
 
-        <S.Main>
-          <S.Title>{title}</S.Title>
-          <S.Description>{description}</S.Description>
-        </S.Main>
+          <Wellcome onPreviousStep={() => handleChangeStep(2)} />
+        </Animated.ScrollView>
 
-        <S.Footer>
-          <S.StepCount>
-            <S.Step active={stepNumber === 1} />
-            <S.Step active={stepNumber === 2} />
-          </S.StepCount>
-
-          <S.NextButton onPress={onNextStep}>
-            <ChevronRight />
-          </S.NextButton>
-        </S.Footer>
-      </S.Container>
+        <OnboardingFooter
+          step={step}
+          onNextStep={handleChangeStep}
+          footerOpacity={footerOpacity}
+        />
+      </View>
     </>
   );
 };
