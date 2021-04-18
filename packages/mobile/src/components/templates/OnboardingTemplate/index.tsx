@@ -70,14 +70,14 @@ export const OnboardingTemplate = () => {
           decelerationRate="fast"
         >
           <OnboardingStep
-            step={step}
+            step={1}
             icon={Calendar}
             title="Primeiro, escolha a data"
             description="Você é quem define um período, e nós mostraremos os carros disponíveis."
           />
 
           <OnboardingStep
-            step={step}
+            step={2}
             icon={Car}
             title="Depois, escolha o carro"
             description="Vários modelos para você dirigir seguro, com conforto e segurança."
