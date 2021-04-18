@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useTheme } from 'styled-components';
+
 import { IconType } from '../../../types';
 import { Step } from '../../organisms/Onboarding';
 import * as S from './styles';
@@ -17,10 +19,12 @@ export const OnboardingStep = ({
   title,
   description,
 }: OnboardingStepProps) => {
+  const theme = useTheme();
+
   return (
     <S.Container>
       <S.Header>
-        <Icon />
+        <Icon color={theme.colors.primary} size={80} />
 
         <S.StepNumber>0{step}</S.StepNumber>
       </S.Header>

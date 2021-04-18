@@ -64,6 +64,7 @@ export const Input = ({
                     ? theme.colors.primary
                     : theme.colors.gray['400']
                 }
+                size={24}
               />
             </S.IconBox>
 
