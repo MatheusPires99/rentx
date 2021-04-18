@@ -1,7 +1,5 @@
-import { Theme } from '../../@types/styled';
-
 export type SvgProps = {
-  color?: keyof Theme['colors'];
+  color?: string;
 };
 
 export { Rentx } from './Rentx';
