@@ -15,60 +15,58 @@ export const SignUpFields = ({ step }: SignUpFieldsProps) => {
 
   return (
     <>
-      {step === 1 ? (
-        <>
-          <S.StepTitle>{step}. Dados</S.StepTitle>
+      <S.Container isHiding={step === 2}>
+        <S.StepTitle>{step}. Dados</S.StepTitle>
 
-          <Input
-            name="user"
-            placeholder="Nome"
-            icon={User}
-            error={formState.errors.user}
-            autoCapitalize="words"
-          />
+        <Input
+          name="name"
+          placeholder="Nome"
+          icon={User}
+          error={formState.errors.name}
+          autoCapitalize="words"
+        />
 
-          <Input
-            name="email"
-            placeholder="E-mail"
-            icon={Email}
-            error={formState.errors.email}
-            marginTop={8}
-            autoCorrect={false}
-            autoCapitalize="none"
-            keyboardType="email-address"
-          />
+        <Input
+          name="email"
+          placeholder="E-mail"
+          icon={Email}
+          error={formState.errors.email}
+          marginTop={8}
+          autoCorrect={false}
+          autoCapitalize="none"
+          keyboardType="email-address"
+        />
 
-          <Input
-            name="cnh"
-            placeholder="CNH"
-            icon={Car}
-            error={formState.errors.cnh}
-            marginTop={8}
-            keyboardType="numeric"
-          />
-        </>
-      ) : (
-        <>
-          <S.StepTitle>{step}. Senha</S.StepTitle>
+        <Input
+          name="cnh"
+          placeholder="CNH"
+          icon={Car}
+          error={formState.errors.cnh}
+          marginTop={8}
+          keyboardType="numeric"
+        />
+      </S.Container>
 
-          <Input
-            name="password"
-            placeholder="Senha"
-            icon={Lock}
-            error={formState.errors.password}
-            isSecureField
-          />
+      <S.Container isHiding={step === 1}>
+        <S.StepTitle>{step}. Senha</S.StepTitle>
 
-          <Input
-            name="password_confirmation"
-            placeholder="Repetir senha"
-            icon={Lock}
-            error={formState.errors.password}
-            isSecureField
-            marginTop={8}
-          />
-        </>
-      )}
+        <Input
+          name="password"
+          placeholder="Senha"
+          icon={Lock}
+          error={formState.errors.password}
+          isSecureField
+        />
+
+        <Input
+          name="password_confirmation"
+          placeholder="Repetir senha"
+          icon={Lock}
+          error={formState.errors.password_confirmation}
+          isSecureField
+          marginTop={8}
+        />
+      </S.Container>
     </>
   );
 };

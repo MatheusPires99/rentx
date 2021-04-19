@@ -14,11 +14,11 @@ type SignInFormData = {
 };
 
 export const SignIn = () => {
+  const navigation = useNavigation();
   const methods = useForm({
     resolver: yupResolver(SIGN_IN_FORM_SCHEMA),
   });
-
-  const navigation = useNavigation();
+  const { handleSubmit } = methods;
 
   const handleSubmitForm: SubmitHandler<SignInFormData> = async value => {
     console.log({ value });
@@ -32,7 +32,7 @@ export const SignIn = () => {
         title="Estamos quase lá."
         description="Faça seu login para começar uma experiência incrível."
         submitText="Login"
-        onSubmit={methods.handleSubmit(handleSubmitForm)}
+        onSubmit={handleSubmit(handleSubmitForm)}
         onGoBack={handleGoBack}
       >
         <SignInFields />
