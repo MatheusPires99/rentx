@@ -1,16 +1,21 @@
 import React from 'react';
 
-import { ArrowButton } from '../../atoms';
+import { ArrowButton, Steps } from '../../atoms';
 import * as S from './styles';
 
 type AuthHeaderProps = {
   onGoBack: () => void;
+  step?: number;
 };
 
-export const AuthHeader = ({ onGoBack }: AuthHeaderProps) => {
+export const AuthHeader = ({ onGoBack, step }: AuthHeaderProps) => {
   return (
     <S.Container>
-      <ArrowButton direction="left" onPress={onGoBack} />
+      <S.Content>
+        <ArrowButton direction="left" onPress={onGoBack} />
+
+        {!!step && <Steps currentStep={step} numberOfSteps={2} />}
+      </S.Content>
     </S.Container>
   );
 };

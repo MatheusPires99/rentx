@@ -4,6 +4,7 @@ import { Control, DeepMap, FieldError, FieldValues } from 'react-hook-form';
 
 import { Car, Email, Lock, User } from '../../../assets/icons';
 import { Input } from '../../atoms';
+import * as S from './styles';
 
 type SignUpFieldsProps = {
   step: number;
@@ -16,6 +17,8 @@ export const SignUpFields = ({ step, control, errors }: SignUpFieldsProps) => {
     <>
       {step === 1 ? (
         <>
+          <S.StepTitle>{step}. Dados</S.StepTitle>
+
           <Input
             control={control}
             name="user"
@@ -49,6 +52,8 @@ export const SignUpFields = ({ step, control, errors }: SignUpFieldsProps) => {
         </>
       ) : (
         <>
+          <S.StepTitle>{step}. Senha</S.StepTitle>
+
           <Input
             control={control}
             name="password"

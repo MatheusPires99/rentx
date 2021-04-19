@@ -1,12 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
 
-import { Step as StepType } from '../../organisms/Onboarding';
 import * as S from './styles';
 
 type StepsProps = {
   numberOfSteps: number;
-  currentStep: StepType;
+  currentStep: number;
 };
 
 export const Steps = ({ numberOfSteps, currentStep }: StepsProps) => {

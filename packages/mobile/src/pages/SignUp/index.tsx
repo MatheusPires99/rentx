@@ -37,6 +37,7 @@ export const SignUp = () => {
       submitText={step === 1 ? 'Próximo' : 'Cadastrar'}
       onSubmit={step === 1 ? handleNextStep : handleSubmit(handleSubmitForm)}
       onGoBack={step === 1 ? handleGoBack : handlePreviousStep}
+      step={step}
     >
       <SignUpFields step={step} control={control} errors={formState.errors} />
     </AuthTemplate>

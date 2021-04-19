@@ -11,6 +11,7 @@ export type AuthTemplateProps = {
   submitText: string;
   onSubmit: () => void;
   onGoBack: () => void;
+  step?: number;
   children: ReactNode;
 };
 
@@ -20,6 +21,7 @@ export const AuthTemplate = ({
   submitText,
   onSubmit,
   onGoBack,
+  step,
   children,
 }: AuthTemplateProps) => {
   return (
@@ -31,7 +33,7 @@ export const AuthTemplate = ({
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         enabled
       >
-        <AuthHeader onGoBack={onGoBack} />
+        <AuthHeader onGoBack={onGoBack} step={step} />
 
         <ScrollView
           keyboardShouldPersistTaps="handled"
