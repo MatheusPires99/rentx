@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "email": "matheus@test.com",
+      "password": "$2a$10$EwI.gPZmvFwPVxP2gPGTH.MtGThhpqZNQXONvImdlOz8V3Vg56WRq",
+      "name": "Matheus",
+      "cnh": "123",
+      "password_confirmation": "123456",
+      "id": 1
+    },
+    {
+      "email": "matheushenriquepires99@gmail.com",
+      "password": "$2a$10$1xNOwvrk5QH4ypNRY7GjY.3uDkHeUdqBoF2J/nYGvAw0dhjCHdj2O",
+      "name": "Matheus",
+      "cnh": "123",
+      "password_confirmation": "123456",
+      "id": 2
+    }
+  ]
+}

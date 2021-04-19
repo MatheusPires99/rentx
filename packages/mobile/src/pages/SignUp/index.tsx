@@ -7,14 +7,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { SIGN_UP_FORM_SCHEMA } from '../../schemas';
 import { SignUpFields } from '../../components/molecules';
 import { AuthTemplate } from '../../components/templates';
-
-type SignUpFormData = {
-  name: string;
-  email: string;
-  cnh: string;
-  passowrd: string;
-  password_confirmation: string;
-};
+import { useAuth } from '../../hooks';
+import { SignUpCredencials } from '../../types';
 
 export const SignUp = () => {
   const navigation = useNavigation();
@@ -22,6 +16,8 @@ export const SignUp = () => {
     resolver: yupResolver(SIGN_UP_FORM_SCHEMA),
   });
   const { handleSubmit, trigger, formState } = methods;
+
+  const { signUp } = useAuth();
 
   const [step, setStep] = useState(1);
 
@@ -40,8 +36,8 @@ export const SignUp = () => {
 
   const handlePreviousStep = useCallback(() => setStep(state => state - 1), []);
 
-  const handleSubmitForm: SubmitHandler<SignUpFormData> = async value => {
-    console.log({ value });
+  const handleSubmitForm: SubmitHandler<SignUpCredencials> = async value => {
+    await signUp(value);
   };
 
   const handleGoBack = () => navigation.goBack();

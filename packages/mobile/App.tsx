@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components';
 import fonts from './src/assets/fonts';
 import { theme } from './src/styles';
 import { Routes } from './src/routes';
+import { AuthProvider } from './src/hooks';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ ...fonts });
@@ -20,12 +21,14 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavigationContainer>
-        <View style={{ flex: 1 }}>
-          <Routes />
-        </View>
-      </NavigationContainer>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <NavigationContainer>
+          <View style={{ flex: 1 }}>
+            <Routes />
+          </View>
+        </NavigationContainer>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

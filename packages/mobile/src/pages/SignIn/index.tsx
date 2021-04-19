@@ -7,11 +7,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { SIGN_IN_FORM_SCHEMA } from '../../schemas';
 import { SignInFields } from '../../components/molecules';
 import { AuthTemplate } from '../../components/templates';
-
-type SignInFormData = {
-  email: string;
-  passowrd: string;
-};
+import { SignInCredencials } from '../../types';
+import { useAuth } from '../../hooks';
 
 export const SignIn = () => {
   const navigation = useNavigation();
@@ -20,8 +17,10 @@ export const SignIn = () => {
   });
   const { handleSubmit } = methods;
 
-  const handleSubmitForm: SubmitHandler<SignInFormData> = async value => {
-    console.log({ value });
+  const { signIn } = useAuth();
+
+  const handleSubmitForm: SubmitHandler<SignInCredencials> = async value => {
+    await signIn(value);
   };
 
   const handleGoBack = () => navigation.goBack();
