@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useNavigation } from '@react-navigation/core';
 
 import { SIGN_IN_FORM_SCHEMA } from '../../../schemas';
 import { Email, Lock } from '../../../assets/icons';
@@ -18,6 +19,7 @@ export const SignIn = () => {
   const { handleSubmit, control, formState } = useForm({
     resolver: yupResolver(SIGN_IN_FORM_SCHEMA),
   });
+  const navigation = useNavigation();
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -30,12 +32,15 @@ export const SignIn = () => {
     console.log({ value });
   };
 
+  const handleGoBack = () => navigation.goBack();
+
   return (
     <Auth
       title="Estamos quase lá."
       description="Faça seu login para começar uma experiência incrível."
       submitText="Login"
-      handleSubmit={handleSubmit(handleSubmitForm)}
+      onSubmit={handleSubmit(handleSubmitForm)}
+      onGoBack={handleGoBack}
     >
       <Input
         control={control}

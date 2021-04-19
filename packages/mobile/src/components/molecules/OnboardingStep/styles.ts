@@ -28,7 +28,7 @@ export const StepNumber = styled.Text`
   ${({ theme }) => css`
     font-family: ${theme.fonts.archivo.semiBold};
     font-size: 56px;
-    color: ${theme.colors.gray['100']};
+    color: ${theme.colors.gray['200']};
   `}
 `;
 

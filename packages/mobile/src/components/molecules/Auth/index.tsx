@@ -2,8 +2,6 @@ import React, { ReactNode } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { KeyboardAvoidingView, ScrollView, Platform, View } from 'react-native';
 
-import { useNavigation } from '@react-navigation/core';
-
 import { ArrowButton, Button } from '../../atoms';
 import * as S from './styles';
 
@@ -11,7 +9,8 @@ export type AuthProps = {
   title: string;
   description: string;
   submitText: string;
-  handleSubmit: () => void;
+  onSubmit: () => void;
+  onGoBack: () => void;
   children: ReactNode;
 };
 
@@ -19,13 +18,10 @@ export const Auth = ({
   title,
   description,
   submitText,
-  handleSubmit,
+  onSubmit,
+  onGoBack,
   children,
 }: AuthProps) => {
-  const navigation = useNavigation();
-
-  const handleGoBack = () => navigation.goBack();
-
   return (
     <>
       <StatusBar style="dark" backgroundColor="#fff" />
@@ -36,7 +32,7 @@ export const Auth = ({
         enabled
       >
         <S.Header>
-          <ArrowButton direction="left" onPress={handleGoBack} />
+          <ArrowButton direction="left" onPress={onGoBack} />
         </S.Header>
 
         <ScrollView
@@ -54,7 +50,7 @@ export const Auth = ({
               <S.Form>
                 {children}
 
-                <Button onPress={handleSubmit} style={{ marginTop: 24 }}>
+                <Button onPress={onSubmit} style={{ marginTop: 24 }}>
                   {submitText}
                 </Button>
               </S.Form>

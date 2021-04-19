@@ -17,6 +17,10 @@ export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
     navigation.navigate('SignIn');
   };
 
+  const handleNavigateToSignUp = () => {
+    navigation.navigate('SignUp');
+  };
+
   return (
     <S.Container>
       <Rentx />
@@ -32,7 +36,9 @@ export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
             <Button onPress={handleNavigateToSignIn}>Login</Button>
           </S.ButtonWrapper>
           <S.ButtonWrapper style={{ marginLeft: 16 }}>
-            <Button variant="secondary">Cadastro</Button>
+            <Button onPress={handleNavigateToSignUp} variant="secondary">
+              Cadastro
+            </Button>
           </S.ButtonWrapper>
         </S.SignButtons>
 
