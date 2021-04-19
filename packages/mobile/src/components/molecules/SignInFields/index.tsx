@@ -1,17 +1,14 @@
 import React, { useState, useCallback } from 'react';
 
-import { Control, DeepMap, FieldError, FieldValues } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import { Email, Lock } from '../../../assets/icons';
 import { Checkbox, Input } from '../../atoms';
 import * as S from './styles';
 
-type SignInFieldsProps = {
-  control: Control<FieldValues>;
-  errors: DeepMap<FieldValues, FieldError>;
-};
+export const SignInFields = () => {
+  const { formState } = useFormContext();
 
-export const SignInFields = ({ control, errors }: SignInFieldsProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleToggleCheck = useCallback(
@@ -22,22 +19,20 @@ export const SignInFields = ({ control, errors }: SignInFieldsProps) => {
   return (
     <>
       <Input
-        control={control}
         name="email"
         placeholder="E-mail"
         icon={Email}
-        error={errors.email}
+        error={formState.errors.email}
         autoCorrect={false}
         autoCapitalize="none"
         keyboardType="email-address"
       />
 
       <Input
-        control={control}
         name="password"
         placeholder="Senha"
         icon={Lock}
-        error={errors.password}
+        error={formState.errors.password}
         isSecureField
         marginTop={8}
       />

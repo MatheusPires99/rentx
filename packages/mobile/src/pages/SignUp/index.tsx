@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/core';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { SIGN_IN_FORM_SCHEMA } from '../../schemas';
 import { SignUpFields } from '../../components/molecules';
@@ -14,7 +14,7 @@ type SignUpFormData = {
 };
 
 export const SignUp = () => {
-  const { handleSubmit, control, formState } = useForm({
+  const methods = useForm({
     resolver: yupResolver(SIGN_IN_FORM_SCHEMA),
   });
   const navigation = useNavigation();
@@ -31,15 +31,19 @@ export const SignUp = () => {
   const handleGoBack = () => navigation.goBack();
 
   return (
-    <AuthTemplate
-      title="Crie sua conta"
-      description="Faça seu cadastro de forma rápida e fácil."
-      submitText={step === 1 ? 'Próximo' : 'Cadastrar'}
-      onSubmit={step === 1 ? handleNextStep : handleSubmit(handleSubmitForm)}
-      onGoBack={step === 1 ? handleGoBack : handlePreviousStep}
-      step={step}
-    >
-      <SignUpFields step={step} control={control} errors={formState.errors} />
-    </AuthTemplate>
+    <FormProvider {...methods}>
+      <AuthTemplate
+        title="Crie sua conta"
+        description="Faça seu cadastro de forma rápida e fácil."
+        submitText={step === 1 ? 'Próximo' : 'Cadastrar'}
+        onSubmit={
+          step === 1 ? handleNextStep : methods.handleSubmit(handleSubmitForm)
+        }
+        onGoBack={step === 1 ? handleGoBack : handlePreviousStep}
+        step={step}
+      >
+        <SignUpFields step={step} />
+      </AuthTemplate>
+    </FormProvider>
   );
 };

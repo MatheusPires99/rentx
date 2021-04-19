@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Control, DeepMap, FieldError, FieldValues } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import { Car, Email, Lock, User } from '../../../assets/icons';
 import { Input } from '../../atoms';
@@ -8,11 +8,11 @@ import * as S from './styles';
 
 type SignUpFieldsProps = {
   step: number;
-  control: Control<FieldValues>;
-  errors: DeepMap<FieldValues, FieldError>;
 };
 
-export const SignUpFields = ({ step, control, errors }: SignUpFieldsProps) => {
+export const SignUpFields = ({ step }: SignUpFieldsProps) => {
+  const { formState } = useFormContext();
+
   return (
     <>
       {step === 1 ? (
@@ -20,20 +20,18 @@ export const SignUpFields = ({ step, control, errors }: SignUpFieldsProps) => {
           <S.StepTitle>{step}. Dados</S.StepTitle>
 
           <Input
-            control={control}
             name="user"
             placeholder="Nome"
             icon={User}
-            error={errors.user}
+            error={formState.errors.user}
             autoCapitalize="words"
           />
 
           <Input
-            control={control}
             name="email"
             placeholder="E-mail"
             icon={Email}
-            error={errors.email}
+            error={formState.errors.email}
             marginTop={8}
             autoCorrect={false}
             autoCapitalize="none"
@@ -41,11 +39,10 @@ export const SignUpFields = ({ step, control, errors }: SignUpFieldsProps) => {
           />
 
           <Input
-            control={control}
             name="cnh"
             placeholder="CNH"
             icon={Car}
-            error={errors.cnh}
+            error={formState.errors.cnh}
             marginTop={8}
             keyboardType="numeric"
           />
@@ -55,20 +52,18 @@ export const SignUpFields = ({ step, control, errors }: SignUpFieldsProps) => {
           <S.StepTitle>{step}. Senha</S.StepTitle>
 
           <Input
-            control={control}
             name="password"
             placeholder="Senha"
             icon={Lock}
-            error={errors.password}
+            error={formState.errors.password}
             isSecureField
           />
 
           <Input
-            control={control}
             name="password_confirmation"
             placeholder="Repetir senha"
             icon={Lock}
-            error={errors.password}
+            error={formState.errors.password}
             isSecureField
             marginTop={8}
           />

@@ -1,13 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { TextInputProps } from 'react-native';
 
-import {
-  useForm,
-  Controller,
-  FieldError,
-  FieldValues,
-  Control,
-} from 'react-hook-form';
+import { Controller, FieldError, useFormContext } from 'react-hook-form';
 import { useTheme } from 'styled-components';
 
 import { Eye, EyeClose } from '../../../assets/icons';
@@ -15,7 +9,6 @@ import { IconType } from '../../../types';
 import * as S from './styles';
 
 type InputProps = TextInputProps & {
-  control: Control<FieldValues>;
   name: string;
   isSecureField?: boolean;
   icon: IconType;
@@ -24,7 +17,6 @@ type InputProps = TextInputProps & {
 };
 
 export const Input = ({
-  control,
   name,
   icon: Icon,
   isSecureField = false,
@@ -32,7 +24,7 @@ export const Input = ({
   marginTop = 0,
   ...rest
 }: InputProps) => {
-  const { getValues } = useForm();
+  const { control, getValues } = useFormContext();
   const theme = useTheme();
 
   const [isFocused, setIsFocused] = useState(false);

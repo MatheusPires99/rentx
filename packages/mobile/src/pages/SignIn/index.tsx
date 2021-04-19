@@ -2,7 +2,7 @@ import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/core';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 import { SIGN_IN_FORM_SCHEMA } from '../../schemas';
 import { SignInFields } from '../../components/molecules';
@@ -14,9 +14,10 @@ type SignInFormData = {
 };
 
 export const SignIn = () => {
-  const { handleSubmit, control, formState } = useForm({
+  const methods = useForm({
     resolver: yupResolver(SIGN_IN_FORM_SCHEMA),
   });
+
   const navigation = useNavigation();
 
   const handleSubmitForm: SubmitHandler<SignInFormData> = async value => {
@@ -26,14 +27,16 @@ export const SignIn = () => {
   const handleGoBack = () => navigation.goBack();
 
   return (
-    <AuthTemplate
-      title="Estamos quase lá."
-      description="Faça seu login para começar uma experiência incrível."
-      submitText="Login"
-      onSubmit={handleSubmit(handleSubmitForm)}
-      onGoBack={handleGoBack}
-    >
-      <SignInFields control={control} errors={formState.errors} />
-    </AuthTemplate>
+    <FormProvider {...methods}>
+      <AuthTemplate
+        title="Estamos quase lá."
+        description="Faça seu login para começar uma experiência incrível."
+        submitText="Login"
+        onSubmit={methods.handleSubmit(handleSubmitForm)}
+        onGoBack={handleGoBack}
+      >
+        <SignInFields />
+      </AuthTemplate>
+    </FormProvider>
   );
 };

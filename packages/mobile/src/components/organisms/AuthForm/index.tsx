@@ -1,6 +1,8 @@
 import React, { ReactNode } from 'react';
 import { View } from 'react-native';
 
+import { FormProvider } from 'react-hook-form';
+
 import { Button } from '../../atoms';
 import * as S from './styles';
 
