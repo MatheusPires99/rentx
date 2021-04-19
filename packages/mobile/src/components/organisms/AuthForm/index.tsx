@@ -1,0 +1,41 @@
+import React, { ReactNode } from 'react';
+import { View } from 'react-native';
+
+import { Button } from '../../atoms';
+import * as S from './styles';
+
+export type AuthFormProps = {
+  title: string;
+  description: string;
+  submitText: string;
+  onSubmit: () => void;
+  children: ReactNode;
+};
+
+export const AuthForm = ({
+  title,
+  description,
+  submitText,
+  onSubmit,
+  children,
+}: AuthFormProps) => {
+  return (
+    <S.Container>
+      <S.Content>
+        <View>
+          <S.Title>{title}</S.Title>
+
+          <S.Description>{description}</S.Description>
+        </View>
+
+        <S.Form>
+          {children}
+
+          <Button onPress={onSubmit} style={{ marginTop: 24 }}>
+            {submitText}
+          </Button>
+        </S.Form>
+      </S.Content>
+    </S.Container>
+  );
+};

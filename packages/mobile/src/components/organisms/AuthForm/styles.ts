@@ -1,23 +1,7 @@
-import Constants from 'expo-constants';
-
 import styled, { css } from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { IPHONE_8_HEIGHT } from '../../../constants';
-
-export const Header = styled.View`
-  ${({ theme }) => css`
-    position: absolute;
-    left: 32px;
-
-    z-index: 5;
-    height: ${48 + Constants.statusBarHeight}px;
-    width: 100%;
-    background: ${theme.colors.gray['50']};
-
-    justify-content: flex-end;
-  `}
-`;
 
 export const Container = styled(SafeAreaView)`
   ${() => css`

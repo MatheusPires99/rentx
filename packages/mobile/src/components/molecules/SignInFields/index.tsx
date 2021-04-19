@@ -1,26 +1,17 @@
 import React, { useState, useCallback } from 'react';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigation } from '@react-navigation/core';
+import { Control, DeepMap, FieldError, FieldValues } from 'react-hook-form';
 
-import { SIGN_IN_FORM_SCHEMA } from '../../../schemas';
 import { Email, Lock } from '../../../assets/icons';
 import { Checkbox, Input } from '../../atoms';
-import { Auth } from '../../molecules';
 import * as S from './styles';
 
-type SignInFormData = {
-  email: string;
-  passowrd: string;
+type SignInFieldsProps = {
+  control: Control<FieldValues>;
+  errors: DeepMap<FieldValues, FieldError>;
 };
 
-export const SignIn = () => {
-  const { handleSubmit, control, formState } = useForm({
-    resolver: yupResolver(SIGN_IN_FORM_SCHEMA),
-  });
-  const navigation = useNavigation();
-
+export const SignInFields = ({ control, errors }: SignInFieldsProps) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleToggleCheck = useCallback(
@@ -28,26 +19,14 @@ export const SignIn = () => {
     [],
   );
 
-  const handleSubmitForm: SubmitHandler<SignInFormData> = async value => {
-    console.log({ value });
-  };
-
-  const handleGoBack = () => navigation.goBack();
-
   return (
-    <Auth
-      title="Estamos quase lá."
-      description="Faça seu login para começar uma experiência incrível."
-      submitText="Login"
-      onSubmit={handleSubmit(handleSubmitForm)}
-      onGoBack={handleGoBack}
-    >
+    <>
       <Input
         control={control}
         name="email"
         placeholder="E-mail"
         icon={Email}
-        error={formState.errors.email}
+        error={errors.email}
         autoCorrect={false}
         autoCapitalize="none"
         keyboardType="email-address"
@@ -58,7 +37,7 @@ export const SignIn = () => {
         name="password"
         placeholder="Senha"
         icon={Lock}
-        error={formState.errors.password}
+        error={errors.password}
         isSecureField
         marginTop={8}
       />
@@ -76,6 +55,6 @@ export const SignIn = () => {
           </S.ForgotPasswordButtonText>
         </S.ForgotPasswordButton>
       </S.Box>
-    </Auth>
+    </>
   );
 };
