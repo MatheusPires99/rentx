@@ -11,12 +11,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { STORAGE_KEY } from '../constants';
 import { api } from '../services';
-import {
-  LoginResponse,
-  SignInCredencials,
-  SignUpCredencials,
-  UserResponse,
-} from '../types';
+import { SignInCredencials, SignUpCredencials } from '../types';
+import { loginUser, createUser } from '../services/users';
 
 type User = {
   name: string;
@@ -30,7 +26,7 @@ type AuthState = {
   hasOnboarding: boolean;
 };
 
-type UpdateUserParams = {
+type UpdateUser = {
   user?: User;
   hasOnboarding?: boolean;
 };
@@ -42,7 +38,7 @@ type AuthContextData = {
   signIn(credencials: SignInCredencials): Promise<void>;
   signUp(credencials: SignUpCredencials): Promise<void>;
   signOut(): void;
-  updateUser({ user, hasOnboarding }: UpdateUserParams): Promise<void>;
+  updateUser({ user, hasOnboarding }: UpdateUser): Promise<void>;
 };
 
 const setApiAuthorization = (accessToken: string) => {
@@ -82,24 +78,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const signIn = useCallback(
     async ({ email, password }: SignInCredencials) => {
       try {
-        const loginResponse = await api.post<LoginResponse>('/login', {
-          email,
-          password,
-        });
-
-        const userResponse = await api.get<UserResponse[]>('/users', {
-          params: {
-            email,
-          },
-        });
-
-        const { accessToken } = loginResponse.data;
-        const user = userResponse.data[0];
-
-        await AsyncStorage.multiSet([
-          [`${STORAGE_KEY}:accessToken`, accessToken],
-          [`${STORAGE_KEY}:user`, JSON.stringify(user)],
-        ]);
+        const { accessToken, user } = await loginUser(email, password);
 
         setApiAuthorization(accessToken);
 
@@ -123,26 +102,12 @@ export const AuthProvider: React.FC = ({ children }) => {
       try {
         const { name, email, cnh, password } = userCredentials;
 
-        const createResponse = await api.post<LoginResponse>('/users', {
+        const { accessToken, user } = await createUser(
           name,
           email,
           cnh,
           password,
-        });
-
-        const userResponse = await api.get<UserResponse[]>('/users', {
-          params: {
-            email,
-          },
-        });
-
-        const { accessToken } = createResponse.data;
-        const user = userResponse.data[0];
-
-        await AsyncStorage.multiSet([
-          [`${STORAGE_KEY}:accessToken`, accessToken],
-          [`${STORAGE_KEY}:user`, JSON.stringify(user)],
-        ]);
+        );
 
         setApiAuthorization(accessToken);
 
@@ -171,7 +136,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const updateUser = useCallback(
-    async ({ user, hasOnboarding }: UpdateUserParams) => {
+    async ({ user, hasOnboarding }: UpdateUser) => {
       if (user) {
         await AsyncStorage.setItem(`${STORAGE_KEY}:user`, JSON.stringify(user));
       }
