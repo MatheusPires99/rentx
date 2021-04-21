@@ -12,6 +12,7 @@ export type AuthTemplateProps = {
   onSubmit: () => void;
   onGoBack: () => void;
   step?: number;
+  isLoading?: boolean;
   children: ReactNode;
 };
 
@@ -22,6 +23,7 @@ export const AuthTemplate = ({
   onSubmit,
   onGoBack,
   step,
+  isLoading,
   children,
 }: AuthTemplateProps) => {
   return (
@@ -44,6 +46,7 @@ export const AuthTemplate = ({
             description={description}
             submitText={submitText}
             onSubmit={onSubmit}
+            isLoading={isLoading}
           >
             {children}
           </AuthForm>

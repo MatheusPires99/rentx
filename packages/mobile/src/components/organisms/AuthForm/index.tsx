@@ -11,6 +11,7 @@ export type AuthFormProps = {
   description: string;
   submitText: string;
   onSubmit: () => void;
+  isLoading?: boolean;
   children: ReactNode;
 };
 
@@ -19,6 +20,7 @@ export const AuthForm = ({
   description,
   submitText,
   onSubmit,
+  isLoading,
   children,
 }: AuthFormProps) => {
   return (
@@ -33,7 +35,11 @@ export const AuthForm = ({
         <S.Form>
           {children}
 
-          <Button onPress={onSubmit} style={{ marginTop: 24 }}>
+          <Button
+            onPress={onSubmit}
+            isLoading={isLoading}
+            style={{ marginTop: 24 }}
+          >
             {submitText}
           </Button>
         </S.Form>

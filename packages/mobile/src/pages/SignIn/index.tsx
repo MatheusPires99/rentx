@@ -15,7 +15,7 @@ export const SignIn = () => {
   const methods = useForm({
     resolver: yupResolver(SIGN_IN_FORM_SCHEMA),
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, formState } = methods;
 
   const { signIn } = useAuth();
 
@@ -33,6 +33,7 @@ export const SignIn = () => {
         submitText="Login"
         onSubmit={handleSubmit(handleSubmitForm)}
         onGoBack={handleGoBack}
+        isLoading={formState.isSubmitting}
       >
         <SignInFields />
       </AuthTemplate>

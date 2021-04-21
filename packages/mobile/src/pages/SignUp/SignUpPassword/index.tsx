@@ -15,7 +15,7 @@ export const SignUpPassword = () => {
   const methods = useForm({
     resolver: yupResolver(SIGN_UP_PASSWORD_FORM_SCHEMA),
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, formState } = methods;
 
   const { signUp } = useAuth();
 
@@ -36,6 +36,7 @@ export const SignUpPassword = () => {
         onSubmit={handleSubmit(handleSubmitForm)}
         onGoBack={handleGoBack}
         step={2}
+        isLoading={formState.isSubmitting}
       >
         <SignUpPasswordFields />
       </AuthTemplate>
