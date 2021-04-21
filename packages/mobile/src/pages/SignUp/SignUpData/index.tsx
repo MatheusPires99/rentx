@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigation } from '@react-navigation/core';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
+import { SignUpDataCredencials } from '../../../types';
 import { SIGN_UP_DATA_FORM_SCHEMA } from '../../../schemas';
 import { SignUpDataFields } from '../../../components/molecules';
 import { AuthTemplate } from '../../../components/templates';
@@ -13,20 +14,23 @@ export const SignUpData = () => {
   const methods = useForm({
     resolver: yupResolver(SIGN_UP_DATA_FORM_SCHEMA),
   });
-  const { formState, trigger } = methods;
+  const { handleSubmit, formState } = methods;
 
-  const handleNextStep = useCallback(async () => {
-    await trigger(['name', 'email', 'cnh']);
+  const handleNextStep = useCallback<SubmitHandler<SignUpDataCredencials>>(
+    async value => {
+      const hasError =
+        !!formState.errors.name ||
+        !!formState.errors.email ||
+        !!formState.errors.cnh;
 
-    const hasError =
-      !!formState.errors.name ||
-      !!formState.errors.email ||
-      !!formState.errors.cnh;
-
-    if (!hasError) {
-      navigation.navigate('SignUpPassword');
-    }
-  }, [trigger, navigation, formState.errors]);
+      if (!hasError) {
+        navigation.navigate('SignUpPassword', {
+          data: value,
+        });
+      }
+    },
+    [navigation, formState.errors],
+  );
 
   const handleGoBack = useCallback(() => navigation.goBack(), [navigation]);
 
@@ -36,7 +40,7 @@ export const SignUpData = () => {
         title="Crie sua conta"
         description="Faça seu cadastro de forma rápida e fácil."
         submitText="Próximo"
-        onSubmit={handleNextStep}
+        onSubmit={handleSubmit(handleNextStep)}
         onGoBack={handleGoBack}
         step={1}
       >

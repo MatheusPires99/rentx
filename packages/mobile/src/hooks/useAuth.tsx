@@ -5,32 +5,48 @@ import React, {
   useEffect,
   useContext,
 } from 'react';
+import { Alert } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { STORAGE_KEY } from '../constants';
 import { api } from '../services';
-import { SignInCredencials, SignUpCredencials } from '../types';
+import {
+  LoginResponse,
+  SignInCredencials,
+  SignUpCredencials,
+  UserResponse,
+} from '../types';
 
 type User = {
   name: string;
   email: string;
   cnh: string;
-  hasOnboarding?: boolean;
 };
 
 type AuthState = {
   user: User;
-  token: string;
+  accessToken: string;
+  hasOnboarding: boolean;
+};
+
+type UpdateUserParams = {
+  user?: User;
+  hasOnboarding?: boolean;
 };
 
 type AuthContextData = {
   user: User;
+  userHasOnboarding: boolean;
   loading: boolean;
   signIn(credencials: SignInCredencials): Promise<void>;
   signUp(credencials: SignUpCredencials): Promise<void>;
   signOut(): void;
-  updateUser(user: User): Promise<void>;
+  updateUser({ user, hasOnboarding }: UpdateUserParams): Promise<void>;
+};
+
+const setApiAuthorization = (accessToken: string) => {
+  api.defaults.headers.authorization = `Bearer ${accessToken}`;
 };
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -41,13 +57,20 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     async function loadStoragedData(): Promise<void> {
-      const [token, user] = await AsyncStorage.multiGet([
-        `${STORAGE_KEY}:token`,
+      const [accessToken, user, hasOnboarding] = await AsyncStorage.multiGet([
+        `${STORAGE_KEY}:accessToken`,
         `${STORAGE_KEY}:user`,
+        `${STORAGE_KEY}:onboarding`,
       ]);
 
-      if (token[1] && user[1]) {
-        setData({ token: token[1], user: JSON.parse(user[1]) });
+      if (accessToken[1] && user[1] && hasOnboarding[1]) {
+        setApiAuthorization(accessToken[1]);
+
+        setData({
+          accessToken: accessToken[1],
+          user: JSON.parse(user[1]),
+          hasOnboarding: JSON.parse(hasOnboarding[1]),
+        });
       }
 
       setLoading(false);
@@ -56,48 +79,123 @@ export const AuthProvider: React.FC = ({ children }) => {
     loadStoragedData();
   }, []);
 
-  const signIn = useCallback(async ({ email, password }: SignInCredencials) => {
-    const response = await api.post('/login', { email, password });
+  const signIn = useCallback(
+    async ({ email, password }: SignInCredencials) => {
+      try {
+        const loginResponse = await api.post<LoginResponse>('/login', {
+          email,
+          password,
+        });
 
-    await AsyncStorage.setItem(
-      `${STORAGE_KEY}:token`,
-      response.data.accessToken,
-    );
-  }, []);
+        const userResponse = await api.get<UserResponse[]>('/users', {
+          params: {
+            email,
+          },
+        });
 
-  const signUp = useCallback(async (userCredentials: SignUpCredencials) => {
-    const { name, email, cnh, password } = userCredentials;
+        const { accessToken } = loginResponse.data;
+        const user = userResponse.data[0];
 
-    const response = await api.post('/users', { name, email, cnh, password });
+        await AsyncStorage.multiSet([
+          [`${STORAGE_KEY}:accessToken`, accessToken],
+          [`${STORAGE_KEY}:user`, JSON.stringify(user)],
+        ]);
 
-    await AsyncStorage.multiSet([
-      [`${STORAGE_KEY}:token`, response.data.accessToken],
-      [`${STORAGE_KEY}:user`, JSON.stringify({ name, email, cnh })],
-    ]);
-  }, []);
+        setApiAuthorization(accessToken);
+
+        setData({
+          user,
+          accessToken,
+          hasOnboarding: data.hasOnboarding,
+        });
+      } catch (err) {
+        Alert.alert(
+          'Erro ao fazer login',
+          'Ocorreu um erro ao fazer o login, tente novamente.',
+        );
+      }
+    },
+    [data.hasOnboarding],
+  );
+
+  const signUp = useCallback(
+    async (userCredentials: SignUpCredencials) => {
+      try {
+        const { name, email, cnh, password } = userCredentials;
+
+        const createResponse = await api.post<LoginResponse>('/users', {
+          name,
+          email,
+          cnh,
+          password,
+        });
+
+        const userResponse = await api.get<UserResponse[]>('/users', {
+          params: {
+            email,
+          },
+        });
+
+        const { accessToken } = createResponse.data;
+        const user = userResponse.data[0];
+
+        await AsyncStorage.multiSet([
+          [`${STORAGE_KEY}:accessToken`, accessToken],
+          [`${STORAGE_KEY}:user`, JSON.stringify(user)],
+        ]);
+
+        setApiAuthorization(accessToken);
+
+        setData({
+          user,
+          accessToken,
+          hasOnboarding: data.hasOnboarding,
+        });
+      } catch (err) {
+        Alert.alert(
+          'Erro ao cadastrar',
+          'Ocorreu um erro ao realizar seu cadastro, tente novamente.',
+        );
+      }
+    },
+    [data.hasOnboarding],
+  );
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.removeItem(`${STORAGE_KEY}:user`);
+    await AsyncStorage.multiRemove([
+      `${STORAGE_KEY}:accessToken`,
+      `${STORAGE_KEY}:user`,
+    ]);
 
     setData({} as AuthState);
   }, []);
 
   const updateUser = useCallback(
-    async (user: User) => {
-      await AsyncStorage.setItem(`${STORAGE_KEY}:user`, JSON.stringify(user));
+    async ({ user, hasOnboarding }: UpdateUserParams) => {
+      if (user) {
+        await AsyncStorage.setItem(`${STORAGE_KEY}:user`, JSON.stringify(user));
+      }
+
+      if (hasOnboarding) {
+        await AsyncStorage.setItem(
+          `${STORAGE_KEY}:hasOnboarding`,
+          JSON.stringify(hasOnboarding),
+        );
+      }
 
       setData({
-        token: data.token,
-        user,
+        accessToken: data.accessToken,
+        user: user || data.user,
+        hasOnboarding: hasOnboarding || data.hasOnboarding,
       });
     },
-    [setData, data.token],
+    [setData, data],
   );
 
   api.interceptors.response.use(
     response => response,
     async err => {
-      if (err.response.status === 401) {
+      if (err?.response?.status === 401) {
         signOut();
       }
 
@@ -105,11 +203,17 @@ export const AuthProvider: React.FC = ({ children }) => {
     },
   );
 
-  // console.log(data.user);
-
   return (
     <AuthContext.Provider
-      value={{ user: data.user, loading, signIn, signUp, signOut, updateUser }}
+      value={{
+        user: data.user,
+        userHasOnboarding: data.hasOnboarding,
+        loading,
+        signIn,
+        signUp,
+        signOut,
+        updateUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

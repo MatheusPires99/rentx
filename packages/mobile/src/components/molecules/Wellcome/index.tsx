@@ -13,11 +13,13 @@ type WellcomeProps = {
 
 export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
   const navigation = useNavigation();
-  const { user, updateUser } = useAuth();
+  const { userHasOnboarding, updateUser } = useAuth();
 
   useEffect(() => {
-    updateUser({ ...user, hasOnboarding: true });
-  }, [updateUser, user]);
+    if (!userHasOnboarding) {
+      updateUser({ hasOnboarding: true });
+    }
+  }, [userHasOnboarding, updateUser]);
 
   const handleNavigateToSignIn = () => {
     navigation.navigate('SignIn');
@@ -48,7 +50,7 @@ export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
           </S.ButtonWrapper>
         </S.SignButtons>
 
-        {!user?.hasOnboarding && (
+        {!userHasOnboarding && (
           <S.GoBackButton onPress={onPreviousStep}>
             <S.GoBackButtonText>Voltar</S.GoBackButtonText>
           </S.GoBackButton>

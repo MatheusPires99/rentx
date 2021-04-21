@@ -17,7 +17,7 @@ import { OnboardingStep as EnumOnboardingStep } from '../../../types';
 const { width } = Dimensions.get('window');
 
 export const Onboarding = () => {
-  const { user } = useAuth();
+  const { userHasOnboarding } = useAuth();
 
   const scrollViewRef = useRef<Animated.ScrollView>(null);
   const [step, setStep] = useState<EnumOnboardingStep>(EnumOnboardingStep.Date);
@@ -25,15 +25,12 @@ export const Onboarding = () => {
   const footerOpacity = useSharedValue(1);
 
   useEffect(() => {
-    if (user?.hasOnboarding) {
+    if (userHasOnboarding) {
       setStep(EnumOnboardingStep.Wellcome);
 
-      footerOpacity.value = withTiming(0, {
-        duration: 250,
-        easing: Easing.ease,
-      });
+      footerOpacity.value = 0;
     }
-  }, [user?.hasOnboarding, footerOpacity]);
+  }, [userHasOnboarding, footerOpacity]);
 
   const handleChangeStep = useCallback(
     (toStep: EnumOnboardingStep) => {
@@ -84,7 +81,7 @@ export const Onboarding = () => {
           snapToInterval={width}
           decelerationRate="fast"
         >
-          {!user?.hasOnboarding && (
+          {!userHasOnboarding && (
             <>
               <OnboardingStep
                 step={EnumOnboardingStep.Date}
