@@ -68,7 +68,9 @@ export const Onboarding = () => {
 
   return (
     <>
-      <StatusBar style={EnumOnboardingStep.Wellcome === 3 ? 'light' : 'dark'} />
+      <StatusBar
+        style={step === EnumOnboardingStep.Wellcome ? 'light' : 'dark'}
+      />
 
       <View style={{ flex: 1 }}>
         <Animated.ScrollView
