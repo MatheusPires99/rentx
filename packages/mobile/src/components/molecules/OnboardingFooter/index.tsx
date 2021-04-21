@@ -7,12 +7,12 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { ArrowButton, Steps } from '../../atoms';
-import { Step } from '../../organisms/Onboarding';
+import { OnboardingStep } from '../../../types';
 import * as S from './styles';
 
 type OnboardingFooterProps = {
-  step: Step;
-  onNextStep: (step: Step) => void;
+  step: OnboardingStep;
+  onNextStep: (step: OnboardingStep) => void;
   footerOpacity: Animated.SharedValue<number>;
 };
 
@@ -22,11 +22,11 @@ export const OnboardingFooter = ({
   footerOpacity,
 }: OnboardingFooterProps) => {
   const goToStep = useMemo(() => {
-    if (step === 1) return 2;
+    if (step === OnboardingStep.Date) return OnboardingStep.Car;
 
-    if (step === 2) return 3;
+    if (step === OnboardingStep.Car) return OnboardingStep.Wellcome;
 
-    return 1;
+    return OnboardingStep.Date;
   }, [step]);
 
   const footerStyle = useAnimatedStyle(() => {

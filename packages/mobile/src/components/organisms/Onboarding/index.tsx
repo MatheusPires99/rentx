@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import { Dimensions, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
@@ -11,27 +11,43 @@ import Animated, {
 
 import { Calendar, Car } from '../../../assets/icons';
 import { Wellcome, OnboardingStep, OnboardingFooter } from '../../molecules';
+import { useAuth } from '../../../hooks';
+import { OnboardingStep as EnumOnboardingStep } from '../../../types';
 
 const { width } = Dimensions.get('window');
 
-export type Step = 1 | 2 | 3;
-
 export const Onboarding = () => {
+  const { user } = useAuth();
+
   const scrollViewRef = useRef<Animated.ScrollView>(null);
-  const [step, setStep] = useState<Step>(1);
+  const [step, setStep] = useState<EnumOnboardingStep>(EnumOnboardingStep.Date);
 
   const footerOpacity = useSharedValue(1);
 
+  useEffect(() => {
+    if (user?.hasOnboarding) {
+      setStep(EnumOnboardingStep.Wellcome);
+
+      footerOpacity.value = withTiming(0, {
+        duration: 250,
+        easing: Easing.ease,
+      });
+    }
+  }, [user?.hasOnboarding, footerOpacity]);
+
   const handleChangeStep = useCallback(
-    (toStep: Step) => {
-      if (toStep === 3) {
+    (toStep: EnumOnboardingStep) => {
+      if (toStep === EnumOnboardingStep.Wellcome) {
         footerOpacity.value = withTiming(0, {
           duration: 250,
           easing: Easing.ease,
         });
       }
 
-      if (step === 3 && toStep === 2) {
+      if (
+        step === EnumOnboardingStep.Wellcome &&
+        toStep === EnumOnboardingStep.Car
+      ) {
         footerOpacity.value = withDelay(
           200,
           withTiming(1, {
@@ -55,7 +71,7 @@ export const Onboarding = () => {
 
   return (
     <>
-      <StatusBar style={step === 3 ? 'light' : 'dark'} />
+      <StatusBar style={EnumOnboardingStep.Wellcome === 3 ? 'light' : 'dark'} />
 
       <View style={{ flex: 1 }}>
         <Animated.ScrollView
@@ -68,21 +84,27 @@ export const Onboarding = () => {
           snapToInterval={width}
           decelerationRate="fast"
         >
-          <OnboardingStep
-            step={1}
-            icon={Calendar}
-            title="Primeiro, escolha a data"
-            description="Você é quem define um período, e nós mostraremos os carros disponíveis."
-          />
+          {!user?.hasOnboarding && (
+            <>
+              <OnboardingStep
+                step={EnumOnboardingStep.Date}
+                icon={Calendar}
+                title="Primeiro, escolha a data"
+                description="Você é quem define um período, e nós mostraremos os carros disponíveis."
+              />
 
-          <OnboardingStep
-            step={2}
-            icon={Car}
-            title="Depois, escolha o carro"
-            description="Vários modelos para você dirigir seguro, com conforto e segurança."
-          />
+              <OnboardingStep
+                step={EnumOnboardingStep.Car}
+                icon={Car}
+                title="Depois, escolha o carro"
+                description="Vários modelos para você dirigir seguro, com conforto e segurança."
+              />
+            </>
+          )}
 
-          <Wellcome onPreviousStep={() => handleChangeStep(2)} />
+          <Wellcome
+            onPreviousStep={() => handleChangeStep(EnumOnboardingStep.Car)}
+          />
         </Animated.ScrollView>
 
         <OnboardingFooter

@@ -2,12 +2,11 @@ import React from 'react';
 
 import { useTheme } from 'styled-components';
 
-import { IconType } from '../../../types';
-import { Step } from '../../organisms/Onboarding';
+import { IconType, OnboardingStep as EnumOnboardingStep } from '../../../types';
 import * as S from './styles';
 
 type OnboardingStepProps = {
-  step: Step;
+  step: EnumOnboardingStep;
   icon: IconType;
   title: string;
   description: string;
