@@ -14,7 +14,7 @@ import { Routes } from './src/routes';
 import { AuthProvider } from './src/hooks';
 
 export default function App() {
-  const [fontsLoaded] = useFonts({ ...fonts });
+  const [fontsLoaded] = useFonts(fonts);
 
   if (!fontsLoaded) {
     return <AppLoading />;
