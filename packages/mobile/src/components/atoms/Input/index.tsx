@@ -67,6 +67,7 @@ export const Input = ({
               onBlur={handleInputBlur}
               placeholderTextColor={theme.colors.gray['300']}
               secureTextEntry={showPassword}
+              isSecureField={isSecureField}
               {...rest}
             />
 

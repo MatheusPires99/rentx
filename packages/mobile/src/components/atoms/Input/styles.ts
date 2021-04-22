@@ -4,6 +4,10 @@ type ContentProps = {
   isFocused: boolean;
 };
 
+type TextField = {
+  isSecureField?: boolean;
+};
+
 export const Container = styled.View`
   ${() => css``}
 `;
@@ -33,11 +37,11 @@ export const IconBox = styled.View`
   `}
 `;
 
-export const TextField = styled.TextInput`
-  ${({ theme }) => css`
+export const TextField = styled.TextInput<TextField>`
+  ${({ theme, isSecureField }) => css`
     height: 100%;
     background: ${theme.colors.white};
-    padding: 18px 24px;
+    padding: 18px ${isSecureField ? 48 : 24}px 18px 24px;
     font-family: ${theme.fonts.inter.regular};
     font-size: 15px;
     color: ${theme.colors.gray['600']};

@@ -13,3 +13,4 @@ export { Lock } from './Lock';
 export { Eye } from './Eye';
 export { EyeClose } from './EyeClose';
 export { User } from './User';
+export { Home } from './Home';
