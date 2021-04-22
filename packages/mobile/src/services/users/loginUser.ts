@@ -4,8 +4,7 @@ import { api } from '..';
 
 import { LoginResponse } from '../../types';
 import { STORAGE_KEY } from '../../constants';
-
-import { getUser } from '.';
+import { getUser } from './getUser';
 
 export const loginUser = async (email: string, password: string) => {
   const response = await api.post<LoginResponse>('/login', {

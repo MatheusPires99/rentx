@@ -4,8 +4,7 @@ import { api } from '..';
 
 import { LoginResponse } from '../../types';
 import { STORAGE_KEY } from '../../constants';
-
-import { getUser } from '.';
+import { getUser } from './getUser';
 
 export const createUser = async (
   name: string,
