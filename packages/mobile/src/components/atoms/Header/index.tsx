@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
 
 import * as S from './styles';
@@ -14,8 +15,12 @@ export const Header = ({
   children,
 }: HeaderProps) => {
   return (
-    <S.Container variant={variant} height={height}>
-      <S.Content>{children}</S.Content>
-    </S.Container>
+    <>
+      <StatusBar style={variant === 'dark' ? 'light' : 'dark'} />
+
+      <S.Container variant={variant} height={height}>
+        <S.Content>{children}</S.Content>
+      </S.Container>
+    </>
   );
 };
