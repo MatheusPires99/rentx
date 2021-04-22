@@ -52,20 +52,19 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadStoragedData(): Promise<void> {
-      const [accessToken, user, hasOnboarding] = await AsyncStorage.multiGet([
+    async function loadStoragedData() {
+      const [accessToken, user] = await AsyncStorage.multiGet([
         `${STORAGE_KEY}:accessToken`,
         `${STORAGE_KEY}:user`,
-        `${STORAGE_KEY}:onboarding`,
       ]);
 
-      if (accessToken[1] && user[1] && hasOnboarding[1]) {
+      if (accessToken[1] && user[1]) {
         setApiAuthorization(accessToken[1]);
 
         setData({
           accessToken: accessToken[1],
           user: JSON.parse(user[1]),
-          hasOnboarding: JSON.parse(hasOnboarding[1]),
+          hasOnboarding: data.hasOnboarding,
         });
       }
 
@@ -73,7 +72,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     loadStoragedData();
-  }, []);
+  }, [data.hasOnboarding]);
 
   const signIn = useCallback(
     async ({ email, password }: SignInCredencials) => {
