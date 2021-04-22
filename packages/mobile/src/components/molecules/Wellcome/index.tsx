@@ -26,7 +26,7 @@ export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
   };
 
   const handleNavigateToSignUp = () => {
-    navigation.navigate('SignUpData');
+    navigation.navigate('SignUp');
   };
 
   return (

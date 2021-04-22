@@ -25,21 +25,15 @@ export type SignInCredencials = {
   password: string;
 };
 
+export enum SignUpStep {
+  Data = 1,
+  Password = 2,
+}
+
 export type SignUpCredencials = {
   name: string;
   email: string;
   cnh: string;
-  password: string;
-  password_confirmation: string;
-};
-
-export type SignUpDataCredencials = {
-  name: string;
-  email: string;
-  cnh: string;
-};
-
-export type SignUpPasswordCredencials = {
   password: string;
   password_confirmation: string;
 };

@@ -5,7 +5,7 @@ import { useTheme } from 'styled-components';
 
 import { Onboarding } from '../pages/Onboarding';
 import { SignIn } from '../pages/SignIn';
-import { SignUpData, SignUpPassword } from '../pages/SignUp';
+import { SignUp } from '../pages/SignUp';
 
 const Auth = createStackNavigator();
 
@@ -21,8 +21,7 @@ export const AuthRoutes = () => {
     >
       <Auth.Screen name="Onboarding" component={Onboarding} />
       <Auth.Screen name="SignIn" component={SignIn} />
-      <Auth.Screen name="SignUpData" component={SignUpData} />
-      <Auth.Screen name="SignUpPassword" component={SignUpPassword} />
+      <Auth.Screen name="SignUp" component={SignUp} />
     </Auth.Navigator>
   );
 };
