@@ -10,7 +10,7 @@ type CarsListProps = {
 
 export const CarsList = ({ cars }: CarsListProps) => {
   return (
-    <S.CarsListContainer
+    <S.Container
       data={cars}
       keyExtractor={car => String(car.id)}
       contentContainerStyle={{
