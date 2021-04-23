@@ -18,3 +18,7 @@ export { Home } from './Home';
 export { Droplet } from './Droplet';
 export { Energy } from './Energy';
 export { Leaf } from './Leaf';
+export { GearShift } from './GearShift';
+export { Speed } from './Speed';
+export { SteeringWheel } from './SteeringWheel';
+export { Up } from './Up';
