@@ -7,6 +7,7 @@ import { useTheme } from 'styled-components';
 import { HomeHeader } from '../../molecules';
 import { CarsList } from './CarsList';
 import { getCars } from '../../../services/cars';
+import { Loading } from './Loading';
 
 export const Home = () => {
   const navigation = useNavigation();
@@ -24,7 +25,7 @@ export const Home = () => {
     <View style={{ flex: 1 }}>
       <HomeHeader />
 
-      <CarsList cars={cars} />
+      {isLoading ? <Loading /> : <CarsList cars={cars} />}
     </View>
   );
 };
