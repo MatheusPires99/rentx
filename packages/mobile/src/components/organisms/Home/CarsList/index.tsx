@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+
+import { useNavigation } from '@react-navigation/core';
 
 import { Car } from '../../../../types';
 import { CarCard } from '../../../molecules';
@@ -9,6 +11,17 @@ type CarsListProps = {
 };
 
 export const CarsList = ({ cars }: CarsListProps) => {
+  const navigation = useNavigation();
+
+  const handleNavigateToCar = useCallback(
+    (car: Car) => {
+      navigation.navigate('Car', {
+        car,
+      });
+    },
+    [navigation],
+  );
+
   return (
     <S.Container
       data={cars}
@@ -21,8 +34,9 @@ export const CarsList = ({ cars }: CarsListProps) => {
           name={car.name}
           brand={car.brand}
           valuePerDay={car.valuePerDay}
-          fuel={car.fuel}
           image={car.image}
+          fuel={car.fuel}
+          onPress={() => handleNavigateToCar(car)}
         />
       )}
     />

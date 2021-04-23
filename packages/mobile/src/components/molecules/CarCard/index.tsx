@@ -6,9 +6,9 @@ import { Car } from '../../../types';
 import { formatToPtBrCurrency } from '../../../utils';
 import * as S from './styles';
 
-type CarCardProsp = Pick<
+type CarCardProps = Pick<
   Car,
-  'name' | 'brand' | 'valuePerDay' | 'fuel' | 'image'
+  'name' | 'brand' | 'valuePerDay' | 'image' | 'fuel'
 > &
   Omit<TouchableOpacityProps, 'style'>;
 
@@ -16,10 +16,10 @@ export const CarCard = ({
   name,
   brand,
   valuePerDay,
-  fuel,
   image,
+  fuel,
   ...rest
-}: CarCardProsp) => {
+}: CarCardProps) => {
   const renderCarFuelIcon = useMemo(() => {
     if (fuel === 'gasoline') return <Droplet />;
 

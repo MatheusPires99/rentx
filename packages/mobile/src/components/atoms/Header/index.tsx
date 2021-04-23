@@ -1,9 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { ReactNode } from 'react';
+import { ViewProps } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 import * as S from './styles';
 
-type HeaderProps = {
+type HeaderProps = ViewProps & {
   themeColor?: 'light' | 'dark';
   height?: number;
   children: ReactNode;

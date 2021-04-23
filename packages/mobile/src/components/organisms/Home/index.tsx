@@ -13,7 +13,7 @@ export const Home = () => {
   const navigation = useNavigation();
   const theme = useTheme();
 
-  const { data: cars, isLoading, error } = getCars();
+  const { data: cars, isLoading } = getCars();
 
   useEffect(() => {
     navigation.setOptions({

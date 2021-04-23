@@ -13,6 +13,7 @@ import {
 import { IPHONE_8_HEIGHT } from '../constants';
 import { TabBarIcon } from '../components/atoms';
 import { Home } from '../pages/Home';
+import { Car } from '../pages/Car';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,7 @@ const HomeStack = () => {
       }}
     >
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Car" component={Car} />
     </Stack.Navigator>
   );
 };
