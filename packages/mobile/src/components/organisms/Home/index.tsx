@@ -6,10 +6,13 @@ import { useTheme } from 'styled-components';
 
 import { HomeHeader } from '../../molecules';
 import { CarsList } from './CarsList';
+import { getCars } from '../../../services/cars';
 
 export const Home = () => {
   const navigation = useNavigation();
   const theme = useTheme();
+
+  const { data: cars, isLoading, error } = getCars();
 
   useEffect(() => {
     navigation.setOptions({
@@ -21,7 +24,7 @@ export const Home = () => {
     <View style={{ flex: 1 }}>
       <HomeHeader />
 
-      <CarsList />
+      <CarsList cars={cars} />
     </View>
   );
 };

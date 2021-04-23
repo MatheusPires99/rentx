@@ -4,7 +4,7 @@ import { TouchableOpacityProps } from 'react-native';
 import { ChevronLeft, ChevronRight } from '../../../assets/icons';
 import * as S from './styles';
 
-type ArrowButtonProps = TouchableOpacityProps & {
+type ArrowButtonProps = Omit<TouchableOpacityProps, 'style'> & {
   direction: 'right' | 'left';
 };
 

@@ -43,6 +43,6 @@ export type Car = {
   name: string;
   brand: string;
   valuePerDay: number;
-  fuel: 'gasoline' | 'eletric' | ' hybrid';
+  fuel: 'gasoline' | 'eletric' | 'hybrid';
   image: string;
 };

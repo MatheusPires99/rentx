@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { CARS } from '../../../../constants';
+import { Car } from '../../../../types';
 import { CarCard } from '../../../molecules';
 import * as S from './styles';
 
-export const CarsList = () => {
+type CarsListProps = {
+  cars: Car[] | undefined;
+};
+
+export const CarsList = ({ cars }: CarsListProps) => {
   return (
     <S.CarsListContainer
-      data={CARS}
+      data={cars}
       keyExtractor={car => String(car.id)}
       contentContainerStyle={{
         paddingBottom: 24,

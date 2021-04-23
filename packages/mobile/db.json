@@ -30,5 +30,55 @@
       "cnh": "123",
       "id": 4
     }
+  ],
+  "cars": [
+    {
+      "id": 1,
+      "name": "RS 5 Coupé",
+      "brand": "AUDI",
+      "valuePerDay": 640,
+      "fuel": "eletric",
+      "image": "https://ik.imagekit.io/hwyksvj4iv/audi__EtrVkoaAa.png"
+    },
+    {
+      "id": 2,
+      "name": "Corvette Z06",
+      "brand": "CHEVROLET",
+      "valuePerDay": 1200,
+      "fuel": "gasoline",
+      "image": "https://ik.imagekit.io/hwyksvj4iv/corvete_C38ICcQ5Ew.png"
+    },
+    {
+      "id": 3,
+      "name": "Panamera",
+      "brand": "PORCHE",
+      "valuePerDay": 340,
+      "fuel": "eletric",
+      "image": "https://ik.imagekit.io/hwyksvj4iv/porche_XjVt2ZEat.png"
+    },
+    {
+      "id": 4,
+      "name": "LAMBORGHINI",
+      "brand": "AUDI",
+      "valuePerDay": 3600,
+      "fuel": "gasoline",
+      "image": "https://ik.imagekit.io/hwyksvj4iv/lamborghini_-oQSRDoZYY.png"
+    },
+    {
+      "id": 5,
+      "name": "VOLVO",
+      "brand": "AUDI",
+      "valuePerDay": 1200,
+      "fuel": "hybrid",
+      "image": "https://ik.imagekit.io/hwyksvj4iv/volvo_mP4Nj574f5.png"
+    },
+    {
+      "id": 6,
+      "name": "AUDI",
+      "brand": "Lancer Evo X",
+      "valuePerDay": 120,
+      "fuel": "gasoline",
+      "image": "https://ik.imagekit.io/hwyksvj4iv/lancer_So6N5Jcji.png"
+    }
   ]
 }
