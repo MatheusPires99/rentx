@@ -37,3 +37,12 @@ export type SignUpCredencials = {
   password: string;
   password_confirmation: string;
 };
+
+export type Car = {
+  id: number;
+  name: string;
+  brand: string;
+  valuePerDay: number;
+  fuel: 'gasoline' | 'eletric' | ' hybrid';
+  image: string;
+};

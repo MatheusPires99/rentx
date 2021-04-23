@@ -23,6 +23,8 @@ export const Container = styled.View<ContainerProps>`
     css`
       background: ${theme.colors.black};
     `}
+
+    justify-content: center;
   `}
 `;
 

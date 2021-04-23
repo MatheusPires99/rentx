@@ -16,5 +16,5 @@ export const Routes = () => {
     );
   }
 
-  return user ? <AppRoutes /> : <AuthRoutes />;
+  return true ? <AppRoutes /> : <AuthRoutes />;
 };

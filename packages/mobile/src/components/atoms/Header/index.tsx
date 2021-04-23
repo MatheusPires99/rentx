@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react';
 import * as S from './styles';
 
 type HeaderProps = {
-  variant: 'light' | 'dark';
+  variant?: 'light' | 'dark';
   height?: number;
   children: ReactNode;
 };
