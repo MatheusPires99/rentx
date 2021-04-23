@@ -6,7 +6,11 @@ import { Car } from '../../../types';
 import { formatToPtBrCurrency } from '../../../utils';
 import * as S from './styles';
 
-type CarCardProsp = Omit<Car, 'id'> & Omit<TouchableOpacityProps, 'style'>;
+type CarCardProsp = Pick<
+  Car,
+  'name' | 'brand' | 'valuePerDay' | 'fuel' | 'image'
+> &
+  Omit<TouchableOpacityProps, 'style'>;
 
 export const CarCard = ({
   name,

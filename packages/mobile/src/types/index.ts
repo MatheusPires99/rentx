@@ -43,6 +43,11 @@ export type Car = {
   name: string;
   brand: string;
   valuePerDay: number;
-  fuel: 'gasoline' | 'eletric' | 'hybrid';
   image: string;
+  maxSpeed: number;
+  timeForMaxSpeed: number;
+  power: number;
+  fuel: 'gasoline' | 'eletric' | 'hybrid';
+  gearshift: 'auto' | 'manual';
+  maxPeople: number;
 };

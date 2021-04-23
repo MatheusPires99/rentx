@@ -23,48 +23,78 @@
       "name": "RS 5 Coupé",
       "brand": "AUDI",
       "valuePerDay": 640,
+      "image": "https://ik.imagekit.io/hwyksvj4iv/audi__EtrVkoaAa.png",
+      "maxSpeed": 250,
+      "timeForMaxSpeed": 5.5,
+      "power": 220,
       "fuel": "eletric",
-      "image": "https://ik.imagekit.io/hwyksvj4iv/audi__EtrVkoaAa.png"
+      "gearshift": "manual",
+      "maxPeople": 5
     },
     {
       "id": 2,
       "name": "Corvette Z06",
       "brand": "CHEVROLET",
       "valuePerDay": 1200,
+      "image": "https://ik.imagekit.io/hwyksvj4iv/corvete_C38ICcQ5Ew.png",
+      "maxSpeed": 330,
+      "timeForMaxSpeed": 4,
+      "power": 330,
       "fuel": "gasoline",
-      "image": "https://ik.imagekit.io/hwyksvj4iv/corvete_C38ICcQ5Ew.png"
+      "gearshift": "auto",
+      "maxPeople": 2
     },
     {
       "id": 3,
       "name": "Panamera",
       "brand": "PORCHE",
       "valuePerDay": 340,
+      "image": "https://ik.imagekit.io/hwyksvj4iv/porche_XjVt2ZEat.png",
+      "maxSpeed": 290,
+      "timeForMaxSpeed": 5.5,
+      "power": 275,
       "fuel": "eletric",
-      "image": "https://ik.imagekit.io/hwyksvj4iv/porche_XjVt2ZEat.png"
+      "gearshift": "manual",
+      "maxPeople": 4
     },
     {
       "id": 4,
       "name": "LAMBORGHINI",
       "brand": "AUDI",
       "valuePerDay": 3600,
+      "image": "https://ik.imagekit.io/hwyksvj4iv/lamborghini_-oQSRDoZYY.png",
+      "maxSpeed": 380,
+      "timeForMaxSpeed": 3.2,
+      "power": 820,
       "fuel": "gasoline",
-      "image": "https://ik.imagekit.io/hwyksvj4iv/lamborghini_-oQSRDoZYY.png"
+      "gearshift": "auto",
+      "maxPeople": 2
     },
     {
       "id": 5,
       "name": "VOLVO",
       "brand": "AUDI",
       "valuePerDay": 1200,
+      "image": "https://ik.imagekit.io/hwyksvj4iv/volvo_mP4Nj574f5.png",
+      "maxSpeed": 270,
+      "timeForMaxSpeed": 6.8,
+      "power": 280,
       "fuel": "hybrid",
-      "image": "https://ik.imagekit.io/hwyksvj4iv/volvo_mP4Nj574f5.png"
+      "gearshift": "auto",
+      "maxPeople": 5
     },
     {
       "id": 6,
       "name": "AUDI",
       "brand": "Lancer Evo X",
       "valuePerDay": 120,
+      "image": "https://ik.imagekit.io/hwyksvj4iv/lancer_So6N5Jcji.png",
+      "maxSpeed": 250,
+      "timeForMaxSpeed": 5.7,
+      "power": 300,
       "fuel": "gasoline",
-      "image": "https://ik.imagekit.io/hwyksvj4iv/lancer_So6N5Jcji.png"
+      "gearshift": "manual",
+      "maxPeople": 5
     }
   ]
 }
