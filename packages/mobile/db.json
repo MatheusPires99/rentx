@@ -15,20 +15,6 @@
       "cnh": "123",
       "password_confirmation": "123456",
       "id": 2
-    },
-    {
-      "email": "matheus.pires@cosi-group.com",
-      "password": "$2a$10$48txNNbyIiMLpIGJzUwEzOCWXOzgkLrn1AZxlVF/1g0.AGA1e1JK.",
-      "name": "Matheus",
-      "cnh": "123456",
-      "id": 3
-    },
-    {
-      "email": "matheus@test2.com",
-      "password": "$2a$10$58AXlYXCequxLfCVHQwx6eOo9mOa3se41bY8S7sCZylTc8Ty.50R.",
-      "name": "Matheus",
-      "cnh": "123",
-      "id": 4
     }
   ],
   "cars": [
