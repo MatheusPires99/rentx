@@ -4,21 +4,21 @@ import React, { ReactNode } from 'react';
 import * as S from './styles';
 
 type HeaderProps = {
-  variant?: 'light' | 'dark';
+  themeColor?: 'light' | 'dark';
   height?: number;
   children: ReactNode;
 };
 
 export const Header = ({
-  variant = 'dark',
+  themeColor = 'dark',
   height = 48,
   children,
 }: HeaderProps) => {
   return (
     <>
-      <StatusBar style={variant === 'dark' ? 'light' : 'dark'} />
+      <StatusBar style={themeColor === 'dark' ? 'light' : 'dark'} />
 
-      <S.Container variant={variant} height={height}>
+      <S.Container themeColor={themeColor} height={height}>
         <S.Content>{children}</S.Content>
       </S.Container>
     </>

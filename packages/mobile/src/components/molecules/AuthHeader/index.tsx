@@ -9,7 +9,7 @@ type AuthHeaderProps = {
 
 export const AuthHeader = ({ onGoBack, step }: AuthHeaderProps) => {
   return (
-    <Header variant="light">
+    <Header themeColor="light">
       <ArrowButton direction="left" onPress={onGoBack} />
 
       {!!step && <Steps currentStep={step} numberOfSteps={2} />}

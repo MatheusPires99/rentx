@@ -3,23 +3,23 @@ import Constants from 'expo-constants';
 import styled, { css } from 'styled-components/native';
 
 type ContainerProps = {
-  variant: 'light' | 'dark';
+  themeColor: 'light' | 'dark';
   height: number;
 };
 
 export const Container = styled.View<ContainerProps>`
-  ${({ theme, variant, height }) => css`
+  ${({ theme, themeColor, height }) => css`
     padding-top: ${Constants.statusBarHeight}px;
     height: ${height + Constants.statusBarHeight}px;
     width: 100%;
     z-index: 5;
 
-    ${variant === 'light' &&
+    ${themeColor === 'light' &&
     css`
       background: ${theme.colors.gray['50']};
     `}
 
-    ${variant === 'dark' &&
+    ${themeColor === 'dark' &&
     css`
       background: ${theme.colors.black};
     `}
