@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
-import { isIphoneX } from 'react-native-iphone-x-helper';
+
+import { IPHONE_8_HEIGHT } from '../../../../constants';
 
 type TitleProps = {
   color: string;
@@ -35,7 +36,7 @@ export const SubTitle = styled.Text`
 export const Title = styled.Text<TitleProps>`
   ${({ theme, color }) => css`
     font-family: ${theme.fonts.archivo.medium};
-    font-size: ${isIphoneX() ? 24 : 20}px;
+    font-size: ${IPHONE_8_HEIGHT ? 24 : 20}px;
     color: ${color};
   `}
 `;
