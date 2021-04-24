@@ -12,7 +12,6 @@ import {
 } from '../../../../assets/icons';
 import { Car } from '../../../../types';
 import * as S from './styles';
-import { IPHONE_8_HEIGHT } from '../../../../constants';
 
 type CarTechnicalInfoProps = Pick<
   Car,
@@ -60,7 +59,7 @@ export const CarTechnicalInfo = ({
     <S.Container
       data={infos}
       keyExtractor={info => info.data}
-      numColumns={IPHONE_8_HEIGHT ? 2 : 3}
+      numColumns={3}
       renderItem={({ item: info }) => {
         const Icon = info.icon;
 
