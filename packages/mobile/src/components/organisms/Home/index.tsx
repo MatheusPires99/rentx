@@ -23,7 +23,7 @@ export const Home = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <HomeHeader />
+      <HomeHeader carsAmount={cars?.length} isLoading={isLoading} />
 
       {isLoading ? <Loading /> : <CarsList cars={cars} />}
     </View>
