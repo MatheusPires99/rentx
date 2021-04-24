@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { IPHONE_8_HEIGHT } from '../../../constants';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 
 export const Container = styled(SafeAreaView)`
   ${() => css`
@@ -41,6 +40,6 @@ export const Description = styled.Text`
 
 export const Form = styled.View`
   ${() => css`
-    margin-top: ${IPHONE_8_HEIGHT ? 64 : 110}px;
+    margin-top: ${isIphoneX() ? 110 : 64}px;
   `}
 `;

@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
-
-import { IPHONE_8_HEIGHT } from '../../../constants';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 
 export const Container = styled(RectButton)`
   ${({ theme }) => css`
@@ -53,7 +52,7 @@ export const Box = styled.View`
 
 export const ValuePerDayContainer = styled.View`
   ${() => css`
-    margin-right: ${IPHONE_8_HEIGHT ? 12 : 18}px;
+    margin-right: ${isIphoneX() ? 18 : 12}px;
   `}
 `;
 

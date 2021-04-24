@@ -10,7 +10,7 @@ import {
   Car as CarIcon,
   User as UserIcon,
 } from '../assets/icons';
-import { IPHONE_8_HEIGHT } from '../constants';
+import { TAB_BAR_HEIGHT } from '../constants';
 import { TabBarIcon } from '../components/atoms';
 import { Home } from '../pages/Home';
 import { Car } from '../pages/Car';
@@ -50,7 +50,7 @@ export const AppRoutes = () => {
         inactiveTintColor: theme.colors.gray['300'],
         activeTintColor: theme.colors.primary,
         style: {
-          height: IPHONE_8_HEIGHT ? 64 : 84,
+          height: TAB_BAR_HEIGHT,
           backgroundColor: theme.colors.gray['50'],
           borderTopColor: theme.colors.gray['200'],
         },
