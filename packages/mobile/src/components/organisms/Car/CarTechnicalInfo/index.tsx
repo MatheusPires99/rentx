@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { LogBox } from 'react-native';
 
 import { useTheme } from 'styled-components';
 
@@ -27,6 +28,10 @@ export const CarTechnicalInfo = ({
   maxPeople,
 }: CarTechnicalInfoProps) => {
   const theme = useTheme();
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
 
   const infos = [
     {
@@ -60,6 +65,7 @@ export const CarTechnicalInfo = ({
       data={infos}
       keyExtractor={info => info.data}
       numColumns={3}
+      scrollEnabled={false}
       renderItem={({ item: info }) => {
         const Icon = info.icon;
 
