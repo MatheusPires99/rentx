@@ -5,7 +5,7 @@ import { useRoute } from '@react-navigation/core';
 import { Car as CarType } from '../../../types';
 import { CarHeader } from '../../molecules';
 import { CarInfoRow } from './CarInfoRow';
-import { CarTechincalInfo } from './CarTechincalInfo';
+import { CarTechnicalInfo } from './CarTechnicalInfo';
 import * as S from './styles';
 
 type RouteParams = {
@@ -30,7 +30,7 @@ export const Car = () => {
           valuePerDay={car.valuePerDay}
         />
 
-        <CarTechincalInfo
+        <CarTechnicalInfo
           maxSpeed={car.maxSpeed}
           timeForMaxSpeed={car.timeForMaxSpeed}
           power={car.power}

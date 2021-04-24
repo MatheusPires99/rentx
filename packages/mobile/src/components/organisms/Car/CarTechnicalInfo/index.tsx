@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { useTheme } from 'styled-components';
 
@@ -14,19 +14,19 @@ import { Car } from '../../../../types';
 import * as S from './styles';
 import { IPHONE_8_HEIGHT } from '../../../../constants';
 
-type CarTechincalInfoProps = Pick<
+type CarTechnicalInfoProps = Pick<
   Car,
   'maxSpeed' | 'timeForMaxSpeed' | 'power' | 'fuel' | 'gearshift' | 'maxPeople'
 >;
 
-export const CarTechincalInfo = ({
+export const CarTechnicalInfo = ({
   maxSpeed,
   timeForMaxSpeed,
   power,
   fuel,
   gearshift,
   maxPeople,
-}: CarTechincalInfoProps) => {
+}: CarTechnicalInfoProps) => {
   const theme = useTheme();
 
   const infos = [
