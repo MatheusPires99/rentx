@@ -50,4 +50,5 @@ export type Car = {
   fuel: 'gasoline' | 'eletric' | 'hybrid';
   gearshift: 'auto' | 'manual';
   maxPeople: number;
+  description: string;
 };

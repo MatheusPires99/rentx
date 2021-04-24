@@ -29,7 +29,8 @@
       "power": 220,
       "fuel": "eletric",
       "gearshift": "manual",
-      "maxPeople": 5
+      "maxPeople": 5,
+      "description": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar."
     },
     {
       "id": 2,
@@ -42,7 +43,8 @@
       "power": 330,
       "fuel": "gasoline",
       "gearshift": "auto",
-      "maxPeople": 2
+      "maxPeople": 2,
+      "description": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar."
     },
     {
       "id": 3,
@@ -55,7 +57,8 @@
       "power": 275,
       "fuel": "eletric",
       "gearshift": "manual",
-      "maxPeople": 4
+      "maxPeople": 4,
+      "description": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar."
     },
     {
       "id": 4,
@@ -68,7 +71,8 @@
       "power": 820,
       "fuel": "gasoline",
       "gearshift": "auto",
-      "maxPeople": 2
+      "maxPeople": 2,
+      "description": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar."
     },
     {
       "id": 5,
@@ -81,7 +85,8 @@
       "power": 280,
       "fuel": "hybrid",
       "gearshift": "auto",
-      "maxPeople": 5
+      "maxPeople": 5,
+      "description": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar."
     },
     {
       "id": 6,
@@ -94,7 +99,8 @@
       "power": 300,
       "fuel": "gasoline",
       "gearshift": "manual",
-      "maxPeople": 5
+      "maxPeople": 5,
+      "description": "Este é automóvel desportivo. Surgiu do lendário touro de lide indultado na praça Real Maestranza de Sevilla. É um belíssimo carro para quem gosta de acelerar."
     }
   ]
 }

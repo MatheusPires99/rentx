@@ -4,7 +4,7 @@ import { Car } from '../../types';
 import { api } from '../api';
 
 async function fetchCars(): Promise<Car[]> {
-  const { data: cars } = await api.get('cars');
+  const { data: cars } = await api.get<Car[]>('cars');
 
   return cars;
 }
