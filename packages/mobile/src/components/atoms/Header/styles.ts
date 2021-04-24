@@ -5,10 +5,11 @@ import styled, { css } from 'styled-components/native';
 type ContainerProps = {
   themeColor: 'light' | 'dark';
   height: number;
+  backgroundColor?: string;
 };
 
 export const Container = styled.View<ContainerProps>`
-  ${({ theme, themeColor, height }) => css`
+  ${({ theme, themeColor, height, backgroundColor }) => css`
     padding-top: ${Constants.statusBarHeight}px;
     height: ${height + Constants.statusBarHeight}px;
     width: 100%;
@@ -22,6 +23,11 @@ export const Container = styled.View<ContainerProps>`
     ${themeColor === 'dark' &&
     css`
       background: ${theme.colors.black};
+    `}
+
+    ${backgroundColor &&
+    css`
+      background: ${backgroundColor};
     `}
 
     justify-content: center;

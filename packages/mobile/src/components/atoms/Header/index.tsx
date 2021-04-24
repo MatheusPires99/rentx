@@ -7,19 +7,25 @@ import * as S from './styles';
 type HeaderProps = ViewProps & {
   themeColor?: 'light' | 'dark';
   height?: number;
+  backgroundColor?: string;
   children: ReactNode;
 };
 
 export const Header = ({
   themeColor = 'dark',
   height = 48,
+  backgroundColor,
   children,
 }: HeaderProps) => {
   return (
     <>
       <StatusBar style={themeColor === 'dark' ? 'light' : 'dark'} />
 
-      <S.Container themeColor={themeColor} height={height}>
+      <S.Container
+        themeColor={themeColor}
+        height={height}
+        backgroundColor={backgroundColor}
+      >
         <S.Content>{children}</S.Content>
       </S.Container>
     </>
