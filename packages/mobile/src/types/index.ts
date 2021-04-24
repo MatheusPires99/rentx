@@ -38,6 +38,12 @@ export type SignUpCredencials = {
   password_confirmation: string;
 };
 
+export enum BookStep {
+  Car = 1,
+  Date = 2,
+  Confirm = 3,
+}
+
 export type Car = {
   id: number;
   name: string;

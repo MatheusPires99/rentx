@@ -3,10 +3,15 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 import { useTheme } from 'styled-components';
 
-import { ArrowButton, Header, Steps } from '../../atoms';
 import { useTabBar } from '../../../hooks';
+import { BookStep } from '../../../types';
+import { ArrowButton, Header, Steps } from '../../atoms';
 
-export const CarHeader = () => {
+type CarHeaderProps = {
+  step: number;
+};
+
+export const CarHeader = ({ step }: CarHeaderProps) => {
   const theme = useTheme();
   const navigation = useNavigation();
   const { toggleTabBar } = useTabBar();
@@ -17,11 +22,18 @@ export const CarHeader = () => {
     navigation.goBack();
   };
 
+  const isCarOrConfirmStep = step === BookStep.Car || step === BookStep.Confirm;
+
+  const themeColor = isCarOrConfirmStep ? 'light' : 'dark';
+
   return (
-    <Header themeColor="light" backgroundColor={theme.colors.white}>
+    <Header
+      themeColor={themeColor}
+      backgroundColor={isCarOrConfirmStep ? theme.colors.white : null}
+    >
       <ArrowButton direction="left" onPress={handleGoBack} />
 
-      <Steps currentStep={1} numberOfSteps={4} />
+      {step && <Steps currentStep={step} numberOfSteps={3} />}
     </Header>
   );
 };

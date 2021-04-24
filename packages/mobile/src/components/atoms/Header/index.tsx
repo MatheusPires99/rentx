@@ -7,7 +7,7 @@ import * as S from './styles';
 type HeaderProps = ViewProps & {
   themeColor?: 'light' | 'dark';
   height?: number;
-  backgroundColor?: string;
+  backgroundColor?: string | null;
   children: ReactNode;
 };
 

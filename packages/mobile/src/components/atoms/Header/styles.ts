@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components/native';
 type ContainerProps = {
   themeColor: 'light' | 'dark';
   height: number;
-  backgroundColor?: string;
+  backgroundColor?: string | null;
 };
 
 export const Container = styled.View<ContainerProps>`
