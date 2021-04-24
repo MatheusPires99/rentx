@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 import { IPHONE_8_HEIGHT } from '../../../constants';
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled(RectButton)`
   ${({ theme }) => css`
     width: 100%;
     padding: 24px;

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { TouchableOpacityProps } from 'react-native';
+
+import { RectButtonProps } from 'react-native-gesture-handler';
 
 import { Droplet, Energy, Leaf } from '../../../assets/icons';
 import { Car } from '../../../types';
@@ -10,7 +11,7 @@ type CarCardProps = Pick<
   Car,
   'name' | 'brand' | 'valuePerDay' | 'image' | 'fuel'
 > &
-  Omit<TouchableOpacityProps, 'style'>;
+  Omit<RectButtonProps, 'style'>;
 
 export const CarCard = ({
   name,
