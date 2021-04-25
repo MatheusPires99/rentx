@@ -6,3 +6,4 @@ export { Steps } from './Steps';
 export { Header } from './Header';
 export { TabBarIcon } from './TabBarIcon';
 export { Skeleton } from './Skeleton';
+export { Calendar } from './Calendar';
