@@ -3,7 +3,7 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useTheme } from 'styled-components';
 
-import { Onboarding } from '../pages/Onboarding';
+import { Wellcome } from '../pages/Wellcome';
 import { SignIn } from '../pages/SignIn';
 import { SignUp } from '../pages/SignUp';
 
@@ -19,7 +19,7 @@ export const AuthRoutes = () => {
         cardStyle: { backgroundColor: theme.colors.gray['50'] },
       }}
     >
-      <Auth.Screen name="Onboarding" component={Onboarding} />
+      <Auth.Screen name="Wellcome" component={Wellcome} />
       <Auth.Screen name="SignIn" component={SignIn} />
       <Auth.Screen name="SignUp" component={SignUp} />
     </Auth.Navigator>

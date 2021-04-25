@@ -23,22 +23,15 @@ type User = {
 type AuthState = {
   user: User;
   accessToken: string;
-  hasOnboarding: boolean;
-};
-
-type UpdateUser = {
-  user?: User;
-  hasOnboarding?: boolean;
 };
 
 type AuthContextData = {
   user: User;
-  userHasOnboarding: boolean;
   loading: boolean;
   signIn(credencials: SignInCredencials): Promise<void>;
   signUp(credencials: SignUpCredencials): Promise<void>;
   signOut(): void;
-  updateUser({ user, hasOnboarding }: UpdateUser): Promise<void>;
+  updateUser(user: User): Promise<void>;
 };
 
 const setApiAuthorization = (accessToken: string) => {
@@ -64,7 +57,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         setData({
           accessToken: accessToken[1],
           user: JSON.parse(user[1]),
-          hasOnboarding: data.hasOnboarding,
         });
       }
 
@@ -72,58 +64,50 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     loadStoragedData();
-  }, [data.hasOnboarding]);
+  }, []);
 
-  const signIn = useCallback(
-    async ({ email, password }: SignInCredencials) => {
-      try {
-        const { accessToken, user } = await loginUser(email, password);
+  const signIn = useCallback(async ({ email, password }: SignInCredencials) => {
+    try {
+      const { accessToken, user } = await loginUser(email, password);
 
-        setApiAuthorization(accessToken);
+      setApiAuthorization(accessToken);
 
-        setData({
-          user,
-          accessToken,
-          hasOnboarding: data.hasOnboarding,
-        });
-      } catch (err) {
-        Alert.alert(
-          'Erro ao fazer login',
-          'Ocorreu um erro ao fazer o login, tente novamente.',
-        );
-      }
-    },
-    [data.hasOnboarding],
-  );
+      setData({
+        user,
+        accessToken,
+      });
+    } catch (err) {
+      Alert.alert(
+        'Erro ao fazer login',
+        'Ocorreu um erro ao fazer o login, tente novamente.',
+      );
+    }
+  }, []);
 
-  const signUp = useCallback(
-    async (userCredentials: SignUpCredencials) => {
-      try {
-        const { name, email, cnh, password } = userCredentials;
+  const signUp = useCallback(async (userCredentials: SignUpCredencials) => {
+    try {
+      const { name, email, cnh, password } = userCredentials;
 
-        const { accessToken, user } = await createUser(
-          name,
-          email,
-          cnh,
-          password,
-        );
+      const { accessToken, user } = await createUser(
+        name,
+        email,
+        cnh,
+        password,
+      );
 
-        setApiAuthorization(accessToken);
+      setApiAuthorization(accessToken);
 
-        setData({
-          user,
-          accessToken,
-          hasOnboarding: data.hasOnboarding,
-        });
-      } catch (err) {
-        Alert.alert(
-          'Erro ao cadastrar',
-          'Ocorreu um erro ao realizar seu cadastro, tente novamente.',
-        );
-      }
-    },
-    [data.hasOnboarding],
-  );
+      setData({
+        user,
+        accessToken,
+      });
+    } catch (err) {
+      Alert.alert(
+        'Erro ao cadastrar',
+        'Ocorreu um erro ao realizar seu cadastro, tente novamente.',
+      );
+    }
+  }, []);
 
   const signOut = useCallback(async () => {
     await AsyncStorage.multiRemove([
@@ -135,22 +119,14 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const updateUser = useCallback(
-    async ({ user, hasOnboarding }: UpdateUser) => {
+    async (user: User) => {
       if (user) {
         await AsyncStorage.setItem(`${STORAGE_KEY}:user`, JSON.stringify(user));
-      }
-
-      if (hasOnboarding) {
-        await AsyncStorage.setItem(
-          `${STORAGE_KEY}:hasOnboarding`,
-          JSON.stringify(hasOnboarding),
-        );
       }
 
       setData({
         accessToken: data.accessToken,
         user: user || data.user,
-        hasOnboarding: hasOnboarding || data.hasOnboarding,
       });
     },
     [setData, data],
@@ -171,7 +147,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     <AuthContext.Provider
       value={{
         user: data.user,
-        userHasOnboarding: data.hasOnboarding,
         loading,
         signIn,
         signUp,

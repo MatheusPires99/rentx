@@ -1,25 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useNavigation } from '@react-navigation/core';
 
-import { useAuth } from '../../../hooks';
 import { Rentx } from '../../../assets/icons';
 import { Button } from '../../atoms';
 import * as S from './styles';
 
-type WellcomeProps = {
-  onPreviousStep: () => void;
-};
-
-export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
+export const Wellcome = () => {
   const navigation = useNavigation();
-  const { userHasOnboarding, updateUser } = useAuth();
-
-  useEffect(() => {
-    if (!userHasOnboarding) {
-      updateUser({ hasOnboarding: true });
-    }
-  }, [userHasOnboarding, updateUser]);
 
   const handleNavigateToSignIn = () => {
     navigation.navigate('SignIn');
@@ -49,12 +37,6 @@ export const Wellcome = ({ onPreviousStep }: WellcomeProps) => {
             </Button>
           </S.ButtonWrapper>
         </S.SignButtons>
-
-        {!userHasOnboarding && (
-          <S.GoBackButton onPress={onPreviousStep}>
-            <S.GoBackButtonText>Voltar</S.GoBackButtonText>
-          </S.GoBackButton>
-        )}
       </S.Footer>
     </S.Container>
   );
