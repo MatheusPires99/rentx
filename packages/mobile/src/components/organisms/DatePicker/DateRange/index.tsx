@@ -6,30 +6,26 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { RightArrow } from '../../../../assets/icons';
-import { BookDate } from '../../../../types';
 import * as S from './styles';
 
 type DateRangeProps = {
-  bookDate: BookDate | undefined;
+  startDate: Date | undefined;
+  endDate: Date | undefined;
 };
 
-export const DateRange = ({ bookDate }: DateRangeProps) => {
+export const DateRange = ({ startDate, endDate }: DateRangeProps) => {
   const [formattedFromDate, setFormattedFromDate] = useState('');
   const [formattedToDate, setFormattedToDate] = useState('');
 
   useEffect(() => {
-    if (bookDate?.start) {
-      setFormattedFromDate(
-        format(bookDate.start, 'dd MMMM yyyy', { locale: ptBR }),
-      );
+    if (startDate) {
+      setFormattedFromDate(format(startDate, 'dd MMMM yyyy', { locale: ptBR }));
     }
 
-    if (bookDate?.end) {
-      setFormattedToDate(
-        format(bookDate.end, 'dd MMMM yyyy', { locale: ptBR }),
-      );
+    if (endDate) {
+      setFormattedToDate(format(endDate, 'dd MMMM yyyy', { locale: ptBR }));
     }
-  }, [bookDate]);
+  }, [startDate, endDate]);
 
   return (
     <S.Container>

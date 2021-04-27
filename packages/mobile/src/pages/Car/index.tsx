@@ -4,7 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/core';
 
 import { CarContent, DatePicker } from '../../components/organisms';
 import { CarTemplate } from '../../components/templates';
-import { Car as CarType, BookStep, BookDate } from '../../types';
+import { Car as CarType, BookStep } from '../../types';
 import { useTabBar } from '../../hooks';
 
 type RouteParams = {
@@ -17,7 +17,6 @@ export const Car = () => {
   const { toggleTabBar } = useTabBar();
 
   const [step, setStep] = useState(BookStep.Car);
-  const [bookDate, setBookDate] = useState<BookDate>();
 
   const { car } = route.params as RouteParams;
 
@@ -44,11 +43,6 @@ export const Car = () => {
     setStep(state => state - 1);
   }, [step, navigation, toggleTabBar]);
 
-  const handleChangeBookDate = useCallback(
-    (date: BookDate) => setBookDate(date),
-    [],
-  );
-
   return (
     <CarTemplate
       step={step}
@@ -61,11 +55,7 @@ export const Car = () => {
       )}
 
       {step === BookStep.Date && (
-        <DatePicker
-          title="Escolha uma data de início e fim do aluguel"
-          bookDate={bookDate}
-          onDateChange={handleChangeBookDate}
-        />
+        <DatePicker title="Escolha uma data de início e fim do aluguel" />
       )}
     </CarTemplate>
   );
