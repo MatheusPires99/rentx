@@ -20,7 +20,7 @@ type CalendarPayload = {
 };
 
 type CalendarProps = {
-  onChange({ start, end }: CalendarPayload): void;
+  onChange: ({ start, end }: CalendarPayload) => void;
 };
 
 export const Calendar = ({ onChange }: CalendarProps) => {

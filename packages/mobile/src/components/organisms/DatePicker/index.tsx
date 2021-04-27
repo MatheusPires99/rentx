@@ -1,36 +1,33 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 
-import { Calendar } from '../../atoms';
+import { useCalendar } from '../../../hooks';
+import { Button, Calendar } from '../../atoms';
 import { DateRange } from './DateRange';
 import * as S from './styles';
 
 type DatePickerProps = {
   title: string;
+  onConfirm?: () => void;
 };
 
-export const DatePicker = ({ title }: DatePickerProps) => {
-  const [startDate, setStartDate] = useState<Date>();
-  const [endDate, setEndDate] = useState<Date>();
-
-  const handleDateChange = useCallback(
-    (start: Date | undefined, end: Date | undefined) => {
-      setStartDate(start);
-      setEndDate(end);
-    },
-    [],
-  );
+export const DatePicker = ({ title, onConfirm }: DatePickerProps) => {
+  const { handleDateChange } = useCalendar();
 
   return (
     <S.Container>
       <S.Header>
         <S.Title>{title}</S.Title>
 
-        <DateRange startDate={startDate} endDate={endDate} />
+        <DateRange />
       </S.Header>
 
-      <S.CalenderContainer>
+      <S.Content>
         <Calendar onChange={({ start, end }) => handleDateChange(start, end)} />
-      </S.CalenderContainer>
+      </S.Content>
+
+      <S.ButtonContainer>
+        <Button onPress={onConfirm}>Confirmar</Button>
+      </S.ButtonContainer>
     </S.Container>
   );
 };

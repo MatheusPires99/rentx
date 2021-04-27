@@ -6,14 +6,12 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { RightArrow } from '../../../../assets/icons';
+import { useCalendar } from '../../../../hooks';
 import * as S from './styles';
 
-type DateRangeProps = {
-  startDate: Date | undefined;
-  endDate: Date | undefined;
-};
+export const DateRange = () => {
+  const { startDate, endDate } = useCalendar();
 
-export const DateRange = ({ startDate, endDate }: DateRangeProps) => {
   const [formattedFromDate, setFormattedFromDate] = useState('');
   const [formattedToDate, setFormattedToDate] = useState('');
 

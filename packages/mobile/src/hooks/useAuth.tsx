@@ -35,7 +35,7 @@ type AuthContextData = {
   updateUser(user: User): Promise<void>;
 };
 
-type AithProviderProps = {
+type AuthProviderProps = {
   children: ReactNode;
 };
 
@@ -45,7 +45,7 @@ const setApiAuthorization = (accessToken: string) => {
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider = ({ children }: AithProviderProps) => {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
   const [loading, setLoading] = useState(true);
 

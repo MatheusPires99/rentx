@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 
-import { useAuth } from '../hooks';
+import { CalendarProvider, useAuth } from '../hooks';
 import { AuthRoutes } from './auth.routes';
 import { AppRoutes } from './app.routes';
 
@@ -16,5 +16,11 @@ export const Routes = () => {
     );
   }
 
-  return user ? <AppRoutes /> : <AuthRoutes />;
+  return user ? (
+    <CalendarProvider>
+      <AppRoutes />
+    </CalendarProvider>
+  ) : (
+    <AuthRoutes />
+  );
 };

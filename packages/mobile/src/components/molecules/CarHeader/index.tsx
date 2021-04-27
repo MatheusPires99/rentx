@@ -7,10 +7,10 @@ import { ArrowButton, Header, Steps } from '../../atoms';
 
 type CarHeaderProps = {
   step: number;
-  onPreviousStep: () => void;
+  onGoBack: () => void;
 };
 
-export const CarHeader = ({ step, onPreviousStep }: CarHeaderProps) => {
+export const CarHeader = ({ step, onGoBack }: CarHeaderProps) => {
   const theme = useTheme();
 
   const isCarOrConfirmStep = step === BookStep.Car || step === BookStep.Confirm;
@@ -26,7 +26,7 @@ export const CarHeader = ({ step, onPreviousStep }: CarHeaderProps) => {
       <ArrowButton
         direction="left"
         color={isDateStep ? theme.colors.white : undefined}
-        onPress={onPreviousStep}
+        onPress={onGoBack}
       />
 
       {step && (

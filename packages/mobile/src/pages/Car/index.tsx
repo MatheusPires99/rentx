@@ -1,11 +1,14 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { View } from 'react-native';
 
 import { useNavigation, useRoute } from '@react-navigation/core';
 
+import { Button } from '../../components/atoms';
 import { CarContent, DatePicker } from '../../components/organisms';
-import { CarTemplate } from '../../components/templates';
+import { CarHeader } from '../../components/molecules';
 import { Car as CarType, BookStep } from '../../types';
 import { useTabBar } from '../../hooks';
+import * as S from './styles';
 
 type RouteParams = {
   car: CarType;
@@ -20,15 +23,11 @@ export const Car = () => {
 
   const { car } = route.params as RouteParams;
 
-  const buttonText = useMemo(() => {
-    if (step === BookStep.Car) return 'Escolher período do aluguel';
+  useEffect(() => {
+    toggleTabBar(false);
 
-    if (step === BookStep.Date) return 'Confirmar';
-
-    if (step === BookStep.Confirm) return 'Alugar agora';
-
-    return '';
-  }, [step]);
+    return () => toggleTabBar(true);
+  }, [toggleTabBar]);
 
   const handleNextStep = useCallback(() => setStep(state => state + 1), []);
 
@@ -43,20 +42,34 @@ export const Car = () => {
     setStep(state => state - 1);
   }, [step, navigation, toggleTabBar]);
 
-  return (
-    <CarTemplate
-      step={step}
-      buttonText={buttonText}
-      onNextStep={handleNextStep}
-      onPreviousStep={handlePreviousStep}
-    >
-      {(step === BookStep.Car || step === BookStep.Confirm) && (
-        <CarContent car={car} />
-      )}
+  const showDatePicker = step === BookStep.Date;
 
-      {step === BookStep.Date && (
-        <DatePicker title="Escolha uma data de início e fim do aluguel" />
+  return (
+    <S.Container>
+      <CarHeader step={step} onGoBack={handlePreviousStep} />
+
+      <View style={{ flex: 1 }}>
+        <>
+          {!showDatePicker && <CarContent car={car} />}
+
+          {showDatePicker && (
+            <DatePicker
+              title="Escolha uma data de início e fim do aluguel"
+              onConfirm={handleNextStep}
+            />
+          )}
+        </>
+      </View>
+
+      {!showDatePicker && (
+        <S.ButtonContainer>
+          <Button onPress={handleNextStep}>
+            {step === BookStep.Car
+              ? 'Escolher período do aluguel'
+              : 'Alugar agora'}
+          </Button>
+        </S.ButtonContainer>
       )}
-    </CarTemplate>
+    </S.Container>
   );
 };
