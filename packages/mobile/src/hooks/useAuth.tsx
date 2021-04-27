@@ -4,6 +4,7 @@ import React, {
   useState,
   useEffect,
   useContext,
+  ReactNode,
 } from 'react';
 import { Alert } from 'react-native';
 
@@ -34,13 +35,17 @@ type AuthContextData = {
   updateUser(user: User): Promise<void>;
 };
 
+type AithProviderProps = {
+  children: ReactNode;
+};
+
 const setApiAuthorization = (accessToken: string) => {
   api.defaults.headers.authorization = `Bearer ${accessToken}`;
 };
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthProvider: React.FC = ({ children }) => {
+export const AuthProvider = ({ children }: AithProviderProps) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
   const [loading, setLoading] = useState(true);
 
