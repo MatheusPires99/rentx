@@ -14,6 +14,7 @@ import { TAB_BAR_HEIGHT } from '../constants';
 import { TabBarIcon } from '../components/atoms';
 import { Home } from '../pages/Home';
 import { Car } from '../pages/Car';
+import { Profile } from '../pages/Profile';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -76,7 +77,7 @@ export const AppRoutes = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={TempView}
+        component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon icon={UserIcon} focused={focused} />
