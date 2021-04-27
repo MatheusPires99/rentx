@@ -1,28 +1,20 @@
 import React from 'react';
 
-import { useNavigation } from '@react-navigation/core';
 import { useTheme } from 'styled-components';
 
-import { useTabBar } from '../../../hooks';
 import { BookStep } from '../../../types';
 import { ArrowButton, Header, Steps } from '../../atoms';
 
 type CarHeaderProps = {
   step: number;
+  onPreviousStep: () => void;
 };
 
-export const CarHeader = ({ step }: CarHeaderProps) => {
+export const CarHeader = ({ step, onPreviousStep }: CarHeaderProps) => {
   const theme = useTheme();
-  const navigation = useNavigation();
-  const { toggleTabBar } = useTabBar();
-
-  const handleGoBack = () => {
-    toggleTabBar(true);
-
-    navigation.goBack();
-  };
 
   const isCarOrConfirmStep = step === BookStep.Car || step === BookStep.Confirm;
+  const isDateStep = step === BookStep.Date;
 
   const themeColor = isCarOrConfirmStep ? 'light' : 'dark';
 
@@ -31,9 +23,19 @@ export const CarHeader = ({ step }: CarHeaderProps) => {
       themeColor={themeColor}
       backgroundColor={isCarOrConfirmStep ? theme.colors.white : null}
     >
-      <ArrowButton direction="left" onPress={handleGoBack} />
+      <ArrowButton
+        direction="left"
+        color={isDateStep ? theme.colors.white : undefined}
+        onPress={onPreviousStep}
+      />
 
-      {step && <Steps currentStep={step} numberOfSteps={3} />}
+      {step && (
+        <Steps
+          currentStep={step}
+          numberOfSteps={3}
+          currentStepColor={isDateStep && theme.colors.white}
+        />
+      )}
     </Header>
   );
 };

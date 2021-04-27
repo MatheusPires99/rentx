@@ -52,3 +52,8 @@ export type Car = {
   maxPeople: number;
   description: string;
 };
+
+export type BookDate = {
+  start: Date;
+  end: Date;
+};

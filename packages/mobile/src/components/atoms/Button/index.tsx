@@ -11,19 +11,26 @@ export type Variant = 'primary' | 'secondary';
 type ButtonProps = RectButtonProps & {
   variant?: Variant;
   isLoading?: boolean;
+  disabled?: boolean;
   children: ReactNode;
 };
 
 export const Button = ({
   variant = 'primary',
   isLoading,
+  disabled,
   children,
   ...rest
 }: ButtonProps) => {
   const theme = useTheme();
 
   return (
-    <S.Container variant={variant} {...rest}>
+    <S.Container
+      variant={variant}
+      disabled={disabled}
+      enabled={!disabled}
+      {...rest}
+    >
       {isLoading ? (
         <ActivityIndicator color={theme.colors.white} size="small" />
       ) : (
