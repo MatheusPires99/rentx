@@ -1,15 +1,10 @@
-import { Dimensions } from 'react-native';
-
 import styled, { css } from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-const { width } = Dimensions.get('window');
 
 export const Container = styled(SafeAreaView)`
   ${({ theme }) => css`
     background: ${theme.colors.black};
     padding: 80px 32px 0;
-    width: ${width}px;
 
     flex: 1;
     align-items: center;

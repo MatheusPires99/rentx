@@ -1,4 +1,3 @@
-export { Wellcome } from './Wellcome';
 export { AuthHeader } from './AuthHeader';
 export { SignInFields } from './SignInFields';
 export { SignUpFields } from './SignUpFields';

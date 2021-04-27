@@ -1,7 +1,43 @@
 import React from 'react';
 
-import { Wellcome as WellcomeComponent } from '../../components/molecules';
+import { useNavigation } from '@react-navigation/core';
+
+import { Rentx } from '../../assets/icons';
+import { Button } from '../../components/atoms';
+import * as S from './styles';
 
 export const Wellcome = () => {
-  return <WellcomeComponent />;
+  const navigation = useNavigation();
+
+  const handleNavigateToSignIn = () => {
+    navigation.navigate('SignIn');
+  };
+
+  const handleNavigateToSignUp = () => {
+    navigation.navigate('SignUp');
+  };
+
+  return (
+    <S.Container>
+      <Rentx />
+
+      <S.Main>
+        <S.Title>Seja {'\n'} Bem-vindo</S.Title>
+        <S.Subtitle>O que você desenha fazer?</S.Subtitle>
+      </S.Main>
+
+      <S.Footer>
+        <S.SignButtons>
+          <S.ButtonWrapper>
+            <Button onPress={handleNavigateToSignIn}>Login</Button>
+          </S.ButtonWrapper>
+          <S.ButtonWrapper style={{ marginLeft: 16 }}>
+            <Button onPress={handleNavigateToSignUp} variant="secondary">
+              Cadastro
+            </Button>
+          </S.ButtonWrapper>
+        </S.SignButtons>
+      </S.Footer>
+    </S.Container>
+  );
 };
