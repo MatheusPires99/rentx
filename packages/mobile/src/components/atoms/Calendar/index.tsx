@@ -9,9 +9,10 @@ import {
   isAfter,
 } from 'date-fns';
 
-import { useCalendar } from './hooks';
-import { weekDays } from './constants';
+import { useCalendar } from '../../../hooks';
 import { ArrowButton } from '../ArrowButton';
+import { useCalendar as useCalendarLocal } from './hooks';
+import { weekDays } from './constants';
 import * as S from './styles';
 
 type CalendarPayload = {
@@ -24,11 +25,16 @@ type CalendarProps = {
 };
 
 export const Calendar = ({ onChange }: CalendarProps) => {
-  const [date, setDate] = useState<Date>(startOfMonth(new Date()));
-  const [startDate, setStartDate] = useState<Date>();
-  const [endDate, setEndDate] = useState<Date>();
+  const {
+    startDate: startDateContext,
+    endDate: endDateContext,
+  } = useCalendar();
 
-  const { daysInMonth, dateFormatted } = useCalendar(date);
+  const [date, setDate] = useState<Date>(startOfMonth(new Date()));
+  const [startDate, setStartDate] = useState(startDateContext);
+  const [endDate, setEndDate] = useState(endDateContext);
+
+  const { daysInMonth, dateFormatted } = useCalendarLocal(date);
 
   const handlePreviousMonth = () => setDate(state => subMonths(state, 1));
   const handleNextMonth = () => setDate(state => addMonths(state, 1));
@@ -72,6 +78,8 @@ export const Calendar = ({ onChange }: CalendarProps) => {
         endDate &&
         isAfter(day, startDate) &&
         isBefore(day, endDate);
+
+      console.log(day === startDate);
 
       return (
         <S.DayButton
