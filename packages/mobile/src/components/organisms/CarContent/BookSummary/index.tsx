@@ -22,7 +22,7 @@ export const BookSummary = ({ valuePerDay }: BookSummaryProps) => {
   const formattedEndDate = formatDate(endDate!);
 
   const formattedValuePerDay = formatToPtBrCurrency(valuePerDay);
-  const amountOfDays = differenceInDays(endDate!, startDate!);
+  const amountOfDays = differenceInDays(endDate!, startDate!) + 1;
   const totalFormatted = formatToPtBrCurrency(valuePerDay * amountOfDays);
 
   return (

@@ -10,6 +10,7 @@ type CalendarContextData = {
   startDate: Date | undefined;
   endDate: Date | undefined;
   handleDateChange: (start?: Date, end?: Date) => void;
+  handleCleanDates: () => void;
 };
 
 type CalendarProviderProps = {
@@ -32,8 +33,15 @@ export const CalendarProvider = ({ children }: CalendarProviderProps) => {
     [],
   );
 
+  const handleCleanDates = useCallback(() => {
+    setStartDate(undefined);
+    setEndDate(undefined);
+  }, []);
+
   return (
-    <CalendarContext.Provider value={{ startDate, endDate, handleDateChange }}>
+    <CalendarContext.Provider
+      value={{ startDate, endDate, handleDateChange, handleCleanDates }}
+    >
       {children}
     </CalendarContext.Provider>
   );
