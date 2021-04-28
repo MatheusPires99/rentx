@@ -1,16 +1,15 @@
-/* eslint-disable import/no-duplicates */
 import { useMemo } from 'react';
 
 import {
   addDays,
   eachDayOfInterval,
   endOfMonth,
-  format,
   getDay,
   startOfMonth,
   subDays,
 } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+
+import { formatDate } from '../../../../utils';
 
 const addDaysOfLastMonth = (days: Date[]) => {
   if (getDay(days[0]) !== 0) {
@@ -40,7 +39,7 @@ export const useCalendar = (date: Date) => {
   }, [date]);
 
   const dateFormatted = useMemo(() => {
-    const monthYear = format(date, 'MMMM yyyy', { locale: ptBR });
+    const monthYear = formatDate(date, 'MMMM yyyy');
 
     return monthYear.charAt(0).toUpperCase() + monthYear.slice(1);
   }, [date]);

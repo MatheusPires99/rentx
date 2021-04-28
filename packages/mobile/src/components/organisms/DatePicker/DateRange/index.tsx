@@ -1,13 +1,10 @@
-/* eslint-disable import/no-duplicates */
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 
 import { RightArrow } from '../../../../assets/icons';
 import { useCalendar } from '../../../../hooks';
 import * as S from './styles';
+import { formatDate } from '../../../../utils';
 
 export const DateRange = () => {
   const { startDate, endDate } = useCalendar();
@@ -17,11 +14,11 @@ export const DateRange = () => {
 
   useEffect(() => {
     if (startDate) {
-      setFormattedFromDate(format(startDate, 'dd MMMM yyyy', { locale: ptBR }));
+      setFormattedFromDate(formatDate(startDate));
     }
 
     if (endDate) {
-      setFormattedToDate(format(endDate, 'dd MMMM yyyy', { locale: ptBR }));
+      setFormattedToDate(formatDate(endDate));
     }
   }, [startDate, endDate]);
 
