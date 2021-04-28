@@ -6,9 +6,9 @@ import { SvgProps } from '.';
 
 export const Calendar = ({ color, size }: SvgProps) => (
   <Svg
-    width={size || '80'}
-    height={size || '80'}
-    viewBox={`0 0 ${size || '80'} ${size || '80'}`}
+    width={size || '24'}
+    height={size || '24'}
+    viewBox={`0 0 ${size || '24'} ${size || '24'}`}
     fill="none"
   >
     <Path
