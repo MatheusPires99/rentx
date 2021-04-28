@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 
-import { useTabBar } from '../../../hooks';
+import { useCalendar, useTabBar } from '../../../hooks';
 import { Car } from '../../../types';
 import { CarInfoRow } from './CarInfoRow';
 import { CarTechnicalInfo } from './CarTechnicalInfo';
+import { BookSummary } from './BookSummary';
 import * as S from './styles';
 
 type CarContentProps = {
@@ -11,6 +12,7 @@ type CarContentProps = {
 };
 
 export const CarContent = ({ car }: CarContentProps) => {
+  const { startDate, endDate } = useCalendar();
   const { toggleTabBar } = useTabBar();
 
   useEffect(() => {
@@ -38,7 +40,11 @@ export const CarContent = ({ car }: CarContentProps) => {
         maxPeople={car.maxPeople}
       />
 
-      <S.Description>{car.description}</S.Description>
+      {!!startDate && !!endDate ? (
+        <BookSummary valuePerDay={car.valuePerDay} />
+      ) : (
+        <S.Description>{car.description}</S.Description>
+      )}
     </S.Content>
   );
 };
