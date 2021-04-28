@@ -1,4 +1,4 @@
 export { AuthForm } from './AuthForm';
-export { Home } from './Home';
+export { CarsList } from './CarsList';
 export { CarContent } from './CarContent';
 export { DatePicker } from './DatePicker';

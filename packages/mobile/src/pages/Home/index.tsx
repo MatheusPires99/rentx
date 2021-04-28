@@ -1,7 +1,10 @@
 import React from 'react';
 
-import { Home as HomeComponent } from '../../components/organisms';
+import { HomeTemplate } from '../../components/templates';
+import { getCars } from '../../services/cars';
 
 export const Home = () => {
-  return <HomeComponent />;
+  const { data: cars, isLoading } = getCars();
+
+  return <HomeTemplate cars={cars} isLoading={isLoading} />;
 };

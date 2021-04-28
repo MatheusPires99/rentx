@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 
 import { useNavigation } from '@react-navigation/core';
 
-import { Car } from '../../../../types';
-import { CarCard } from '../../../molecules';
+import { Car } from '../../../types';
+import { CarCard } from '../../molecules';
 import * as S from './styles';
 
 type CarsListProps = {

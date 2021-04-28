@@ -4,16 +4,19 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import { useTheme } from 'styled-components';
 
+import { Car } from '../../../types';
 import { HomeHeader } from '../../molecules';
-import { CarsList } from './CarsList';
-import { getCars } from '../../../services/cars';
+import { CarsList } from '../../organisms';
 import { Loading } from './Loading';
 
-export const Home = () => {
+type HomeTemplateProps = {
+  cars: Car[] | undefined;
+  isLoading: boolean;
+};
+
+export const HomeTemplate = ({ cars, isLoading }: HomeTemplateProps) => {
   const navigation = useNavigation();
   const theme = useTheme();
-
-  const { data: cars, isLoading } = getCars();
 
   useEffect(() => {
     navigation.setOptions({
