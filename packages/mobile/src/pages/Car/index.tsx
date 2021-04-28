@@ -7,7 +7,7 @@ import { Button } from '../../components/atoms';
 import { CarContent, DatePicker } from '../../components/organisms';
 import { CarHeader } from '../../components/molecules';
 import { Car as CarType, BookStep } from '../../types';
-import { useTabBar } from '../../hooks';
+import { useCalendar, useTabBar } from '../../hooks';
 import * as S from './styles';
 
 type RouteParams = {
@@ -18,6 +18,7 @@ export const Car = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { toggleTabBar } = useTabBar();
+  const { handleCleanAllDates } = useCalendar();
 
   const [step, setStep] = useState(BookStep.Car);
 
@@ -42,6 +43,13 @@ export const Car = () => {
     setStep(state => state - 1);
   }, [step, navigation, toggleTabBar]);
 
+  const handleConfirmBook = () => {
+    try {
+      // After everything:
+      handleCleanAllDates();
+    } catch (err) {}
+  };
+
   const showDatePicker = step === BookStep.Date;
 
   return (
@@ -63,7 +71,12 @@ export const Car = () => {
 
       {!showDatePicker && (
         <S.ButtonContainer>
-          <Button onPress={handleNextStep}>
+          <Button
+            onPress={
+              step === BookStep.Confirm ? handleConfirmBook : handleNextStep
+            }
+            variant={step === BookStep.Confirm ? 'green' : 'primary'}
+          >
             {step === BookStep.Car
               ? 'Escolher período do aluguel'
               : 'Alugar agora'}

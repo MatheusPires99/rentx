@@ -6,7 +6,7 @@ import { useTheme } from 'styled-components';
 
 import * as S from './styles';
 
-export type Variant = 'primary' | 'secondary';
+export type Variant = 'primary' | 'secondary' | 'green';
 
 type ButtonProps = RectButtonProps & {
   variant?: Variant;

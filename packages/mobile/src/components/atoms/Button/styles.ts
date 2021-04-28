@@ -22,6 +22,11 @@ export const Container = styled(RectButton)<ContainerProps>`
       background: ${theme.colors.gray['800']};
     `}
 
+    ${variant === 'green' &&
+    css`
+      background: ${theme.colors.green};
+    `}
+
     ${disabled &&
     css`
       opacity: 0.5;
