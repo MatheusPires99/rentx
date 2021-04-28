@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 
 import {
   format,
@@ -26,11 +26,13 @@ type CalendarProps = {
 
 export const Calendar = ({ onChange }: CalendarProps) => {
   const {
+    calendarDate,
+    handleChangeCalendarDate,
     startDate: startDateContext,
     endDate: endDateContext,
   } = useCalendar();
 
-  const [date, setDate] = useState<Date>(startOfMonth(new Date()));
+  const [date, setDate] = useState(calendarDate || startOfMonth(new Date()));
   const [startDate, setStartDate] = useState(startDateContext);
   const [endDate, setEndDate] = useState(endDateContext);
 
@@ -38,6 +40,11 @@ export const Calendar = ({ onChange }: CalendarProps) => {
 
   const handlePreviousMonth = () => setDate(state => subMonths(state, 1));
   const handleNextMonth = () => setDate(state => addMonths(state, 1));
+
+  useEffect(() => {
+    handleChangeCalendarDate(date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date]);
 
   const handlePressDay = useCallback(
     (day: Date) => {
@@ -78,8 +85,6 @@ export const Calendar = ({ onChange }: CalendarProps) => {
         endDate &&
         isAfter(day, startDate) &&
         isBefore(day, endDate);
-
-      console.log(day === startDate);
 
       return (
         <S.DayButton

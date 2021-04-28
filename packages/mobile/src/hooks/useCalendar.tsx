@@ -6,11 +6,15 @@ import React, {
   useState,
 } from 'react';
 
+import { startOfMonth } from 'date-fns';
+
 type CalendarContextData = {
+  calendarDate: Date;
+  handleChangeCalendarDate: (date: Date) => void;
   startDate: Date | undefined;
   endDate: Date | undefined;
   handleDateChange: (start?: Date, end?: Date) => void;
-  handleCleanDates: () => void;
+  handleCleanAllDates: () => void;
 };
 
 type CalendarProviderProps = {
@@ -22,8 +26,14 @@ const CalendarContext = createContext<CalendarContextData>(
 );
 
 export const CalendarProvider = ({ children }: CalendarProviderProps) => {
+  const [calendarDate, setCalendarDate] = useState(startOfMonth(new Date()));
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
+
+  const handleChangeCalendarDate = useCallback(
+    (date: Date) => setCalendarDate(date),
+    [],
+  );
 
   const handleDateChange = useCallback(
     (start: Date | undefined, end: Date | undefined) => {
@@ -33,14 +43,22 @@ export const CalendarProvider = ({ children }: CalendarProviderProps) => {
     [],
   );
 
-  const handleCleanDates = useCallback(() => {
+  const handleCleanAllDates = useCallback(() => {
+    setCalendarDate(startOfMonth(new Date()));
     setStartDate(undefined);
     setEndDate(undefined);
   }, []);
 
   return (
     <CalendarContext.Provider
-      value={{ startDate, endDate, handleDateChange, handleCleanDates }}
+      value={{
+        calendarDate,
+        handleChangeCalendarDate,
+        startDate,
+        endDate,
+        handleDateChange,
+        handleCleanAllDates,
+      }}
     >
       {children}
     </CalendarContext.Provider>
