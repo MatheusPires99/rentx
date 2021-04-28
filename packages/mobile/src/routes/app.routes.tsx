@@ -48,12 +48,12 @@ export const AppRoutes = () => {
     <Tab.Navigator
       tabBarOptions={{
         showLabel: false,
-        inactiveTintColor: theme.colors.gray['300'],
+        inactiveTintColor: theme.colors['gray.300'],
         activeTintColor: theme.colors.primary,
         style: {
           height: TAB_BAR_HEIGHT,
-          backgroundColor: theme.colors.gray['50'],
-          borderTopColor: theme.colors.gray['200'],
+          backgroundColor: theme.colors['gray.50'],
+          borderTopColor: theme.colors['gray.200'],
         },
       }}
     >

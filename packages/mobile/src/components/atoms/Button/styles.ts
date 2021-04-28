@@ -19,7 +19,7 @@ export const Container = styled(RectButton)<ContainerProps>`
 
     ${variant === 'secondary' &&
     css`
-      background: ${theme.colors.gray['800']};
+      background: ${theme.colors['gray.800']};
     `}
 
     ${variant === 'green' &&
@@ -34,13 +34,5 @@ export const Container = styled(RectButton)<ContainerProps>`
 
     align-items: center;
     justify-content: center;
-  `}
-`;
-
-export const ButtonText = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.medium};
-    font-size: 15px;
-    color: ${theme.colors.white};
   `}
 `;

@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
+import { TouchableOpacity } from 'react-native';
 
 import { useFormContext } from 'react-hook-form';
 
 import { Email, Lock } from '../../../assets/icons';
-import { Checkbox, Input } from '../../atoms';
+import { Checkbox, Input, Text } from '../../atoms';
 import * as S from './styles';
 
 export const SignInFields = () => {
@@ -44,11 +45,11 @@ export const SignInFields = () => {
           label="Lembrar-me"
         />
 
-        <S.ForgotPasswordButton>
-          <S.ForgotPasswordButtonText>
+        <TouchableOpacity>
+          <Text fontSize="sm" color="gray.400">
             Esqueci minha senha
-          </S.ForgotPasswordButtonText>
-        </S.ForgotPasswordButton>
+          </Text>
+        </TouchableOpacity>
       </S.Box>
     </>
   );

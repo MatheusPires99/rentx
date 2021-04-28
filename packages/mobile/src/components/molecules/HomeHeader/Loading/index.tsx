@@ -20,8 +20,8 @@ export const Loading = () => {
       <Skeleton
         isLoading
         layout={layout}
-        boneColor={theme.colors.gray['800']}
-        highlightColor={theme.colors.gray['600']}
+        boneColor={theme.colors['gray.800']}
+        highlightColor={theme.colors['gray.600']}
       />
     </View>
   );

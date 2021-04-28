@@ -12,6 +12,7 @@ import {
   User,
 } from '../../../../assets/icons';
 import { Car } from '../../../../types';
+import { Text } from '../../../atoms';
 import * as S from './styles';
 
 type CarTechnicalInfoProps = Pick<
@@ -71,8 +72,15 @@ export const CarTechnicalInfo = ({
 
         return (
           <S.Box>
-            <Icon size={32} color={theme.colors.gray['600']} />
-            <S.InfoText>{info.data}</S.InfoText>
+            <Icon size={32} color={theme.colors['gray.600']} />
+            <Text
+              fontFamily="inter.medium"
+              fontSize="sm"
+              color="gray.400"
+              style={{ marginTop: 12 }}
+            >
+              {info.data}
+            </Text>
           </S.Box>
         );
       }}

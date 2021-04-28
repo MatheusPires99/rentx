@@ -10,6 +10,7 @@ import {
   Extrapolate,
 } from 'react-native-reanimated';
 
+import { Text } from '../Text';
 import * as S from './styles';
 
 type CheckboxProps = {
@@ -68,7 +69,9 @@ export const Checkbox = ({
           <S.CheckedBox style={checkedBoxStyle} />
         </S.Box>
 
-        <S.Label>{label}</S.Label>
+        <Text fontSize="sm" color="gray.400">
+          {label}
+        </Text>
       </S.Container>
     </TouchableWithoutFeedback>
   );

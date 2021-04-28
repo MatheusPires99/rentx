@@ -19,24 +19,6 @@ export const Main = styled.View`
   `}
 `;
 
-export const Title = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.semiBold};
-    font-size: 40px;
-    color: ${theme.colors.gray['50']};
-    text-align: center;
-    margin-bottom: 16px;
-  `}
-`;
-
-export const Subtitle = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.regular};
-    font-size: 15px;
-    color: ${theme.colors.gray['200']};
-  `}
-`;
-
 export const Footer = styled.View`
   ${() => css`
     margin-bottom: 16px;
@@ -57,23 +39,5 @@ export const SignButtons = styled.View`
 export const ButtonWrapper = styled.View`
   ${() => css`
     flex: 1;
-  `}
-`;
-
-export const GoBackButton = styled.TouchableOpacity`
-  ${() => css`
-    height: 48px;
-    width: 80px;
-
-    align-items: center;
-    justify-content: center;
-  `}
-`;
-
-export const GoBackButtonText = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.medium};
-    font-size: 13px;
-    color: ${theme.colors.gray['400']};
   `}
 `;

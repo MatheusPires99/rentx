@@ -15,26 +15,16 @@ export const Container = styled(
 
 export const Box = styled.View`
   ${({ theme }) => css`
-    background: ${theme.colors.gray['50']};
+    background: ${theme.colors['gray.50']};
     height: 92px;
-    flex: 1;
-
     margin: 4px;
 
     border-bottom-width: 1px;
     border-style: solid;
-    border-color: ${theme.colors.gray['100']};
+    border-color: ${theme.colors['gray.100']};
 
+    flex: 1;
     align-items: center;
     justify-content: center;
-  `}
-`;
-
-export const InfoText = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.medium};
-    font-size: 13px;
-    color: ${theme.colors.gray['400']};
-    margin-top: 12px;
   `}
 `;

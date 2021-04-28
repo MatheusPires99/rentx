@@ -11,6 +11,7 @@ import {
 
 import { useCalendar } from '../../../hooks';
 import { ArrowButton } from '../ArrowButton';
+import { Text } from '../Text';
 import { useCalendar as useCalendarLocal } from './hooks';
 import { weekDays } from './constants';
 import * as S from './styles';
@@ -114,7 +115,9 @@ export const Calendar = ({ onChange }: CalendarProps) => {
           buttonSize={24}
           onPress={handlePreviousMonth}
         />
-        <S.CurrentDate>{dateFormatted}</S.CurrentDate>
+        <Text fontFamily="archivo.semiBold" fontSize="lg">
+          {dateFormatted}
+        </Text>
         <ArrowButton
           direction="right"
           buttonSize={24}
@@ -124,7 +127,16 @@ export const Calendar = ({ onChange }: CalendarProps) => {
 
       <S.WeekDays>
         {weekDays.map(weekDay => (
-          <S.WeekDaysText key={weekDay}> {weekDay}</S.WeekDaysText>
+          <Text
+            key={weekDay}
+            fontFamily="archivo.regular"
+            fontSize="xs"
+            color="gray.300"
+            style={{ letterSpacing: 1 }}
+          >
+            {' '}
+            {weekDay}
+          </Text>
         ))}
       </S.WeekDays>
 

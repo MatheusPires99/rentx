@@ -5,6 +5,7 @@ import { RectButtonProps } from 'react-native-gesture-handler';
 import { Droplet, Energy, Leaf } from '../../../assets/icons';
 import { Car } from '../../../types';
 import { formatToPtBrCurrency } from '../../../utils';
+import { Text } from '../../atoms';
 import * as S from './styles';
 
 type CarCardProps = Pick<
@@ -36,13 +37,31 @@ export const CarCard = ({
   return (
     <S.Container {...rest}>
       <S.Content>
-        <S.SubTitle>{brand}</S.SubTitle>
-        <S.Name>{name}</S.Name>
+        <Text
+          fontFamily="archivo.medium"
+          fontSize="xs"
+          color="gray.300"
+          style={{ textTransform: 'uppercase', marginBottom: 8 }}
+        >
+          {brand}
+        </Text>
+        <Text fontFamily="archivo.semiBold" style={{ marginBottom: 16 }}>
+          {name}
+        </Text>
 
         <S.Box>
           <S.ValuePerDayContainer>
-            <S.SubTitle>AO DIA</S.SubTitle>
-            <S.ValuePerDay>{formattedValuePerDay}</S.ValuePerDay>
+            <Text
+              fontFamily="archivo.medium"
+              fontSize="xs"
+              color="gray.300"
+              style={{ textTransform: 'uppercase', marginBottom: 8 }}
+            >
+              AO DIA
+            </Text>
+            <Text fontFamily="archivo.semiBold" color="primary">
+              {formattedValuePerDay}
+            </Text>
           </S.ValuePerDayContainer>
 
           {renderCarFuelIcon}

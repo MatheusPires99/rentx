@@ -17,7 +17,7 @@ export const TabBarIcon = ({ icon: Icon, focused }: TabBarIconProps) => {
     <S.Container>
       <S.Icon focused={focused}>
         <Icon
-          color={focused ? theme.colors.primary : theme.colors.gray['300']}
+          color={focused ? theme.colors.primary : theme.colors['gray.300']}
         />
       </S.Icon>
 

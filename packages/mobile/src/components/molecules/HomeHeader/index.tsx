@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { RentxFull } from '../../../assets/icons';
-import { Header } from '../../atoms';
+import { Header, Text } from '../../atoms';
 import { Loading } from './Loading';
-import * as S from './styles';
 
 type HomeHeaderProps = {
   carsAmount: number | undefined;
@@ -18,7 +17,7 @@ export const HomeHeader = ({ carsAmount, isLoading }: HomeHeaderProps) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <S.TotalCars>Total {carsAmount} carros</S.TotalCars>
+        <Text color="gray.400">Total {carsAmount} carros</Text>
       )}
     </Header>
   );

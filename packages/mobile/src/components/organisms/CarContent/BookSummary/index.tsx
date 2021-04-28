@@ -8,6 +8,7 @@ import { useTheme } from 'styled-components';
 import { Calendar, ChevronRight } from '../../../../assets/icons';
 import { useCalendar } from '../../../../hooks';
 import { formatDate, formatToPtBrCurrency } from '../../../../utils';
+import { Text } from '../../../atoms';
 import * as S from './styles';
 
 type BookSummaryProps = {
@@ -35,7 +36,7 @@ export const BookSummary = ({ valuePerDay }: BookSummaryProps) => {
         <S.DateRange>
           <View>
             <S.SubText>DE</S.SubText>
-            <S.Text>{formattedStartDate}</S.Text>
+            <S.Values>{formattedStartDate}</S.Values>
           </View>
 
           <View style={{ marginHorizontal: 20 }}>
@@ -44,7 +45,7 @@ export const BookSummary = ({ valuePerDay }: BookSummaryProps) => {
 
           <View>
             <S.SubText>DE</S.SubText>
-            <S.Text>{formattedEndDate}</S.Text>
+            <S.Values>{formattedEndDate}</S.Values>
           </View>
         </S.DateRange>
       </S.DatesContainer>
@@ -52,14 +53,16 @@ export const BookSummary = ({ valuePerDay }: BookSummaryProps) => {
       <S.Summary>
         <View>
           <S.SubText>TOTAL</S.SubText>
-          <S.Text>
+          <S.Values>
             {`${formattedValuePerDay} x${amountOfDays} ${
               amountOfDays === 1 ? 'diária' : 'diárias'
             }`}{' '}
-          </S.Text>
+          </S.Values>
         </View>
 
-        <S.Total>{totalFormatted}</S.Total>
+        <Text fontFamily="archivo.medium" fontSize="xl" color="green">
+          {totalFormatted}
+        </Text>
       </S.Summary>
     </S.Container>
   );

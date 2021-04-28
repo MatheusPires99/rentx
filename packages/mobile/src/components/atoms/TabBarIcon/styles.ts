@@ -24,7 +24,6 @@ export const Square = styled.View<SquareProps>`
   ${({ theme, focused }) => css`
     width: 4px;
     height: 2px;
-
-    background: ${focused ? theme.colors.primary : theme.colors.gray['300']};
+    background: ${focused ? theme.colors.primary : theme.colors['gray.300']};
   `}
 `;

@@ -22,14 +22,3 @@ export const Image = styled.Image`
     align-self: center;
   `}
 `;
-
-export const Description = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.regular};
-    font-size: 15px;
-    color: ${theme.colors.gray['400']};
-    line-height: 25px;
-    width: 95%;
-    margin-top: 24px;
-  `}
-`;

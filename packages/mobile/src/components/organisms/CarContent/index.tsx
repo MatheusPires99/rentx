@@ -6,6 +6,7 @@ import { CarInfoRow } from './CarInfoRow';
 import { CarTechnicalInfo } from './CarTechnicalInfo';
 import { BookSummary } from './BookSummary';
 import * as S from './styles';
+import { Text } from '../../atoms';
 
 type CarContentProps = {
   car: Car;
@@ -43,7 +44,16 @@ export const CarContent = ({ car }: CarContentProps) => {
       {!!startDate && !!endDate ? (
         <BookSummary valuePerDay={car.valuePerDay} />
       ) : (
-        <S.Description>{car.description}</S.Description>
+        <Text
+          color="gray.400"
+          style={{
+            lineHeight: 25,
+            width: '95%',
+            marginTop: 24,
+          }}
+        >
+          {car.description}
+        </Text>
       )}
     </S.Content>
   );

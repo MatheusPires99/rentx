@@ -42,9 +42,9 @@ export const TextField = styled.TextInput<TextField>`
     height: 100%;
     background: ${theme.colors.white};
     padding: 18px ${isSecureField ? 48 : 24}px 18px 24px;
-    font-family: ${theme.fonts.inter.regular};
+    font-family: ${theme.fontsFamily['inter.regular']};
     font-size: 15px;
-    color: ${theme.colors.gray['600']};
+    color: ${theme.colors['gray.600']};
 
     flex: 1;
   `}
@@ -59,14 +59,5 @@ export const EyeButton = styled.TouchableOpacity`
 
     align-items: center;
     justify-content: center;
-  `}
-`;
-
-export const ErrorMessage = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.regular};
-    font-size: 13px;
-    color: ${theme.colors.primary};
-    margin-top: 8px;
   `}
 `;

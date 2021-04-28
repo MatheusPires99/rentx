@@ -10,8 +10,8 @@ export const Skeleton = ({ ...props }: ISkeletonContentProps) => {
   return (
     <SkeletonContent
       containerStyle={{ flex: 1, width: '100%' }}
-      boneColor={theme.colors.gray['200']}
-      highlightColor={theme.colors.gray['100']}
+      boneColor={theme.colors['gray.200']}
+      highlightColor={theme.colors['gray.100']}
       {...props}
     />
   );

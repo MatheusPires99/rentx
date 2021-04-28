@@ -8,13 +8,3 @@ export const Box = styled.View`
     justify-content: space-between;
   `}
 `;
-
-export const ForgotPasswordButton = styled.TouchableOpacity``;
-
-export const ForgotPasswordButtonText = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.regular};
-    font-size: 13px;
-    color: ${theme.colors.gray['400']};
-  `}
-`;

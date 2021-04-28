@@ -4,6 +4,7 @@ import { ActivityIndicator } from 'react-native';
 import { RectButtonProps } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 
+import { Text } from '../Text';
 import * as S from './styles';
 
 export type Variant = 'primary' | 'secondary' | 'green';
@@ -34,7 +35,9 @@ export const Button = ({
       {isLoading ? (
         <ActivityIndicator color={theme.colors.white} size="small" />
       ) : (
-        <S.ButtonText>{children}</S.ButtonText>
+        <Text fontFamily="inter.medium" color="white">
+          {children}
+        </Text>
       )}
     </S.Container>
   );

@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components/native';
 
+import { Text } from '../../../atoms';
+
 export const Container = styled.View`
   ${() => css`
     margin-top: 40px;
@@ -10,7 +12,7 @@ export const DatesContainer = styled.View`
   ${({ theme }) => css`
     border-bottom-width: 1px;
     border-style: solid;
-    border-color: ${theme.colors.gray['100']};
+    border-color: ${theme.colors['gray.100']};
 
     padding-bottom: 16px;
     margin-bottom: 16px;
@@ -39,35 +41,24 @@ export const DateRange = styled.View`
   `}
 `;
 
-export const SubText = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.medium};
-    font-size: 10px;
-    color: ${theme.colors.gray['300']};
+export const SubText = styled(Text).attrs({
+  fontFamily: 'archivo.medium',
+  fontSize: 'xs',
+  color: 'gray.300',
+})`
+  ${() => css`
     margin-bottom: 8px;
   `}
 `;
 
-export const Text = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.medium};
-    font-size: 15px;
-    color: ${theme.colors.gray['600']};
-  `}
-`;
+export const Values = styled(Text).attrs({
+  fontFamily: 'inter.medium',
+})``;
 
 export const Summary = styled.View`
   ${() => css`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-  `}
-`;
-
-export const Total = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.medium};
-    font-size: 24px;
-    color: ${theme.colors.green};
   `}
 `;

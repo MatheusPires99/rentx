@@ -20,7 +20,7 @@ export const HomeTemplate = ({ cars, isLoading }: HomeTemplateProps) => {
 
   useEffect(() => {
     navigation.setOptions({
-      cardStyle: { backgroundColor: theme.colors.gray['50'] },
+      cardStyle: { backgroundColor: theme.colors['gray.50'] },
     });
   }, [navigation, theme]);
 

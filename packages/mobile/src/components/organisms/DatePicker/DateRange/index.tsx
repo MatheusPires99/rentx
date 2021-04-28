@@ -3,8 +3,9 @@ import { View } from 'react-native';
 
 import { RightArrow } from '../../../../assets/icons';
 import { useCalendar } from '../../../../hooks';
-import * as S from './styles';
 import { formatDate } from '../../../../utils';
+import { Text } from '../../../atoms';
+import * as S from './styles';
 
 export const DateRange = () => {
   const { startDate, endDate } = useCalendar();
@@ -25,9 +26,18 @@ export const DateRange = () => {
   return (
     <S.Container>
       <S.Content>
-        <S.SubText>DE</S.SubText>
+        <Text
+          fontFamily="archivo.medium"
+          fontSize="xs"
+          color="gray.400"
+          style={{ marginBottom: 8 }}
+        >
+          DE
+        </Text>
         <S.DateWrap hasDate={!!formattedFromDate}>
-          <S.Date>{formattedFromDate || ''}</S.Date>
+          <Text fontFamily="inter.medium" color="white">
+            {formattedFromDate || ''}
+          </Text>
         </S.DateWrap>
       </S.Content>
 
@@ -36,9 +46,18 @@ export const DateRange = () => {
       </View>
 
       <S.Content>
-        <S.SubText>ATÉ</S.SubText>
+        <Text
+          fontFamily="archivo.medium"
+          fontSize="xs"
+          color="gray.400"
+          style={{ marginBottom: 8 }}
+        >
+          ATÉ
+        </Text>
         <S.DateWrap hasDate={!!formattedToDate}>
-          <S.Date>{formattedToDate || ''}</S.Date>
+          <Text fontFamily="inter.medium" color="white">
+            {formattedToDate || ''}
+          </Text>
         </S.DateWrap>
       </S.Content>
     </S.Container>

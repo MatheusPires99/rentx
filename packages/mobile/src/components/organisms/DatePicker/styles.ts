@@ -14,16 +14,6 @@ export const Header = styled.View`
   `}
 `;
 
-export const Title = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.semiBold};
-    font-size: 30px;
-    color: ${theme.colors.white};
-    line-height: 34px;
-    max-width: 212px;
-  `}
-`;
-
 export const Content = styled.ScrollView.attrs({
   contentContainerStyle: {
     paddingTop: 16,

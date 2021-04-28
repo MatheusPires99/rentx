@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useCalendar } from '../../../hooks';
-import { Button, Calendar } from '../../atoms';
+import { Button, Calendar, Text } from '../../atoms';
 import { DateRange } from './DateRange';
 import * as S from './styles';
 
@@ -16,7 +16,14 @@ export const DatePicker = ({ title, onConfirm }: DatePickerProps) => {
   return (
     <S.Container>
       <S.Header>
-        <S.Title>{title}</S.Title>
+        <Text
+          fontFamily="archivo.semiBold"
+          fontSize="2xl"
+          color="white"
+          style={{ width: 212, lineHeight: 34 }}
+        >
+          {title}
+        </Text>
 
         <DateRange />
       </S.Header>

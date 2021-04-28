@@ -3,7 +3,7 @@ import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import { Car, Email, Lock, User } from '../../../assets/icons';
-import { Input } from '../../atoms';
+import { Input, Text } from '../../atoms';
 import * as S from './styles';
 
 type SignUpFieldsProps = {
@@ -16,7 +16,13 @@ export const SignUpFields = ({ step }: SignUpFieldsProps) => {
   return (
     <>
       <S.Container isHiding={step === 2}>
-        <S.StepTitle>{step}. Dados</S.StepTitle>
+        <Text
+          fontFamily="archivo.semiBold"
+          fontSize="lg"
+          style={{ marginBottom: 24 }}
+        >
+          {step}. Dados
+        </Text>
 
         <Input
           name="name"
@@ -48,7 +54,13 @@ export const SignUpFields = ({ step }: SignUpFieldsProps) => {
       </S.Container>
 
       <S.Container isHiding={step === 1}>
-        <S.StepTitle>{step}. Senha</S.StepTitle>
+        <Text
+          fontFamily="archivo.semiBold"
+          fontSize="lg"
+          style={{ marginBottom: 24 }}
+        >
+          {step}. Senha
+        </Text>
 
         <Input
           name="password"

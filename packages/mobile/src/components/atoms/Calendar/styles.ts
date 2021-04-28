@@ -29,19 +29,11 @@ export const Header = styled.View`
   `}
 `;
 
-export const CurrentDate = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.semiBold};
-    font-size: 20px;
-    color: ${theme.colors.gray['600']};
-  `}
-`;
-
 export const WeekDays = styled.View`
   ${({ theme }) => css`
     border-bottom-width: 1px;
     border-style: solid;
-    border-color: ${theme.colors.gray['100']};
+    border-color: ${theme.colors['gray.100']};
 
     padding-bottom: 16px;
     margin-bottom: 24px;
@@ -49,15 +41,6 @@ export const WeekDays = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-  `}
-`;
-
-export const WeekDaysText = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.regular};
-    font-size: 10px;
-    color: ${theme.colors.gray['300']};
-    letter-spacing: 1px;
   `}
 `;
 
@@ -88,24 +71,24 @@ export const DayButton = styled.TouchableOpacity<DayProps>`
 
 export const DayText = styled.Text<DayTextProps>`
   ${({ theme, selected, disabled, inRange }) => css`
-    font-family: ${theme.fonts.inter.regular};
+    font-family: ${theme.fontsFamily['inter.regular']};
     font-size: 15px;
-    color: ${theme.colors.gray['600']};
+    color: ${theme.colors['gray.600']};
 
     ${disabled &&
     css`
-      color: ${theme.colors.gray['300']};
+      color: ${theme.colors['gray.300']};
     `}
 
     ${selected &&
     css`
-      font-family: ${theme.fonts.archivo.semiBold};
+      font-family: ${theme.fontsFamily['archivo.semiBold']};
       color: ${theme.colors.white};
     `}
 
     ${inRange &&
     css`
-      font-family: ${theme.fonts.archivo.semiBold};
+      font-family: ${theme.fontsFamily['archivo.semiBold']};
       color: ${theme.colors.primary};
     `}
   `}

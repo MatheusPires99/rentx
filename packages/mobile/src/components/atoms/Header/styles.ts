@@ -17,7 +17,7 @@ export const Container = styled.View<ContainerProps>`
 
     ${themeColor === 'light' &&
     css`
-      background: ${theme.colors.gray['50']};
+      background: ${theme.colors['gray.50']};
     `}
 
     ${themeColor === 'dark' &&

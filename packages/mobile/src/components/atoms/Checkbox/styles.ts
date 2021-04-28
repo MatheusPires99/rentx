@@ -12,7 +12,7 @@ export const Box = styled.View`
   ${({ theme }) => css`
     width: 20px;
     height: 20px;
-    background: ${theme.colors.gray['100']};
+    background: ${theme.colors['gray.100']};
     margin-right: 12px;
 
     position: relative;
@@ -42,13 +42,5 @@ export const CheckedBox = styled(Animated.View)`
     width: 8px;
     height: 8px;
     background: ${theme.colors.white};
-  `}
-`;
-
-export const Label = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.inter.regular};
-    font-size: 13px;
-    color: ${theme.colors.gray['400']};
   `}
 `;

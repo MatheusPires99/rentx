@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/core';
 
 import { Rentx } from '../../assets/icons';
-import { Button } from '../../components/atoms';
+import { Button, Text } from '../../components/atoms';
 import * as S from './styles';
 
 export const Wellcome = () => {
@@ -22,8 +22,15 @@ export const Wellcome = () => {
       <Rentx />
 
       <S.Main>
-        <S.Title>Seja {'\n'} Bem-vindo</S.Title>
-        <S.Subtitle>O que você desenha fazer?</S.Subtitle>
+        <Text
+          fontFamily="archivo.semiBold"
+          fontSize="3xl"
+          color="gray.50"
+          style={{ textAlign: 'center', marginBottom: 16 }}
+        >
+          Seja {'\n'} Bem-vindo
+        </Text>
+        <Text color="gray.200">O que você desenha fazer?</Text>
       </S.Main>
 
       <S.Footer>

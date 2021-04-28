@@ -7,6 +7,7 @@ import { useTheme } from 'styled-components';
 import { Eye, EyeClose } from '../../../assets/icons';
 import { IconType } from '../../../types';
 import * as S from './styles';
+import { Text } from '../Text';
 
 type InputProps = TextInputProps & {
   name: string;
@@ -54,7 +55,7 @@ export const Input = ({
                 color={
                   isFocused || isFilled
                     ? theme.colors.primary
-                    : theme.colors.gray['400']
+                    : theme.colors['gray.400']
                 }
                 size={24}
               />
@@ -65,7 +66,7 @@ export const Input = ({
               onChangeText={textValue => onChange(textValue)}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
-              placeholderTextColor={theme.colors.gray['300']}
+              placeholderTextColor={theme.colors['gray.300']}
               secureTextEntry={showPassword}
               isSecureField={isSecureField}
               {...rest}
@@ -78,7 +79,11 @@ export const Input = ({
             )}
           </S.Content>
 
-          {!!error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
+          {!!error && (
+            <Text fontSize="sm" color="primary" style={{ marginTop: 8 }}>
+              {error.message}
+            </Text>
+          )}
         </S.Container>
       )}
     />

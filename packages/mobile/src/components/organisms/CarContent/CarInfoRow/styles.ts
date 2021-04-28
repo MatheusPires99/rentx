@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 
+import { Text } from '../../../atoms';
 import { IPHONE_8_HEIGHT } from '../../../../constants';
 
 type TitleProps = {
@@ -15,28 +16,22 @@ export const Container = styled.View`
   `}
 `;
 
-export const RowLeft = styled.View`
-  ${() => css``}
-`;
-
-export const RowRight = styled.View`
-  ${() => css``}
-`;
-
-export const SubTitle = styled.Text`
-  ${({ theme }) => css`
-    font-family: ${theme.fonts.archivo.medium};
-    font-size: 10px;
-    color: ${theme.colors.gray['300']};
+export const SubTitle = styled(Text).attrs({
+  fontFamily: 'archivo.medium',
+  fontSize: 'xs',
+  color: 'gray.300',
+})`
+  ${() => css`
     margin-bottom: 4px;
     text-transform: uppercase;
   `}
 `;
 
-export const Title = styled.Text<TitleProps>`
+export const Title = styled(Text).attrs({
+  fontFamily: 'archivo.medium',
+  fontSize: IPHONE_8_HEIGHT ? 'lg' : 'xl',
+})<TitleProps>`
   ${({ theme, color }) => css`
-    font-family: ${theme.fonts.archivo.medium};
-    font-size: ${IPHONE_8_HEIGHT ? 24 : 20}px;
-    color: ${color};
+    color: ${theme.colors[color]};
   `}
 `;
