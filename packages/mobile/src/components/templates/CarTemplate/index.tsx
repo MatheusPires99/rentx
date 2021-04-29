@@ -37,8 +37,12 @@ export const CarTemplate = ({ car }: CarTemplateProps) => {
       return;
     }
 
+    if (step === BookStep.Date) {
+      handleCleanAllDates();
+    }
+
     setStep(state => state - 1);
-  }, [step, navigation, toggleTabBar]);
+  }, [step, navigation, toggleTabBar, handleCleanAllDates]);
 
   const handleConfirmBook = () => {
     try {
