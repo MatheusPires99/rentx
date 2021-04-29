@@ -11,7 +11,7 @@ type DatePickerProps = {
 };
 
 export const DatePicker = ({ title, onConfirm }: DatePickerProps) => {
-  const { handleDateChange } = useCalendar();
+  const { startDate, endDate, handleDateChange } = useCalendar();
 
   return (
     <S.Container>
@@ -33,7 +33,9 @@ export const DatePicker = ({ title, onConfirm }: DatePickerProps) => {
       </S.Content>
 
       <S.ButtonContainer>
-        <Button onPress={onConfirm}>Confirmar</Button>
+        <Button onPress={onConfirm} disabled={!startDate || !endDate}>
+          Confirmar
+        </Button>
       </S.ButtonContainer>
     </S.Container>
   );
