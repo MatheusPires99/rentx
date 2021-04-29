@@ -23,3 +23,4 @@ export { Speed } from './Speed';
 export { SteeringWheel } from './SteeringWheel';
 export { Up } from './Up';
 export { RightArrow } from './RightArrow';
+export { Done } from './Done';

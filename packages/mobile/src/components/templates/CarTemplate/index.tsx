@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/core';
 import { Car, BookStep } from '../../../types';
 import { useCalendar, useTabBar } from '../../../hooks';
 import { CarBottomButton, CarHeader } from '../../molecules';
-import { CarContent, DatePicker } from '../../organisms';
+import { CarContent, DatePicker, Success } from '../../organisms';
 
 type CarTemplateProps = {
   car: Car;
@@ -19,6 +19,7 @@ export const CarTemplate = ({ car }: CarTemplateProps) => {
   const { handleCleanAllDates } = useCalendar();
 
   const [step, setStep] = useState(BookStep.Car);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     toggleTabBar(false);
@@ -41,12 +42,28 @@ export const CarTemplate = ({ car }: CarTemplateProps) => {
 
   const handleConfirmBook = () => {
     try {
-      // After everything:
+      setShowSuccess(true);
       handleCleanAllDates();
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const showDatePicker = step === BookStep.Date;
+
+  const handleNavigateToHome = useCallback(() => navigation.navigate('Home'), [
+    navigation,
+  ]);
+
+  if (showSuccess) {
+    return (
+      <Success
+        title="Carro alugado!"
+        description="Agora você só precisa ir até a concessionária da RENTX pegar o seu automóvel."
+        onOk={handleNavigateToHome}
+      />
+    );
+  }
 
   return (
     <View style={{ flex: 1 }}>
