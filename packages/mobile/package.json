@@ -11,7 +11,7 @@
     "eject": "expo eject",
     "lint": "eslint . --ext .ts,.tsx",
     "postinstall": "expo-yarn-workspaces postinstall",
-    "server": "json-server-auth db.json --host 192.168.100.3 -p 3333 -d 2000"
+    "server": "json-server-auth db.json --host 192.168.100.4 -p 3333 -d 2000"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.1.0",
