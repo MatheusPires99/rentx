@@ -5,3 +5,5 @@ export { HomeHeader } from './HomeHeader';
 export { CarCard } from './CarCard';
 export { CarBottomButton } from './CarBottomButton';
 export { CarHeader } from './CarHeader';
+export { ProfileHeader } from './ProfileHeader';
+export { ProfileImage } from './ProfileImage';

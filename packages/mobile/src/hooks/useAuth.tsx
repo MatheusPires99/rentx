@@ -12,14 +12,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { STORAGE_KEY } from '../constants';
 import { api } from '../services';
-import { SignInCredencials, SignUpCredencials } from '../types';
-import { loginUser, createUser } from '../services/users';
-
-type User = {
-  name: string;
-  email: string;
-  cnh: string;
-};
+import { SignInCredencials, SignUpCredencials, User } from '../types';
+import {
+  loginUser,
+  createUser,
+  updateUser as updateUserService,
+} from '../services/users';
 
 type AuthState = {
   user: User;
@@ -32,7 +30,7 @@ type AuthContextData = {
   signIn(credencials: SignInCredencials): Promise<void>;
   signUp(credencials: SignUpCredencials): Promise<void>;
   signOut(): void;
-  updateUser(user: User): Promise<void>;
+  updateUser(user: Partial<User>): Promise<void>;
 };
 
 type AuthProviderProps = {
@@ -124,15 +122,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const updateUser = useCallback(
-    async (user: User) => {
-      if (user) {
-        await AsyncStorage.setItem(`${STORAGE_KEY}:user`, JSON.stringify(user));
-      }
+    async (userParam: Partial<User>) => {
+      try {
+        const { user } = await updateUserService(data.user.id, {
+          ...data.user,
+          ...userParam,
+        });
 
-      setData({
-        accessToken: data.accessToken,
-        user: user || data.user,
-      });
+        setData({
+          accessToken: data.accessToken,
+          user: user || data.user,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     },
     [setData, data],
   );

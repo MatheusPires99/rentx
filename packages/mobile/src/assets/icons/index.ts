@@ -24,3 +24,5 @@ export { SteeringWheel } from './SteeringWheel';
 export { Up } from './Up';
 export { RightArrow } from './RightArrow';
 export { Done } from './Done';
+export { Pencil } from './Pencil';
+export { Power } from './Power';

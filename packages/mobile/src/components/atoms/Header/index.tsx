@@ -16,6 +16,7 @@ export const Header = ({
   height = 48,
   backgroundColor,
   children,
+  ...rest
 }: HeaderProps) => {
   return (
     <>
@@ -25,6 +26,7 @@ export const Header = ({
         themeColor={themeColor}
         height={height}
         backgroundColor={backgroundColor}
+        {...rest}
       >
         <S.Content>{children}</S.Content>
       </S.Container>

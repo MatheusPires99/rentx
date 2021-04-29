@@ -12,6 +12,15 @@ export type UserResponse = {
   name: string;
   email: string;
   cnh: string;
+  image?: string;
+};
+
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+  cnh: string;
+  image?: string;
 };
 
 export type SignInCredencials = {
