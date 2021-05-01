@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, ReactElement } from 'react';
 
 import { useNavigation } from '@react-navigation/core';
 
@@ -8,9 +8,10 @@ import * as S from './styles';
 
 type CarsListProps = {
   cars: Car[] | undefined;
+  listHeaderComponent?: ReactElement;
 };
 
-export const CarsList = ({ cars }: CarsListProps) => {
+export const CarsList = ({ cars, listHeaderComponent }: CarsListProps) => {
   const navigation = useNavigation();
 
   const handleNavigateToCar = useCallback(
@@ -29,6 +30,7 @@ export const CarsList = ({ cars }: CarsListProps) => {
       contentContainerStyle={{
         paddingBottom: 24,
       }}
+      ListHeaderComponent={listHeaderComponent || null}
       renderItem={({ item: car }) => (
         <CarCard
           name={car.name}

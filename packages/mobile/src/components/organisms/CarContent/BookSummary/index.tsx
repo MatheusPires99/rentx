@@ -8,7 +8,7 @@ import { useTheme } from 'styled-components';
 import { Calendar, ChevronRight } from '../../../../assets/icons';
 import { useCalendar } from '../../../../hooks';
 import { formatDate, formatToPtBrCurrency } from '../../../../utils';
-import { Text } from '../../../atoms';
+import { Divider, Text } from '../../../atoms';
 import * as S from './styles';
 
 type BookSummaryProps = {
@@ -49,6 +49,8 @@ export const BookSummary = ({ valuePerDay }: BookSummaryProps) => {
           </View>
         </S.DateRange>
       </S.DatesContainer>
+
+      <Divider marginVertical={16} />
 
       <S.Summary>
         <View>

@@ -36,7 +36,7 @@ export const ProfileHeader = ({
   };
 
   return (
-    <Header height={220} style={{ justifyContent: 'flex-start' }}>
+    <Header height={200} style={{ justifyContent: 'flex-start' }}>
       {isEditingProfile ? (
         <ArrowButton
           direction="left"

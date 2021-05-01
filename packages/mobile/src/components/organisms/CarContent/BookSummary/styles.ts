@@ -9,14 +9,7 @@ export const Container = styled.View`
 `;
 
 export const DatesContainer = styled.View`
-  ${({ theme }) => css`
-    border-bottom-width: 1px;
-    border-style: solid;
-    border-color: ${theme.colors['gray.100']};
-
-    padding-bottom: 16px;
-    margin-bottom: 16px;
-
+  ${() => css`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

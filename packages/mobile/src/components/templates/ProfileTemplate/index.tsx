@@ -1,10 +1,15 @@
 import React, { useState, useCallback } from 'react';
 import { View } from 'react-native';
 
+import { Car } from '../../../types';
 import { ProfileHeader } from '../../molecules';
 import { ProfileContent } from '../../organisms';
 
-export const ProfileTemplate = () => {
+type ProfileTemplateProps = {
+  cars: Car[] | undefined;
+};
+
+export const ProfileTemplate = ({ cars }: ProfileTemplateProps) => {
   const [isEditingProfile, setIsEditingProfile] = useState(false);
 
   const handleToggleEditProfile = useCallback(
@@ -20,7 +25,7 @@ export const ProfileTemplate = () => {
         onToggle={handleToggleEditProfile}
       />
 
-      <ProfileContent />
+      <ProfileContent isEditingProfile={isEditingProfile} cars={cars} />
     </View>
   );
 };

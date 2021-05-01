@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Alert, Button, Image, Platform, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Alert, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import { useAuth } from '../../../hooks';
+import * as S from './styles';
 
 export const ProfileImage = () => {
   const { updateUser } = useAuth();
-
-  const [image, setImage] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -40,24 +39,14 @@ export const ProfileImage = () => {
       quality: 0.8,
     });
 
-    if (!response.cancelled) {
-      console.log({ image: response.uri });
+    if (response.cancelled) return;
 
-      // updateUser({
-      //   image: response.uri,
-      // });
-    }
+    console.log({ image: response.uri });
   };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        title="Pick an image from camera roll"
-        onPress={handleUpdateUserImage}
-      />
-      {image && (
-        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
-      )}
-    </View>
+    <S.Container>
+      <S.Image source={{ uri: 'https://github.com/MatheusPires99.png' }} />
+    </S.Container>
   );
 };
