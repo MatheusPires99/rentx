@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gray-100 text-gray-600 antialiased;
+}
+
+body, button, input, textarea {
+  @apply font-default;
+}
+
+#__next {
+  @apply h-screen flex;
+}
+
+.container {
+  @apply max-w-[1176px] mx-auto px-6;
+}
