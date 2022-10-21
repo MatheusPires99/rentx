@@ -1,4 +1,9 @@
-import { CarsDocument, CarsQuery } from "@/generated/graphql";
+import {
+  CarDetailsDocument,
+  CarDetailsQuery,
+  CarsDocument,
+  CarsQuery,
+} from "@/generated/graphql";
 import { client } from "@/lib/apollo-client";
 
 export const getAllCars = async () => {
@@ -7,4 +12,15 @@ export const getAllCars = async () => {
   });
 
   return data.cars;
+};
+
+export const getCarBySlug = async (slug: string) => {
+  const { data } = await client.query<CarDetailsQuery>({
+    query: CarDetailsDocument,
+    variables: {
+      slug,
+    },
+  });
+
+  return data.car;
 };

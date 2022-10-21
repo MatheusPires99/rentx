@@ -1,0 +1,19 @@
+query CarDetails ($slug: String) {
+  car(where: {slug: $slug}) {
+    id
+    slug
+    brand
+    model
+    description
+    image {
+      url
+    }
+    speed
+    acceleration
+    turningDiameter
+    seats
+    rentPricePerDay
+    fuel
+    exchange
+  }
+}

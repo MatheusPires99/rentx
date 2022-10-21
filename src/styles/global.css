@@ -17,3 +17,49 @@ body, button, input, textarea {
 .container {
   @apply max-w-[1176px] mx-auto px-6;
 }
+
+/* Date Picker */
+.react-datepicker__month-container {
+  @apply flex flex-col;
+}
+
+.react-datepicker__header {
+  @apply px-4;
+}
+
+.react-datepicker__day-names {
+  @apply flex items-center justify-between border-b border-gray-200 pb-4 mb-4;
+}
+
+.react-datepicker__day-name {
+  @apply uppercase text-sm text-gray-400 font-semibold font-heading;
+}
+
+.react-datepicker__week {
+  @apply flex justify-between;
+}
+
+.react-datepicker__month {
+  @apply flex flex-col;
+}
+
+.react-datepicker__day {
+  @apply text-xl w-14 h-14 cursor-pointer flex items-center justify-center;
+}
+
+.react-datepicker__day--in-range,
+.react-datepicker__day--in-selecting-range {
+  @apply bg-red-100 text-red-400;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end,
+.react-datepicker__day--selecting-range-start.react-datepicker__day--in-selecting-range {
+  @apply bg-red-400 text-white;
+}
+
+
+.react-datepicker__day--disabled {
+  @apply text-gray-400;
+}
