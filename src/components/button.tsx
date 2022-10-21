@@ -5,7 +5,7 @@ import cn from "classnames";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "success" | "neutral";
-  size?: "sm" | "md";
+  size?: "xs" | "sm" | "md";
   asChild?: boolean;
 };
 
@@ -27,11 +27,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <Component
         ref={ref}
         className={cn(
-          "px-6 font-semibold w-full flex items-center justify-center disabled:cursor-not-allowed disabled:bg-opacity-50  duration-200",
+          "font-semibold w-full flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:bg-opacity-50 duration-200",
           {
             "text-white bg-red-400 enabled:hover:bg-red-500":
               variant === "primary",
-            "text-gray-600 bg-transparent border border-gray-300 enabled:hover:border-red-400":
+            "text-gray-600 bg-transparent border border-gray-300 enabled:hover:border-red-400 enabled:hover:text-red-400":
               variant === "secondary",
             "text-white bg-green-400 enabled:hover:bg-green-500":
               variant === "success",
@@ -39,8 +39,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               variant === "neutral",
           },
           {
-            "h-16 text-base": size === "sm",
-            "h-20 text-lg": size === "md",
+            "px-4 h-12 text-base": size === "xs",
+            "px-6 h-16 text-base": size === "sm",
+            "px-6 h-20 text-lg": size === "md",
           },
           className,
         )}

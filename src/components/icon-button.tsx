@@ -16,7 +16,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           {
             "bg-red-400 enabled:hover:bg-red-500 text-white":
               variant === "primary",
-            "text-gray-500": variant === "ghost",
+            "text-gray-500 enabled:hover:text-red-400": variant === "ghost",
           },
           className,
         )}
