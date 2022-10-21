@@ -1,3 +1,6 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "@matheuspires/eslint-config",
+  "ignorePatterns": [
+    "src/generated"
+  ]
 }
