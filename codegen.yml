@@ -1,0 +1,12 @@
+overwrite: true
+
+schema: "https://api-sa-east-1.hygraph.com/v2/cl968c2ih71l901tc655k0onx/master"
+
+documents: "./src/graphql/**/*.graphql"
+
+generates:
+  src/generated/graphql.tsx:
+    plugins: 
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"

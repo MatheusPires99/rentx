@@ -1,0 +1,19 @@
+query Cars {
+  cars {
+    id
+    slug
+    brand
+    model
+    description
+    image {
+      url
+    }
+    speed
+    acceleration
+    turningDiameter
+    seats
+    rentPricePerDay
+    fuel
+    exchange
+  }
+}
