@@ -1,42 +1,40 @@
 import { Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, useSession } from "next-auth/react";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
+import { ReactElement } from "react";
 
-import cn from "classnames";
-
-import { Header } from "@/components/header";
-import { Sidebar } from "@/components/sidebar";
+import { AppLayout } from "@/layouts/app-layout";
 
 import "@/styles/global.css";
 
 type AppPropsWithSession = AppProps<{
   session: Session;
-}>;
+}> & {
+  Component: AppProps["Component"] & { auth: boolean };
+};
 
-const App = ({ Component, pageProps }: AppPropsWithSession) => {
-  const router = useRouter();
+const AuthLoading = ({ children }: { children: ReactElement }) => {
+  const { status } = useSession();
 
-  const isHomePage = router.pathname === "/";
-  const isHeaderVisible = router.pathname !== "/cars/[slug]";
-
-  if (isHomePage) {
-    return <Component {...pageProps} />;
+  if (status === "loading") {
+    return <span>Loading...</span>;
   }
 
+  return children;
+};
+
+const App = ({ Component, pageProps }: AppPropsWithSession) => {
   return (
-    <SessionProvider session={pageProps.session}>
-      <Sidebar />
-      <div className="flex flex-col flex-1 ml-20">
-        {isHeaderVisible && <Header />}
-        <main
-          className={cn("container flex-1", {
-            "mt-10": isHeaderVisible,
-          })}
-        >
+    <SessionProvider>
+      <AppLayout>
+        {Component.auth ? (
+          <AuthLoading>
+            <Component {...pageProps} />
+          </AuthLoading>
+        ) : (
           <Component {...pageProps} />
-        </main>
-      </div>
+        )}
+      </AppLayout>
     </SessionProvider>
   );
 };

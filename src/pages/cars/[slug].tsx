@@ -93,7 +93,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
 
   return (
     <>
-      <header className="flex items-center gap-12 border-b border-gray-300 pb-6 mb-10 mt-10">
+      <header className="flex items-center gap-12 border-b border-gray-300 pb-6 mb-10">
         <Link
           href="/cars"
           className="text-gray-500 w-10 h-10 flex items-center justify-center"
@@ -251,6 +251,8 @@ const CarDetails = ({ car }: CarDetailsProps) => {
 };
 
 export default CarDetails;
+
+CarDetails.auth = true;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const cars = await getAllCars();

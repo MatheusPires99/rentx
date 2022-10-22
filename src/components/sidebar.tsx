@@ -14,7 +14,7 @@ type NavLinkProps = LinkProps & {
 const NavLink = ({ href, children, ...props }: NavLinkProps) => {
   const router = useRouter();
 
-  const isActive = href === router.pathname;
+  const isActive = router.pathname.includes(String(href));
 
   return (
     <Link
@@ -42,7 +42,7 @@ export const Sidebar = () => {
         <NavLink href="/cars">
           <RiCarLine className="w-6 h-6" />
         </NavLink>
-        <NavLink href="/sign-in">
+        <NavLink href="/profile">
           <RiUser6Line className="w-6 h-6" />
         </NavLink>
       </nav>

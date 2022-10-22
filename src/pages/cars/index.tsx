@@ -39,6 +39,8 @@ const Cars = ({ cars }: CarsProps) => {
 
 export default Cars;
 
+Cars.auth = true;
+
 export const getStaticProps: GetStaticProps = async () => {
   const cars = await getAllCars();
 
