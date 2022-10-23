@@ -1,21 +1,40 @@
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/future/image";
+import { useRouter } from "next/router";
+import { useMemo } from "react";
 
 import { RiShutDownLine, RiUser6Line } from "react-icons/ri";
 
 import { IconButton } from "@/components/icon-button";
 
 export const Header = () => {
+  const router = useRouter();
   const { data: session } = useSession();
 
   const handleSignOut = () => {
     signOut();
   };
 
+  const headerTitle = useMemo(() => {
+    if (router.pathname === "/cars") {
+      return "Home";
+    }
+
+    if (router.pathname === "/cars/[slug]") {
+      return "Car";
+    }
+
+    if (router.pathname === "/profile") {
+      return "Profile";
+    }
+  }, [router.pathname]);
+
   return (
     <header className="bg-white w-full">
       <div className="container flex items-center justify-between h-20">
-        <strong className="font-semibold text-xl text-gray-600">Início</strong>
+        <strong className="font-semibold text-xl text-gray-600">
+          {headerTitle}
+        </strong>
 
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-3">
