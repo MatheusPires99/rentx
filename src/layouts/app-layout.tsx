@@ -22,7 +22,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
       <Sidebar />
       <div className="flex flex-col flex-1 ml-20">
         <Header />
-        <main className="container flex-1 mt-10">{children}</main>
+        <main className="container flex-1 mt-10 pb-16">{children}</main>
       </div>
     </>
   );

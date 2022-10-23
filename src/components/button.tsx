@@ -2,14 +2,24 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 
 import cn from "classnames";
 
+import { Spinner } from "./spinner";
+
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "primary" | "secondary" | "success" | "neutral";
   size?: "sm" | "md";
+  isLoading?: boolean;
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant = "primary", size = "md", className, children, ...props },
+    {
+      variant = "primary",
+      size = "md",
+      isLoading = false,
+      className,
+      children,
+      ...props
+    },
     ref,
   ) => {
     return (
@@ -33,9 +43,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           },
           className,
         )}
+        disabled={isLoading}
         {...props}
       >
-        {children}
+        {isLoading ? <Spinner /> : children}
       </button>
     );
   },

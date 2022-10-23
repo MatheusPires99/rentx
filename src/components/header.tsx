@@ -1,7 +1,7 @@
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/future/image";
 
-import { RiShutDownLine, RiUser4Line } from "react-icons/ri";
+import { RiShutDownLine, RiUser6Line } from "react-icons/ri";
 
 import { IconButton } from "@/components/icon-button";
 
@@ -28,7 +28,9 @@ export const Header = () => {
                 className="rounded-full"
               />
             ) : (
-              <RiUser4Line />
+              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                <RiUser6Line />
+              </div>
             )}
 
             <span className="font-semibold">{session?.user?.name}</span>

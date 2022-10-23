@@ -15,9 +15,22 @@ const options: NextAuthOptions = {
   ],
   adapter: PrismaAdapter(prisma),
   callbacks: {
-    redirect: async ({ baseUrl }) => {
+    async redirect({ baseUrl }) {
       return Promise.resolve(`${baseUrl}/cars`);
     },
+    session({ session, user }) {
+      return {
+        ...session,
+        user: {
+          // @ts-ignore
+          id: user.id,
+          ...session.user,
+        },
+      };
+    },
+  },
+  pages: {
+    signIn: "/",
   },
 };
 

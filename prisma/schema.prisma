@@ -45,7 +45,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  // posts         Post[]
+  rents         Rent[]
   accounts      Account[]
   sessions      Session[]
 }
@@ -57,4 +57,14 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Rent {
+  id        String @id @default(cuid())
+  carSlug   String
+  startDate String
+  endDate   String
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
 }

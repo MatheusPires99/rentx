@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
+import axios from "axios";
 import { differenceInDays, format } from "date-fns";
 import {
   RiArrowLeftSLine,
@@ -50,6 +51,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
   const [tabValue, setTabValue] = useState<TabValue>(undefined);
   const [isDatePickerModalOpen, setIsDatePickerModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSusccessModalOpen] = useState(false);
+  const [isRentingCar, setIsRentingCar] = useState(false);
 
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
@@ -65,7 +67,13 @@ const CarDetails = ({ car }: CarDetailsProps) => {
   };
 
   const handleRentCar = async () => {
-    // TODO: Api call to create rent
+    setIsRentingCar(true);
+    await axios.post("/api/rents", {
+      carSlug: car.slug,
+      startDate: format(startDate!, "yyyy-MM-dd"),
+      endDate: format(endDate!, "yyyy-MM-dd"),
+    });
+    setIsRentingCar(false);
     setIsSusccessModalOpen(true);
   };
 
@@ -104,7 +112,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
         <DetailsBlock label={car.brand} content={car.model} size="lg" />
         <DetailsBlock
           label="AO DIA"
-          content={`R$ ${car?.rentPricePerDay}`}
+          content={`R$ ${car.rentPricePerDay}`}
           size="lg"
           isHighlighted
         />
@@ -215,6 +223,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
 
               <Button
                 variant="success"
+                isLoading={isRentingCar}
                 className="mt-24"
                 onClick={handleRentCar}
               >
