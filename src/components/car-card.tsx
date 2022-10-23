@@ -38,7 +38,7 @@ export const CarCard = ({
       className={cn(
         "bg-white flex border border-gray-200 relative hover:before:absolute hover:before:bottom-0 hover:before:bg-red-400 hover:before:h-[2px] hover:before:w-full hover:shadow-lg duration-200",
         {
-          "flex-col max-w-[360px] w-full": variant === "vertical",
+          "flex-col lg:max-w-[360px] w-full": variant === "vertical",
           "flex-row-reverse": variant === "horizontal",
         },
       )}

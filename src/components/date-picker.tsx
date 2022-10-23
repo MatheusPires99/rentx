@@ -48,8 +48,8 @@ export const DatePicker = ({
   const isConfirmPeriodButtonDisabled = !startDate || !endDate;
 
   return (
-    <div className="flex gap-24">
-      <div className="w-[400px]">
+    <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
+      <div className="lg:w-[400px]">
         <ReactDatePicker
           onChange={([start, end]) =>
             onDatesChange({ startDate: start, endDate: end })
@@ -103,8 +103,8 @@ export const DatePicker = ({
         />
       </div>
 
-      <div className="flex-1 flex flex-col">
-        <div className="flex flex-col gap-12">
+      <div className="lg:flex-1 flex flex-col">
+        <div className="flex flex-col gap-6 lg:gap-12">
           <DatePreview
             label="DE"
             content={startDate && format(startDate, "MMMM do")}
@@ -115,7 +115,7 @@ export const DatePicker = ({
           />
         </div>
         <Button
-          className="mt-auto"
+          className="mt-10 lg:mt-auto"
           disabled={isConfirmPeriodButtonDisabled}
           onClick={onConfirmDate}
         >

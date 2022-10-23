@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div className="bg-gray-800 w-screen h-screen">
       <div className="container h-full flex items-center justify-between gap-20">
-        <div className="w-[426px]">
+        <div className="md:w-[426px]">
           <RentxFullLogo />
           <Heading size="5" className="mt-28 text-white leading-none">
             Alugue um carro de maneira simples e fácil
@@ -29,7 +29,7 @@ const Home = () => {
           </Button>
         </div>
 
-        <div>
+        <div className="hidden md:block">
           <Image src="/hero-image.png" alt="RentX" width={608} height={612} />
         </div>
       </div>

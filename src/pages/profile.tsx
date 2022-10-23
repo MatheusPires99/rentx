@@ -58,8 +58,8 @@ const Profile = ({ rents }: ProfileProps) => {
   };
 
   return (
-    <div className="flex items-start h-full">
-      <div className="w-[384px] flex flex-col items-center">
+    <div className="flex flex-col lg:flex-row items-start h-full">
+      <div className="w-full lg:w-[384px] flex flex-col items-center">
         <Image
           src={session?.user.image!}
           alt={session?.user.name!}
@@ -98,7 +98,7 @@ const Profile = ({ rents }: ProfileProps) => {
         </form>
       </div>
 
-      <hr className="w-px h-full bg-gray-300 border-none mx-[72px]" />
+      <hr className="w-full lg:w-px h-px my-8 lg:h-full bg-gray-300 border-none lg:mx-[72px]" />
 
       <div className="flex-1">
         <Heading size="3">Agendamentos feitos</Heading>
@@ -118,15 +118,15 @@ const Profile = ({ rents }: ProfileProps) => {
 
               <div className="mt-1 bg-white px-8 py-5 border border-gray-200 flex items-center justify-between">
                 <span className="uppercase text-xs text-gray-400 font-heading">
-                  Período DO ALUGUEL
+                  Period
                 </span>
 
-                <div className="flex items-center gap-6">
-                  <span className="text-lg font-semibold">
+                <div className="flex items-center gap-2 lg:gap-6">
+                  <span className="text-sm lg:text-lg font-semibold">
                     {format(new Date(rent.startDate), "dd MMM yyy")}
                   </span>
                   <RiArrowRightLine className="w-5 h-5 text-gray-400" />
-                  <span className="text-lg font-semibold">
+                  <span className="text-sm lg:text-lg font-semibold">
                     {format(new Date(rent.endDate), "dd MMM yyy")}
                   </span>
                 </div>

@@ -34,7 +34,7 @@ const NavLink = ({ href, children, ...props }: NavLinkProps) => {
 
 export const Sidebar = () => {
   return (
-    <aside className="fixed left-0 h-screen flex flex-col w-20">
+    <aside className="fixed left-0 h-screen w-20 hidden lg:flex lg:flex-col">
       <div className="bg-red-400 w-20 h-20 flex items-center justify-center">
         <RentxLogo />
       </div>

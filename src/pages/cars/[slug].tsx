@@ -101,12 +101,12 @@ const CarDetails = ({ car }: CarDetailsProps) => {
 
   return (
     <>
-      <header className="flex items-center gap-12 border-b border-gray-300 pb-6 mb-10">
+      <header className="flex items-center gap-6 lg:gap-12 border-b border-gray-300 pb-6 mb-10">
         <Link
           href="/cars"
-          className="text-gray-500 w-10 h-10 flex items-center justify-center"
+          className="text-gray-500 w-8 lg:w-10 h-8 lg:h-10 flex items-center justify-center"
         >
-          <RiArrowLeftSLine className="w-8 h-8" />
+          <RiArrowLeftSLine className="w-6 lg:w-8 h-6 lg:h-8" />
         </Link>
 
         <DetailsBlock label={car.brand} content={car.model} size="lg" />
@@ -118,7 +118,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
         />
       </header>
 
-      <div className="flex items-center justify-between gap-24">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-24">
         <div>
           <Image
             src={car.image.url}
@@ -128,8 +128,8 @@ const CarDetails = ({ car }: CarDetailsProps) => {
           />
         </div>
 
-        <div className="w-[384px]">
-          <ul className="grid grid-cols-2 gap-2">
+        <div className="w-full lg:w-[384px]">
+          <ul className="grid grid-cols-3 lg:grid-cols-2 gap-2">
             {accessories.map((accessory) => (
               <li key={accessory.value}>
                 <CarAccessory value={accessory.value} icon={accessory.icon} />

@@ -12,7 +12,7 @@ type CarsProps = {
 const Cars = ({ cars }: CarsProps) => {
   return (
     <>
-      <div className="flex items-center justify-between border-b border-gray-300 pb-6 mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-0 border-b border-gray-300 pb-6 mb-6">
         <Heading size="4" as="h1">
           Carros disponíveis
         </Heading>
