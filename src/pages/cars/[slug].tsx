@@ -89,11 +89,11 @@ const CarDetails = ({ car }: CarDetailsProps) => {
     { value: `${car.speed}km/h`, icon: RiSpeedLine },
     { value: `${car.acceleration}s`, icon: RiUploadLine },
     {
-      value: car.fuel,
+      value: car.fuel === "gasoline" ? "Gasoline" : "Eletric",
       icon: car.fuel === "gasoline" ? RiDropLine : RiFlashlightLine,
     },
-    { value: car.exchange, icon: CarGear },
-    { value: `${car.seats} pessoas`, icon: RiUser6Line },
+    { value: car.exchange === "auto" ? "Auto" : "Manual", icon: CarGear },
+    { value: `${car.seats} people`, icon: RiUser6Line },
     { value: `${car.turningDiameter} HP`, icon: RiSteering2Line },
   ];
 
@@ -111,7 +111,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
 
         <DetailsBlock label={car.brand} content={car.model} size="lg" />
         <DetailsBlock
-          label="AO DIA"
+          label="PER DAY"
           content={`R$ ${car.rentPricePerDay}`}
           size="lg"
           isHighlighted
@@ -144,9 +144,9 @@ const CarDetails = ({ car }: CarDetailsProps) => {
             className="mt-8"
           >
             <TabsList>
-              <TabsTrigger value="about">SOBRE O CARRO</TabsTrigger>
+              <TabsTrigger value="about">ABOUT THE CAR</TabsTrigger>
               <TabsTrigger value="period" disabled={isPeriodTabDisabled}>
-                PERÍODO
+                PERIOD
               </TabsTrigger>
             </TabsList>
 
@@ -158,14 +158,14 @@ const CarDetails = ({ car }: CarDetailsProps) => {
                 onOpenChange={setIsDatePickerModalOpen}
               >
                 <ModalTrigger asChild>
-                  <Button className="mt-24">Escolher período do aluguel</Button>
+                  <Button className="mt-24">Choose rental period</Button>
                 </ModalTrigger>
 
                 <ModalContent withFixedWidth>
                   <header className="flex items-center justify-between bg-gray-800 h-20 pl-12 text-white">
                     <ModalTitle asChild>
                       <Heading size="1">
-                        Escolha uma data de início e fim do aluguel
+                        Choose a rental start and end date
                       </Heading>
                     </ModalTitle>
                     <ModalClose className="w-20 h-full flex items-center justify-center">
@@ -193,14 +193,14 @@ const CarDetails = ({ car }: CarDetailsProps) => {
                 <div className="flex items-center gap-4">
                   {startDate && (
                     <DetailsBlock
-                      label="DE"
+                      label="FROM"
                       content={format(startDate, "dd MMM yyy")}
                     />
                   )}
                   <RiArrowRightSLine className="text-gray-500" />
                   {endDate && (
                     <DetailsBlock
-                      label="DE"
+                      label="UNTIL"
                       content={format(endDate, "dd MMM yyy")}
                     />
                   )}
@@ -214,7 +214,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
               <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-300">
                 <DetailsBlock
                   label="TOTAL"
-                  content={`R$ ${car.rentPricePerDay} x${numberOfRentDays} diárias`}
+                  content={`R$ ${car.rentPricePerDay} x${numberOfRentDays} daily`}
                 />
                 <Heading as="strong" className="text-green-400">
                   R$ {totalPrice}
@@ -227,7 +227,7 @@ const CarDetails = ({ car }: CarDetailsProps) => {
                 className="mt-24"
                 onClick={handleRentCar}
               >
-                Alugar agora
+                Rent now
               </Button>
             </TabsContent>
           </Tabs>
@@ -239,11 +239,11 @@ const CarDetails = ({ car }: CarDetailsProps) => {
           <div className="bg-gray-700 p-16 flex flex-col items-center">
             <RiCheckLine className="text-green-400 w-28 h-28" />
             <ModalTitle asChild>
-              <Heading className="text-white mt-6">Carro alugado!</Heading>
+              <Heading className="text-white mt-6">Rented car!</Heading>
             </ModalTitle>
             <ModalDescription className="mt-4 text-gray-400 text-center max-w-[256px]">
-              Agora você só precisa ir até a concessionária da RentX pegar o seu
-              automóvel.
+              Now you just need to go to the RentX dealership to pick up your
+              car.
             </ModalDescription>
             <Button
               className="mt-10 w-[120px]"

@@ -72,7 +72,7 @@ export const CarCard = ({
         >
           <DetailsBlock label={brand} content={model} size="sm" />
           <DetailsBlock
-            label="AO DIA"
+            label="PER DAY"
             content={`R$ ${rentPricePerDay}`}
             isHighlighted
             size="sm"

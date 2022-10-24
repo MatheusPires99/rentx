@@ -93,7 +93,7 @@ const Profile = ({ rents }: ProfileProps) => {
             type="submit"
             className="mt-6"
           >
-            Salvar alterações
+            Save changes
           </Button>
         </form>
       </div>
@@ -101,7 +101,7 @@ const Profile = ({ rents }: ProfileProps) => {
       <hr className="w-full lg:w-px h-px my-8 lg:h-full bg-gray-300 border-none lg:mx-[72px]" />
 
       <div className="flex-1">
-        <Heading size="3">Agendamentos feitos</Heading>
+        <Heading size="3">Appointments made</Heading>
 
         <ul className="flex flex-col gap-4 mt-6">
           {rents.map((rent) => (

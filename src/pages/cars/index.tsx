@@ -14,9 +14,9 @@ const Cars = ({ cars }: CarsProps) => {
     <>
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 lg:gap-0 border-b border-gray-300 pb-6 mb-6">
         <Heading size="4" as="h1">
-          Carros disponíveis
+          Cars available
         </Heading>
-        <span>Total {cars.length} carros</span>
+        <span>Total {cars.length} cars</span>
       </div>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">

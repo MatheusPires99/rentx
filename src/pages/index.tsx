@@ -18,10 +18,10 @@ const Home = () => {
         <div className="md:w-[426px]">
           <RentxFullLogo />
           <Heading size="5" className="mt-28 text-white leading-none">
-            Alugue um carro de maneira simples e fácil
+            Rent a car simply and easily
           </Heading>
           <p className="mt-8 text-white text-xl">
-            Vários modelos para você dirigir seguro, com conforto e segurança.
+            Several models for you to drive comfortably and safely.
           </p>
           <Button className="mt-16 w-[292px]" onClick={handleSignInWithGitHub}>
             <RiGithubFill className="w-6 h-6" />

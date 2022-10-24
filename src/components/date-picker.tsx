@@ -106,11 +106,11 @@ export const DatePicker = ({
       <div className="lg:flex-1 flex flex-col">
         <div className="flex flex-col gap-6 lg:gap-12">
           <DatePreview
-            label="DE"
+            label="FROM"
             content={startDate && format(startDate, "MMMM do")}
           />
           <DatePreview
-            label="ATÉ"
+            label="UNTIL"
             content={endDate && format(endDate, "MMMM do")}
           />
         </div>
@@ -119,7 +119,7 @@ export const DatePicker = ({
           disabled={isConfirmPeriodButtonDisabled}
           onClick={onConfirmDate}
         >
-          Confirmar
+          Confirm
         </Button>
       </div>
     </div>
